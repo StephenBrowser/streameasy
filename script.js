@@ -240,8 +240,8 @@ function showHomePage() {
 function showMoviesPage() {
   renderSection(allMoviesData, "all-movies", true);
   document.getElementById("homepage-section").style.display = "none";
-  document.getElementById("all-movies-section").style.display =
-    document.getElementById("all-tv-shows-section").style.display = "none";
+  document.getElementById("all-tv-shows-section").style.display = "none";
+  document.getElementById("all-movies-section").style.display = "block"; // This line was missing
 }
 function showTVShowsPage() {
   renderSection(allTVShowsData, "all-tv-shows", false);
