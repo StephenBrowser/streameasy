@@ -1,3 +1,280 @@
+const allMoviesData = [
+  {
+    title: "A Minecraft Movie",
+
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuYD3spgNTPkZOsL-4v4CfSd0gjuVNmySD5SCg5Sm5Tpra1-Jf",
+
+    tmdb: 950387,
+  },
+
+  {
+    title: "The Wild Robot",
+
+    img: "https://upload.wikimedia.org/wikipedia/en/7/70/The_Wild_Robot_poster.jpg",
+
+    tmdb: 1184918,
+  },
+
+  {
+    title: "Dog Man",
+
+    img: "https://upload.wikimedia.org/wikipedia/en/6/67/Dog_Man_film_poster.jpg",
+
+    tmdb: 774370,
+  },
+
+  {
+    title: "The Garfield Movie",
+
+    img: "https://peoplesbanktheatre.com/wp-content/uploads/2024/05/garfield.webp",
+
+    tmdb: 33051,
+  },
+
+  {
+    title: "The Bad Guys",
+
+    img: "https://upload.wikimedia.org/wikipedia/en/0/00/The_Bad_Guys_poster.jpeg",
+
+    tmdb: 822271,
+  },
+
+  {
+    title: "Sonic the Hedgehog 3",
+
+    img: "https://upload.wikimedia.org/wikipedia/en/f/f2/Sonic_the_Hedgehog_3_film_poster.jpg",
+
+    tmdb: 1222264,
+  },
+
+  {
+    title: "Inside Out 2",
+
+    img: "https://upload.wikimedia.org/wikipedia/en/f/f7/Inside_Out_2_poster.jpg",
+
+    tmdb: 1022789,
+  },
+
+  {
+    title: "Moana 2",
+
+    img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4ctemLCUypsHiL19p_1Rl9lt2pttZ0YOlfpYzgd3R198-eEmD",
+
+    tmdb: 1241982,
+  },
+];
+
+const newReleases = allMoviesData.slice(0, 4);
+
+const allTVShowsData = [
+  {
+    title: "South Park",
+
+    img: "https://image.tmdb.org/t/p/w1280/xJnbMTrJ2fl1AXAKx34U4BPvOhs.jpg",
+
+    tmdb: 231,
+
+    seasons: 27,
+  },
+
+  {
+    title: "The Simpsons",
+
+    img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTAxmhnrzBIDS4CJHsPXkLqtsmUuBKiuLgnrL8WwuiCePcHFk02",
+
+    tmdb: 456,
+
+    seasons: 35,
+  },
+
+  {
+    title: "Family Guy",
+
+    img: "https://image.tmdb.org/t/p/w1280/8o8kiBkWFK3gVytHdyzEWUBXVfK.jpg",
+
+    tmdb: 1434,
+
+    seasons: 22,
+  },
+
+  {
+    title: "Gravity Falls",
+
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/dNxEEK5CdNQbp4YcEtICXelRqvP.jpg",
+
+    tmdb: 40075,
+
+    seasons: 2,
+  },
+
+  {
+    title: "The Good Doctor",
+
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/luhKkdD80qe62fwop6sdrXK9jUT.jpg",
+
+    tmdb: 71712,
+
+    seasons: 5,
+  },
+
+  {
+    title: "Young Sheldon",
+
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/kidkbZRBGbsEIrX7pODRSKi9ipl.jpg",
+
+    tmdb: 71728,
+
+    seasons: 7,
+  },
+
+  {
+    title: "Futurama",
+
+    img: "https://image.tmdb.org/t/p/w1280/sdJcX2cXirwQurLLlrDLYov7hcD.jpg",
+
+    tmdb: 615,
+
+    seasons: 12,
+  },
+];
+
+let currentTMDBId = null;
+
+let currentTitle = "";
+
+let currentVideoUrl = "";
+
+let currentIsMovie = true;
+
+let currentSeasons = 0;
+
+let currentSeason = null;
+
+let currentEpisode = 1;
+
+let allMedia = [
+  ...allMoviesData,
+
+  ...allTVShowsData.map((tvShow) => ({ ...tvShow, isMovie: false })),
+];
+
+let searchingTMDBId = false;
+
+function updatePlayerAndTabOption() {
+  const source = document.getElementById("video-source-select").value;
+
+  const player = document.getElementById("video-player-iframe");
+
+  const openTabButton = document.getElementById("open-player-tab");
+
+  const openPStreamButton = document.getElementById("open-pstream");
+
+  const seasonInput = document.getElementById("current-season");
+
+  const episodeInput = document.getElementById("current-episode");
+
+  if (seasonInput && episodeInput) {
+    currentSeason = seasonInput.value;
+
+    currentEpisode = episodeInput.value;
+  }
+
+  if (
+    source &&
+    currentTMDBId &&
+    !currentIsMovie &&
+    currentSeason &&
+    currentEpisode
+  ) {
+    let embedUrl = "";
+
+    openTabButton.disabled = false;
+
+    openPStreamButton.disabled = false;
+
+    let episodeString = String(currentEpisode).padStart(2, "0");
+
+    let seasonString = String(currentSeason).padStart(2, "0");
+
+    switch (source) {
+      case "vidsrc":
+        embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}&season=${seasonString}&episode=${episodeString}`;
+
+        player.src = embedUrl;
+
+        break;
+
+      case "embedsu":
+        embedUrl = `https://embed.su/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+
+        player.src = embedUrl;
+
+        break;
+
+      case "vidsrccc":
+        embedUrl = `https://vidsrc.cc/v2/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}?autoPlay=false`;
+
+        player.src = embedUrl;
+
+        break;
+
+      case "autoembed":
+        embedUrl = `https://player.autoembed.cc/embed/tv/${currentTMDBId}?season=${seasonString}&episode=${episodeString}`;
+
+        player.src = embedUrl;
+
+        break;
+
+      default:
+        embedUrl = "";
+
+        player.src = "";
+
+        openTabButton.disabled = true;
+
+        openPStreamButton.disabled = true;
+
+        break;
+    }
+
+    currentVideoUrl = embedUrl;
+  } else if (source && currentTMDBId && currentIsMovie) {
+    let embedUrl = "";
+
+    openTabButton.disabled = false;
+
+    openPStreamButton.disabled = false;
+
+    switch (source) {
+      case "vidsrc":
+        embedUrl = `https://vidsrc.xyz/embed/movie?tmdb=${currentTMDBId}`;
+
+        player.src = embedUrl;
+
+        break;
+
+      case "embedsu":
+        embedUrl = `https://embed.su/embed/movie/${currentTMDBId}`;
+
+        player.src = embedUrl;
+
+        break;
+
+      case "vidsrccc":
+        embedUrl = `https://vidsrc.cc/v2/embed/movie/${currentTMDBId}?autoPlay=false`;
+
+        player.src = embedUrl;
+
+        break;
+
+      case "autoembed":
+        embedUrl = `https://player.autoembed.cc/embed/movie/${currentTMDBId}`;
+
+        player.src = embedUrl;
+
+        break;
+
+      default:
         embedUrl = "";
 
         player.src = "";
@@ -396,5 +673,4 @@ function toggleEpisodeDropdowns() {
 }
 function playSpecificEpisodeFromCard(tmdbId, title, totalSeasons) {}
 renderSection(newReleases, "new-releases");
-
 
