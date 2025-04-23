@@ -133,6 +133,15 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
     episodeSelection.classList.remove("row");
     toggleButton.textContent = "Show Episodes";
     overlayContent.classList.add("tv-active");
+    const seasonSelect = document.getElementById("current-season");
+    seasonSelect.innerHTML = "";
+    for (let i = 1; i <= seasons; i++) {
+      const option = document.createElement("option");
+      option.value = i;
+      option.textContent = `Season ${i}`;
+      seasonSelect.appendChild(option);
+    }
+    currentSeason = seasonSelect.value;
   } else {
     tvControls.style.display = "none";
     toggleButton.style.display = "none";
@@ -146,7 +155,6 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
   document.getElementById("video-overlay").style.display = "flex";
   document.getElementById("video-player-iframe").src = "";
   currentVideoUrl = "";
-  document.getElementById("current-season").value = "";
   document.getElementById("current-episode").value = "";
 }
 function closeOverlay() {
@@ -178,7 +186,8 @@ function updatePlayerAndTabOption() {
   const player = document.getElementById("video-player-iframe");
   const openTabButton = document.getElementById("open-player-tab");
   const openPStreamButton = document.getElementById("open-pstream");
-  currentSeason = document.getElementById("current-season").value;
+  const seasonSelect = document.getElementById("current-season");
+  currentSeason = seasonSelect.value;
   currentEpisode = document.getElementById("current-episode").value;
   if (source && currentTMDBId) {
     let embedUrl = "";
@@ -259,7 +268,7 @@ function showMoviesPage() {
   renderSection(allMoviesData, "all-movies", true);
   document.getElementById("homepage-section").style.display = "none";
   document.getElementById("all-tv-shows-section").style.display = "none";
-  document.getElementById("all-movies-section").style.display = "block"; // This line was missing
+  document.getElementById("all-movies-section").style.display = "block";
 }
 function showTVShowsPage() {
   renderSection(allTVShowsData, "all-tv-shows", false);
