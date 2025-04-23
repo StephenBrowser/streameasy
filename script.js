@@ -44,7 +44,7 @@ const newReleases = allMoviesData.slice(0, 4);
 const allTVShowsData = [
   {
     title: "South Park",
-    img: "https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-22%20085327.png?v=1745326888308",
+    img: "https://image.tmdb.org/t/p/w1280/xJnbMTrJ2fl1AXAKx34U4BPvOhs.jpg",
     tmdb: 231,
     seasons: 27,
   },
@@ -56,15 +56,33 @@ const allTVShowsData = [
   },
   {
     title: "Family Guy",
-    img: "https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-22%20085327.png?v=1745326888308",
-    tmdb: 1666,
+    img: "https://image.tmdb.org/t/p/w1280/8o8kiBkWFK3gVytHdyzEWUBXVfK.jpg",
+    tmdb: 1434,
     seasons: 22,
   },
   {
     title: "Gravity Falls",
-    img: "https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-22%20085327.png?v=1745326888308",
-    tmdb: 40600,
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/dNxEEK5CdNQbp4YcEtICXelRqvP.jpg",
+    tmdb: 40075,
     seasons: 2,
+  },
+  {
+    title: "The Good Doctor",
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/luhKkdD80qe62fwop6sdrXK9jUT.jpg",
+    tmdb: 71712,
+    seasons: 5,
+  },
+  {
+    title: "Young Sheldon",
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/kidkbZRBGbsEIrX7pODRSKi9ipl.jpg",
+    tmdb: 71728,
+    seasons: 7,
+  },
+  {
+    title: "Futurama",
+    img: "https://image.tmdb.org/t/p/w1280/sdJcX2cXirwQurLLlrDLYov7hcD.jpg",
+    tmdb: 615,
+    seasons: 12,
   },
 ];
 let currentTMDBId = null;
