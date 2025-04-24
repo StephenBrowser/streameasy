@@ -33,7 +33,7 @@ streamEasy has 8 movies and 7 TV shows built in, but more are accessible through
    
 3. **Embed the Code**
    - Double-click anywhere on the page to bring up the embed option.
-   - Select **Embed Code** and paste the following HTML code into the box:
-   
+   - Select **Embed Code**, and copy the code in [this Google Doc](https://docs.google.com/document/d/1BmnW7TuDSONOdxSORO7QHKulBxeS5ndoHIf4PkXW5AM/edit?tab=t.ezsrkortvxy), and paste it into the Embed Code option.
+   - 4. 
 
-
+  
