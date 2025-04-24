@@ -62,6 +62,35 @@ const allMoviesData = [
 
     tmdb: 1241982,
   },
+  {
+    title: "The Simpsons Movie",
+
+    img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT5agDoSWFxgMhBlk04VdLCsCfrc2gGaHPH4eFi6lnh47qt8s6f6BM95z76MGu-TXcrAlEk",
+
+    tmdb: 35,
+  },
+  {
+    title: "The Monkey",
+
+    img: "https://upload.wikimedia.org/wikipedia/en/9/9d/The_Monkey_film_poster.jpg?20250109000452",
+
+    tmdb: 1124620,
+  },
+  {
+    title: "Mickey 17",
+
+    img: "https://image.tmdb.org/t/p/w1280/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg",
+
+    tmdb: 696506,
+  },
+  {
+    title: "A Working Man",
+
+    img: "https://image.tmdb.org/t/p/w1280/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg",
+
+    tmdb: 1197306,
+  },
+  
 ];
 
 const newReleases = allMoviesData.slice(0, 4);
@@ -84,7 +113,7 @@ const allTVShowsData = [
 
     tmdb: 456,
 
-    seasons: 35,
+    seasons: 36,
   },
 
   {
@@ -135,6 +164,24 @@ const allTVShowsData = [
     tmdb: 615,
 
     seasons: 12,
+  },
+  {
+    title: "American Dad",
+
+    img: "https://m.media-amazon.com/images/M/MV5BZDI4ZWYwMGUtZGE1Yi00OTc5LWI3NDctMGY4ZWE4NzI4NWUwXkEyXkFqcGc@._V1_.jpg",
+
+    tmdb: 1433,
+
+    seasons: 21,
+  },
+  {
+    title: "Severance",
+
+    img: "https://image.tmdb.org/t/p/w1280/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg",
+
+    tmdb: 95396,
+
+    seasons: 2,
   },
 ];
 
@@ -645,4 +692,3 @@ function toggleEpisodeDropdowns() {
 }
 function playSpecificEpisodeFromCard(tmdbId, title, totalSeasons) {}
 renderSection(newReleases, "new-releases");
-
