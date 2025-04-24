@@ -4,9 +4,27 @@ Adless, simple UI, and static... no need to host a proxy on Node.js or whatnot.
 
 streamEasy has 8 movies and 7 TV shows built in, but more are accessible through our search which allows the input of a TMBD ID, which can be retrieved from the end of a TMBD description page for a movie.
 
-# StreamEasy Deployment Guide (beginners only, because almost everyone knows how to deploy to Cloudflare or Vercel)
+## 🌐 Main Site
+- [streameasy.pages.dev](https://streameasy.pages.dev) ⭐
 
-## Easy Deployment Methods
+## 🚀 Instances
+- [streameasy-4232025.netlify.app](https://streameasy-4232025.netlify.app) ⭐  
+- [streameasy.glitch.me](https://streameasy.glitch.me) ⭐  
+- [stephenbrowser.github.io/streameasy](https://stephenbrowser.github.io/streameasy) ⭐  
+- [streameasywithstreameasy (Google Sites)](https://sites.google.com/view/streameasywithstreameasy) ⭐  
+  > ⚠️ *My first website — taken down by Google, RIP 😅*
+- [thelindenfamilysblog (Google Sites)](https://sites.google.com/view/thelindenfamilysblog) ⭐  
+- [streameasy-production.up.railway.app](https://streameasy-production.up.railway.app) ⭐  
+- [streameasy-roan.vercel.app](https://streameasy-roan.vercel.app) ⭐  
+- [stream.easygate.eu](https://stream.easygate.eu) ⭐  
+
+---
+
+✨ Explore your favorite shows and movies with StreamEasy — wherever you are!
+
+## StreamEasy Deployment Guide (beginners only, because almost everyone knows how to deploy to Cloudflare or Vercel)
+
+### Easy Deployment Methods
 
 ### Deploy to GitHub Pages
 1. **Fork the Repository**
