@@ -4,7 +4,7 @@ Adless, simple UI, and static... no need to host a proxy on Node.js or whatnot.
 
 streamEasy has 8 movies and 7 TV shows built in, but more are accessible through our search which allows the input of a TMBD ID, which can be retrieved from the end of a TMBD description page for a movie.
 
-# StreamEasy Deployment Guide
+# StreamEasy Deployment Guide (beginners only, because almost everyone knows how to deploy to Cloudflare or Vercel)
 
 ## Easy Deployment Methods
 
@@ -34,6 +34,8 @@ streamEasy has 8 movies and 7 TV shows built in, but more are accessible through
 3. **Embed the Code**
    - Double-click anywhere on the page to bring up the embed option.
    - Select **Embed Code**, and copy the code in [this Google Doc](https://docs.google.com/document/d/1BmnW7TuDSONOdxSORO7QHKulBxeS5ndoHIf4PkXW5AM/edit?tab=t.ezsrkortvxy), and paste it into the Embed Code option.
-   - 4. 
+4. **Publish your Site**
+   -Publish your site using some non-sussy title, like the [Linden Family's Blog](https://sites.google.com/view/thelindenfamilysblog).
+5. **You can now view your published version of StreamEasy.**
 
   
