@@ -427,58 +427,33 @@ function closeOverlay() {
 let sportsContainer = null;
 function addSportsCards() {
   const sports = [
-    {
-      name: "Basketball",
-      imageUrl:
-        "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f3c0.png",
-      url: "https://streamedsueasy.global.ssl.fastly.net/category/basketball",
-    },
-    {
-      name: "Football",
-      imageUrl:
-        "https://images.emojiterra.com/google/android-12l/512px/1f3c8.png",
-      url: "https://streamedsueasy.global.ssl.fastly.net/category/american-football",
-    },
-    {
-      name: "Soccer",
-      imageUrl:
-        "https://images.emojiterra.com/google/android-10/512px/26bd.png",
-      url: "https://streamedsueasy.global.ssl.fastly.net/category/football",
-    },
-    {
-      name: "Hockey",
-      imageUrl:
-        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3d2_flat.png",
-      url: "https://streamedsueasy.global.ssl.fastly.net/category/hockey",
-    },
-    {
-      name: "Tennis",
-      imageUrl:
-        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3be_flat.png",
-      url: "https://streamedsueasy.global.ssl.fastly.net/category/tennis",
-    },
-    {
-      name: "Cricket",
-      imageUrl:
-        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3cf_flat.png",
-      url: "https://streamedsueasy.global.ssl.fastly.net/category/cricket",
-    },
-    {
-      name: "Baseball",
-      imageUrl:
-        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/26be_flat.png",
-      url: "https://streamedsueasy.global.ssl.fastly.net/category/baseball",
-    },
+    { name: "Basketball", imageUrl: "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f3c0.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/basketball" },
+    { name: "Football", imageUrl: "https://images.emojiterra.com/google/android-12l/512px/1f3c8.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/american-football" },
+    { name: "Soccer", imageUrl: "https://images.emojiterra.com/google/android-10/512px/26bd.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/football" },
+    { name: "Hockey", imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3d2_flat.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/hockey" },
+    { name: "Tennis", imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3be_flat.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/tennis" },
+    { name: "Cricket", imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3cf_flat.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/cricket" },
+    { name: "Baseball", imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/26be_flat.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/baseball" },
   ];
+
   sportsContainer = document.createElement("div");
   sportsContainer.className = "sports-container";
   sportsContainer.style.display = "flex";
-  sportsContainer.style.flexWrap = "wrap";
+  sportsContainer.style.flexDirection = "column";
   sportsContainer.style.gap = "20px";
   sportsContainer.style.padding = "20px";
-  const style = document.createElement("style");
-  style.textContent = `.sports-card { width: 150px; height: 180px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background-color: #f8f9fa; } .sports-card:hover { transform: scale(1.05); } .sports-card img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 10px; } .sports-card h3 { margin: 0; font-size: 1.2em; color: #333; } .sports-container { display: none; flex-wrap: wrap; gap: 20px; padding: 20px; }`;
-  document.head.appendChild(style);
+
+  const poweredBy = document.createElement("h1");
+  poweredBy.textContent = "Live Sports, Powered by Streamed.su";
+  poweredBy.style.textAlign = "left";
+  poweredBy.style.fontFamily = "Helvetica, sans-serif";
+  poweredBy.style.margin = "10px 0";
+
+  const cardWrapper = document.createElement("div");
+  cardWrapper.style.display = "flex";
+  cardWrapper.style.flexWrap = "wrap";
+  cardWrapper.style.gap = "20px";
+
   sports.forEach((sport) => {
     const card = document.createElement("div");
     card.className = "sports-card";
@@ -495,15 +470,20 @@ function addSportsCards() {
     link.appendChild(img);
     link.appendChild(heading);
     card.appendChild(link);
-    sportsContainer.appendChild(card);
+    cardWrapper.appendChild(card);
   });
-  document.body.appendChild(sportsContainer);
-  const poweredBy = document.createElement("h1");
-  poweredBy.textContent = "Powered by Streamed.su";
-  poweredBy.style.textAlign = "left";
-  poweredBy.style.marginTop = "20px";
-  poweredBy.style.fontFamily = "Helvetica, sans-serif";
-  document.body.appendChild(poweredBy);
+
+  sportsContainer.appendChild(poweredBy);
+  sportsContainer.appendChild(cardWrapper);
+
+  const style = document.createElement("style");
+  style.textContent = `
+    .sports-card { width: 150px; height: 180px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background-color: #f8f9fa; }
+    .sports-card:hover { transform: scale(1.05); }
+    .sports-card img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 10px; }
+    .sports-card h3 { margin: 0; font-size: 1.2em; color: #333; }
+  `;
+  document.head.appendChild(style);
 }
 function showHomePage() {
   document.getElementById("homepage-section").style.display = "block";
@@ -513,7 +493,7 @@ function showHomePage() {
     const poweredByElement = document.querySelector("h1");
     if (
       poweredByElement &&
-      poweredByElement.textContent === "Powered by Streamed.su"
+      poweredByElement.textContent === "Live Sports, Powered by Streamed.su"
     ) {
       poweredByElement.remove();
     }
@@ -529,7 +509,7 @@ function showMoviesPage() {
     const poweredByElement = document.querySelector("h1");
     if (
       poweredByElement &&
-      poweredByElement.textContent === "Powered by Streamed.su"
+      poweredByElement.textContent === "Live Sports, Powered by Streamed.su"
     ) {
       poweredByElement.remove();
     }
@@ -545,7 +525,7 @@ function showTVShowsPage() {
     const poweredByElement = document.querySelector("h1");
     if (
       poweredByElement &&
-      poweredByElement.textContent === "Powered by Streamed.su"
+      poweredByElement.textContent === "Live Sports, Powered by Streamed.su"
     ) {
       poweredByElement.remove();
     }
@@ -555,31 +535,23 @@ function showTVShowsPage() {
 function showSportsPage() {
   if (!sportsContainer) {
     addSportsCards();
-  } else {
-    sportsContainer.style.display = "flex";
-    let poweredByElement = document.querySelector("h1");
-    if (
-      !poweredByElement ||
-      poweredByElement.textContent !== "Powered by Streamed.su"
-    ) {
-      poweredByElement = document.createElement("h1");
-      poweredByElement.textContent = "Powered by Streamed.su";
-      poweredByElement.style.textAlign = "left";
-      poweredByElement.style.marginTop = "20px";
-      poweredByElement.style.fontFamily = "Helvetica, sans-serif";
-      document.body.appendChild(poweredByElement);
+  }
+
+  if (!document.body.contains(sportsContainer)) {
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) {
+      mainContent.appendChild(sportsContainer);
+    } else {
+      document.body.appendChild(sportsContainer);
     }
   }
+
+  sportsContainer.style.display = "flex";
   document.getElementById("homepage-section").style.display = "none";
   document.getElementById("all-movies-section").style.display = "none";
   document.getElementById("all-tv-shows-section").style.display = "none";
-  const mainContent = document.getElementById("main-content");
-  if (mainContent) {
-    mainContent.appendChild(sportsContainer);
-  } else {
-    document.body.appendChild(sportsContainer);
-  }
 }
+
 function handleTMDBIdSearch(tmdbId) {
   searchingTMDBId = true;
   const overlayContent = document.querySelector(".overlay-content");
