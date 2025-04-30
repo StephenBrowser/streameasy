@@ -209,187 +209,124 @@ let searchingTMDBId = false;
 
 function updatePlayerAndTabOption() {
   const source = document.getElementById("video-source-select").value;
-
   const player = document.getElementById("video-player-iframe");
-
   const openTabButton = document.getElementById("open-player-tab");
-
   const openPStreamButton = document.getElementById("open-pstream");
-
   const seasonInput = document.getElementById("current-season");
-
   const episodeInput = document.getElementById("current-episode");
 
   if (seasonInput && episodeInput) {
     currentSeason = seasonInput.value;
-
     currentEpisode = episodeInput.value;
   }
 
+  let finalSource = source;
+  if (!source) {
+    finalSource = "vidsrccc"; // Set default source to vidsrccc
+  }
+
   if (
-    source &&
+    finalSource &&
     currentTMDBId &&
     !currentIsMovie &&
     currentSeason &&
     currentEpisode
   ) {
     let embedUrl = "";
-
     openTabButton.disabled = false;
-
     openPStreamButton.disabled = false;
-
     let episodeString = String(currentEpisode).padStart(2, "0");
-
     let seasonString = String(currentSeason).padStart(2, "0");
 
-    switch (source) {
+    switch (finalSource) {
       case "vidsrc":
-        embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}&season=${seasonString}&episode=${episodeString}`;
-
+        embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=<span class="math-inline">\{currentTMDBId\}&season\=</span>{seasonString}&episode=${episodeString}`;
         player.src = embedUrl;
-
         break;
-
       case "embedsu":
-        embedUrl = `https://embed.su/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
-
+        embedUrl = `https://embed.su/embed/tv/<span class="math-inline">\{currentTMDBId\}/</span>{seasonString}/${episodeString}`;
         player.src = embedUrl;
-
         break;
-
       case "vidsrccc":
-        embedUrl = `https://vidsrc.cc/v2/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}?autoPlay=false`;
-
+        embedUrl = `https://vidsrc.cc/v2/embed/tv/<span class="math-inline">\{currentTMDBId\}/</span>{seasonString}/${episodeString}?autoPlay=false`;
         player.src = embedUrl;
-
         break;
-
       case "autoembed":
-        embedUrl = `https://player.autoembed.cc/embed/tv/${currentTMDBId}?season=${seasonString}&episode=${episodeString}`;
-
+        embedUrl = `https://player.autoembed.cc/embed/tv/<span class="math-inline">\{currentTMDBId\}?season\=</span>{seasonString}&episode=${episodeString}`;
         player.src = embedUrl;
-
         break;
-
       default:
         embedUrl = "";
-
         player.src = "";
-
         openTabButton.disabled = true;
-
         openPStreamButton.disabled = true;
-
         break;
     }
-
     currentVideoUrl = embedUrl;
-  } else if (source && currentTMDBId && currentIsMovie) {
+  } else if (finalSource && currentTMDBId && currentIsMovie) {
     let embedUrl = "";
-
     openTabButton.disabled = false;
-
     openPStreamButton.disabled = false;
 
-    switch (source) {
+    switch (finalSource) {
       case "vidsrc":
         embedUrl = `https://vidsrc.xyz/embed/movie?tmdb=${currentTMDBId}`;
-
         player.src = embedUrl;
-
         break;
-
       case "embedsu":
         embedUrl = `https://embed.su/embed/movie/${currentTMDBId}`;
-
         player.src = embedUrl;
-
         break;
-
       case "vidsrccc":
         embedUrl = `https://vidsrc.cc/v2/embed/movie/${currentTMDBId}?autoPlay=false`;
-
         player.src = embedUrl;
-
         break;
-
       case "autoembed":
         embedUrl = `https://player.autoembed.cc/embed/movie/${currentTMDBId}`;
-
         player.src = embedUrl;
-
         break;
-
       default:
         embedUrl = "";
-
         player.src = "";
-
         openTabButton.disabled = true;
-
         openPStreamButton.disabled = true;
-
         break;
     }
-
     currentVideoUrl = embedUrl;
-  } else if (source && currentTMDBId && !currentIsMovie) {
+  } else if (finalSource && currentTMDBId && !currentIsMovie) {
     // If no specific season/episode selected, try to load the base series URL
-
     let embedUrl = "";
-
     openTabButton.disabled = false;
-
     openPStreamButton.disabled = false;
 
-    switch (source) {
+    switch (finalSource) {
       case "vidsrc":
         embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}`;
-
         player.src = embedUrl;
-
         break;
-
       case "embedsu":
         embedUrl = `https://embed.su/embed/tv/${currentTMDBId}/1/1`; // Provide a default to try and load the player
-
         player.src = embedUrl;
-
         break;
-
       case "vidsrccc":
         embedUrl = `https://vidsrc.cc/v2/embed/tv/${currentTMDBId}?autoPlay=false`;
-
         player.src = embedUrl;
-
         break;
-
       case "autoembed":
         embedUrl = `https://player.autoembed.cc/embed/tv/${currentTMDBId}?season=1&episode=1`; // Provide a default
-
         player.src = embedUrl;
-
         break;
-
       default:
         embedUrl = "";
-
         player.src = "";
-
         openTabButton.disabled = true;
-
         openPStreamButton.disabled = true;
-
         break;
     }
-
     currentVideoUrl = embedUrl;
   } else {
     player.src = "";
-
     openTabButton.disabled = true;
-
     openPStreamButton.disabled = true;
   }
 }
@@ -471,6 +408,49 @@ function closeOverlay() {
     mediaTypeSelection.remove();
   }
 }
+function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
+  currentTMDBId = 950387;
+  currentTitle = "A Minecraft Movie";
+  currentIsMovie = "true";
+  currentSeasons = seasons;
+  document.getElementById("overlay-title").innerText = "A Minecraft Movie";
+  document.getElementById("video-source-select").value = "";
+  document.getElementById("open-player-tab").disabled = true;
+  document.getElementById("open-pstream").disabled = true;
+  const tmdbButton = document.getElementById("tmdb-button");
+  tmdbButton.onclick = () =>
+    window.open(
+      `https://www.themoviedb.org/${isMovie ? "movie" : "tv"}/${currentTMDBId}`,
+      "_blank"
+    );
+  const overlayContent = document.querySelector(".overlay-content");
+  const tvControls = document.getElementById("tv-controls");
+  const episodeSelection = document.getElementById("episode-selection");
+  const toggleButton = document.getElementById("toggle-episodes");
+  if (!isMovie && seasons > 0) {
+    tvControls.style.display = "block";
+    toggleButton.style.display = "block";
+    episodeSelection.style.display = "flex";
+    episodeSelection.classList.add("row");
+    toggleButton.textContent = "Hide Episodes";
+    overlayContent.classList.add("tv-active");
+    document.getElementById("current-season").value = currentSeason || "";
+    document.getElementById("current-episode").value = currentEpisode || "";
+  } else {
+    tvControls.style.display = "none";
+    toggleButton.style.display = "none";
+    episodeSelection.style.display = "none";
+    episodeSelection.classList.remove("row");
+    toggleButton.textContent = "Show Episodes";
+    overlayContent.classList.remove("tv-active");
+    currentSeason = null;
+    currentEpisode = null;
+  }
+  document.getElementById("video-overlay").style.display = "flex";
+  document.getElementById("video-player-iframe").src = "";
+  currentVideoUrl = "";
+}
+
 let sportsContainer = null;
 function addSportsCards() {
   const sports = [
