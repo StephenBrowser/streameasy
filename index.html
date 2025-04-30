@@ -1,135 +1,150 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <title>StreamEasy</title>
-     <link rel="icon" href="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Untitled%20design.png?v=1745537855225" type="image/png" />
-     <link
-         href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400;500&display=swap"
-         rel="stylesheet"
-     />
-     <link rel="stylesheet" href="style.css" />
- </head>
- <body>
-     <header>
-         <h1>🎞️StreamEasy</h1>
-         <div>
-             <button class="nav-button" onclick="showHomePage()">🏠Home</button>
-             <button class="nav-button" onclick="showMoviesPage()">🎥Movies</button>
-             <button class="nav-button" onclick="showTVShowsPage()">
-                 📺TV Series
-             </button>
-         <button class="nav-button" onclick="showSportsPage()">
-                 🏈Sports
-             </button>
-         </div>
-     </header>
-     <div class="search-bar">
-         <input
-             type="text"
-             id="searchInput"
-             placeholder="Enter TMDB ID or Keywords..."
-         />
-         <button onclick="performSearch()" class="blue-button">Search</button>
-     </div>
-     <div class="content" id="homepage-section">
-         <h2>New Releases</h2>
-         <div class="movie-section" id="new-releases"></div>
-     </div>
-     <div class="content" id="all-movies-section" style="display: none">
-         <h2>All Movies</h2>
-         <div class="movie-section" id="all-movies"></div>
-     </div>
-     <div class="content" id="all-tv-shows-section" style="display: none">
-         <h2>All TV Shows</h2>
-         <div class="movie-section" id="all-tv-shows"></div>
-     </div>
-     <div id="video-overlay" class="overlay" style="display: none">
-         <div class="overlay-content">
-             <div class="overlay-header">
-                 <h2 id="overlay-title"></h2>
-                 <button class="close-button" onclick="closeOverlay()">&times;</button>
-             </div>
-             <div id="tv-controls" style="display: none;">
-                 <button id="toggle-episodes" class="blue-button" onclick="toggleEpisodeDropdowns()">Show Episodes</button>
-                 <div id="episode-selection" style="display: none;">
-                     <div class="episode-selector">
-                         <label for="current-season">Season:</label>
-                         <input type="number" id="current-season" min="1">
-                     </div>
-                     <div class="episode-selector">
-                         <label for="current-episode">Episode:</label>
-                         <input type="number" id="current-episode" min="1">
-                     </div>
-                     <button id="submit-episode" class="blue-button" onclick="updatePlayerAndTabOption()">Watch</button>
-                 </div>
-             </div>
-             <iframe
-                 id="video-player-iframe"
-                 src=""
-                 frameborder="0"
-                 allowfullscreen
-             ></iframe>
-             <div class="source-selector">
-                 <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 10px; justify-content: center;">
-                     <label for="video-source-select">Watch on:</label>
-                     <select
-                         id="video-source-select"
-                         onchange="updatePlayerAndTabOption()"
-                     >
-                         <option value="">Select Source</option>
-                         <option value="vidsrc">VidSrc.xyz</option>
-                         <option value="embedsu">Embed.su (Movies Only)</option>
-                         <option value="vidsrccc">VidSrc.cc (Recommended)</option>
-                         <option value="autoembed">AutoEmbed</option>
-                     </select>
-                     <button id="open-player-tab" class="blue-button" disabled>Open in New Tab</button>
-                     <button id="open-pstream" class="blue-button" disabled>Open on PStream</button>
-                     <button id="tmdb-button" class="blue-button">View on TMDB</button>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="content" id="sports-page" style="display: none;">
-         <h2>Sports</h2>
-         <div id="sports-container">
-             </div>
-         <p style="text-align: center; margin-top: 20px;">Sports streaming powered by Streamed.su</p>
-     </div>
-     <footer>
-         <small>&copy; 2025 XStephen. <i><b>We do not pirate nor share movies, television series, or sports.</b></i> Other sites do that.</small>
-       <br>
-       <br>
-       <br>
-       <a href="https://www.youtube.com/watch?v=ya6XhY_6TMU" target="_blank">
-  <img src="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-25%20140045.png?v=1745604122449" alt="Screenshot" width="300" height="225">
-</a>
-        <a href="https://dicord.com" target="_blank">
-  <img src="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-25%20142052.png?v=1745605275612" alt="Screenshot" width="300" height="225">
-</a>
-       <a href="https://hireanassassin.com" target="_blank">
-  <img src="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-25%20144425.png?v=1745606675129" alt="Screenshot" width="300" height="225">
-</a>
-       <style>
-  footer a {
-    text-decoration: none;
-  }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StreamEasy</title>
+    
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Untitled%20design.png?v=1745537855225"
+      type="image/png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>🎞️StreamEasy</h1>
+      <div>
+        <button class="nav-button" onclick="showHomePage()">🏠Home</button>
+        <button class="nav-button" onclick="showMoviesPage()">🎥Movies</button>
+        <button class="nav-button" onclick="showTVShowsPage()">
+          📺TV Series
+        </button>
+        <button class="nav-button" onclick="showSportsPage()">🏈Sports</button>
+      </div>
+    </header>
+    <div class="search-bar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Enter TMDB ID or Keywords..."
+      />
+      <button onclick="performSearch()" class="blue-button">Search</button>
+    </div>
+    <div class="content" id="homepage-section">
+      <div class="banner">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5c95f8d416b640656eb7765a/1740717090534-50YM4GUSXU0I0KV6A1CA/A+Minecraft+Movie+new.jpg?format=2500w"
+          alt="Banner"
+          class="banner-image"
+        />
+        <div class="banner-overlay">
+          <h2 class="banner-title">A Minecraft Movie</h2>
+          <p class="banner-subtitle">
+            PG 2025 - Adventure/Comedy <span class="rating">4.2⭐</span>
+          </p>
+          <button class="blue-button" onclick="openBannerMovie()">▶ Watch Now</button>
+        </div>
+      </div>
+      
 
-  footer a img {
-    border-radius: 12px;
-    margin: 5px;
-    display: inline-block;
-    vertical-align: middle;
-  }
+      <h2>New Releases</h2>
+      <div class="movie-section" id="new-releases"></div>
+    </div>
+    <div class="content" id="all-movies-section" style="display: none">
+      <h2>All Movies</h2>
+      <div class="movie-section" id="all-movies"></div>
+    </div>
+    <div class="content" id="all-tv-shows-section" style="display: none">
+      <h2>All TV Shows</h2>
+      <div class="movie-section" id="all-tv-shows"></div>
+    </div>
+    <div id="video-overlay" class="overlay" style="display: none">
+      <div class="overlay-content">
+        <div class="overlay-header">
+          <h2 id="overlay-title"></h2>
+          <button class="close-button" onclick="closeOverlay()">&times;</button>
+        </div>
+        <div id="tv-controls" style="display: none">
+          <button
+            id="toggle-episodes"
+            class="blue-button"
+            onclick="toggleEpisodeDropdowns()"
+          >
+            Show Episodes
+          </button>
+          <div id="episode-selection" style="display: none">
+            <div class="episode-selector">
+              <label for="current-season">Season:</label>
+              <input type="number" id="current-season" min="1" />
+            </div>
+            <div class="episode-selector">
+              <label for="current-episode">Episode:</label>
+              <input type="number" id="current-episode" min="1" />
+            </div>
+            <button
+              id="submit-episode"
+              class="blue-button"
+              onclick="updatePlayerAndTabOption()"
+            >
+              Watch
+            </button>
+          </div>
+        </div>
+        <iframe
+          id="video-player-iframe"
+          src=""
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+        <div class="source-selector">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 10px;
+              justify-content: center;
+            "
+          >
+            <label for="video-source-select">Watch on:</label>
+            <select
+              id="video-source-select"
+              onchange="updatePlayerAndTabOption()"
+            >
+              <option value="">Select Source</option>
+              <option value="vidsrccc">VidSrc.cc (Recommended)</option>
+              <option value="vidsrc">VidSrc.xyz</option>
+              
+              
+              <option value="autoembed">AutoEmbed</option>
+              <option value="embedsu">Embed.su (Movies Only)</option>
+            </select>
+            <button id="open-player-tab" class="blue-button" disabled>
+              Open in New Tab
+            </button>
+            <button id="open-pstream" class="blue-button" disabled>
+              Open on PStream
+            </button>
+            <button id="tmdb-button" class="blue-button">View on TMDB</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content" id="sports-page" style="display: none">
+      <h2>Sports</h2>
+      <div id="sports-container"></div>
+      <p style="text-align: center; margin-top: 20px">
+        Sports streaming powered by Streamed.su
+      </p>
+    </div>
 
-  footer small a {
-    text-decoration: underline;
-  }
-</style>
-       <br>
-       <small>Request ads <a href="https://browserstephen.glitch.me/discord.html">here.</a></small>
-     </footer>
-     <script src="script.js"></script>
- </body>
- </html>
+    <script src="script.js"></script>
+  </body>
+</html>
+
