@@ -2,17 +2,18 @@
 streamEasy is probably the simplest movie streaming site possible. 
 Adless, simple UI, and static... no need to host a proxy on Node.js or whatnot.
 
-streamEasy has 8 movies and 7 TV shows built in, but more are accessible through our search which allows the input of a TMBD ID, which can be retrieved from the end of a TMBD description page for a movie.
+streamEasy has 12 movies and 9 TV shows built in, but more are accessible through our search which allows the input of a TMBD ID, which can be retrieved from the end of a TMBD description page for a movie. In addition, we offer sports streaming via Fastly that connects to Streamed.Su to avoid blockages.
 
 ## 🌐 Main Site
 - [streameasy.pages.dev](https://streameasy.pages.dev) ⭐
-
+  > ⚠️ Taken down by CloudFlare *
+- [thelindentravelblog.pages.dev](https://thelindentravelblog.pages.dev) ⭐
 ## 🚀 Instances
 - [streameasy-4232025.netlify.app](https://streameasy-4232025.netlify.app) ⭐  
 - [streameasy.glitch.me](https://streameasy.glitch.me) ⭐  
 - [stephenbrowser.github.io/streameasy](https://stephenbrowser.github.io/streameasy) ⭐  
 - [streameasywithstreameasy (Google Sites)](https://sites.google.com/view/streameasywithstreameasy) ⭐  
-  > ⚠️ *My first website — taken down by Google, RIP 😅*
+  > ⚠️ My first website taken down by Google, RIP 😅*
 - [thelindenfamilysblog (Google Sites)](https://sites.google.com/view/thelindenfamilysblog) ⭐  
 - [streameasy-production.up.railway.app](https://streameasy-production.up.railway.app) ⭐  
 - [streameasy-roan.vercel.app](https://streameasy-roan.vercel.app) ⭐  
