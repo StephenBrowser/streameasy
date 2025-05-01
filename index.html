@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StreamEasy</title>
-    
+
     <link
       rel="icon"
       href="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Untitled%20design.png?v=1745537855225"
@@ -15,6 +15,41 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .search-bar {
+        width: 100%;
+        max-width: 1000px;
+        margin: 20px auto 0;
+        display: flex;
+        gap: 10px;
+      }
+
+      .search-bar input {
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .search-bar .blue-button {
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+
+      .banner {
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .content {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -22,20 +57,11 @@
       <div>
         <button class="nav-button" onclick="showHomePage()">🏠Home</button>
         <button class="nav-button" onclick="showMoviesPage()">🎥Movies</button>
-        <button class="nav-button" onclick="showTVShowsPage()">
-          📺TV Series
-        </button>
+        <button class="nav-button" onclick="showTVShowsPage()">📺TV Series</button>
         <button class="nav-button" onclick="showSportsPage()">🏈Sports</button>
       </div>
     </header>
-    <div class="search-bar">
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Enter TMDB ID or Keywords..."
-      />
-      <button onclick="performSearch()" class="blue-button">Search</button>
-    </div>
+
     <div class="content" id="homepage-section">
       <div class="banner">
         <img
@@ -51,19 +77,49 @@
           <button class="blue-button" onclick="openBannerMovie()">▶ Watch Now</button>
         </div>
       </div>
-      
+
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Enter TMDB ID to Play Media..."
+        />
+        <button onclick="performSearch()" class="blue-button">Search</button>
+      </div>
 
       <h2>New Releases</h2>
       <div class="movie-section" id="new-releases"></div>
     </div>
+
     <div class="content" id="all-movies-section" style="display: none">
+      
       <h2>All Movies</h2>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Enter TMDB ID to Play Media..."
+        />
+        <button onclick="performSearch()" class="blue-button">Search</button>
+      </div>
+      <br>
       <div class="movie-section" id="all-movies"></div>
     </div>
+
     <div class="content" id="all-tv-shows-section" style="display: none">
       <h2>All TV Shows</h2>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Enter TMDB ID to Play Media..."
+        />
+        <button onclick="performSearch()" class="blue-button">Search</button>
+      </div>
+      <br>
       <div class="movie-section" id="all-tv-shows"></div>
     </div>
+
     <div id="video-overlay" class="overlay" style="display: none">
       <div class="overlay-content">
         <div class="overlay-header">
@@ -117,32 +173,20 @@
               id="video-source-select"
               onchange="updatePlayerAndTabOption()"
             >
-              <option value="">Select Source</option>
+              
               <option value="vidsrccc">VidSrc.cc (Recommended)</option>
               <option value="vidsrc">VidSrc.xyz</option>
-              
-              
               <option value="autoembed">AutoEmbed</option>
               <option value="embedsu">Embed.su (Movies Only)</option>
             </select>
-            <button id="open-player-tab" class="blue-button" disabled>
-              Open in New Tab
-            </button>
-            <button id="open-pstream" class="blue-button" disabled>
-              Open on PStream
-            </button>
+            
             <button id="tmdb-button" class="blue-button">View on TMDB</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="content" id="sports-page" style="display: none">
-      <h2>Sports</h2>
-      <div id="sports-container"></div>
-      <p style="text-align: center; margin-top: 20px">
-        Sports streaming powered by Streamed.su
-      </p>
-    </div>
+
+    
 
     <script src="script.js"></script>
   </body>
