@@ -1,4 +1,4 @@
-
+CSS
 
 body {
     font-family: Helvetica, sans-serif;
@@ -273,8 +273,8 @@ footer {
     background-color: #218838;
 }
 
-#open-player-tab,
-#open-pstream,
+
+
 #tmdb-button {
     background-color: #17a2b8;
     color: white;
@@ -285,9 +285,7 @@ footer {
     font-size: 0.9em;
 }
 
-#open-player-tab:hover {
-    background-color: #138496;
-}
+
 
 #tmdb-button {
     background-color: #dc3545;
@@ -297,28 +295,8 @@ footer {
     background-color: #c82333;
 }
 
-#open-pstream {
-    background-color: #6c757d;
-}
 
-#open-pstream:hover {
-    background-color: #5a6268;
-}
 
-#tv-controls {
-    display: flex;
-    flex-direction: column; /* Arrange button and dropdowns vertically */
-    gap: 10px;
-    margin-bottom: 10px;
-    align-items: flex-start; /* Align items to the left */
-}
-
-#episode-selection {
-    display: none; /* Hidden by default */
-    flex-direction: column; /* Stack season and episode selectors */
-    gap: 5px;
-    margin-top: 5px;
-}
 
 .overlay-content iframe {
     width: 100%;
@@ -409,8 +387,7 @@ footer,
 .episode-selector label,
 .episode-selector input[type="number"],
 #submit-episode,
-#open-player-tab,
-#open-pstream,
+
 #tmdb-button,
 #video-source-select,
 #toggle-episodes,
