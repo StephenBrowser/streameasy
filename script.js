@@ -145,8 +145,7 @@ let searchingTMDBId = false;
 function updatePlayerAndTabOption() {
   const source = document.getElementById("video-source-select").value;
   const player = document.getElementById("video-player-iframe");
-  const openTabButton = document.getElementById("open-player-tab");
-  const openPStreamButton = document.getElementById("open-pstream");
+  
   const seasonInput = document.getElementById("current-season");
   const episodeInput = document.getElementById("current-episode");
 
@@ -168,8 +167,7 @@ function updatePlayerAndTabOption() {
     currentEpisode
   ) {
     let embedUrl = "";
-    openTabButton.disabled = false;
-    openPStreamButton.disabled = false;
+    
     let episodeString = String(currentEpisode).padStart(2, "0");
     let seasonString = String(currentSeason).padStart(2, "0");
 
@@ -193,15 +191,13 @@ function updatePlayerAndTabOption() {
       default:
         embedUrl = "";
         player.src = "";
-        openTabButton.disabled = true;
-        openPStreamButton.disabled = true;
+        
         break;
     }
     currentVideoUrl = embedUrl;
   } else if (finalSource && currentTMDBId && currentIsMovie) {
     let embedUrl = "";
-    openTabButton.disabled = false;
-    openPStreamButton.disabled = false;
+   
 
     switch (finalSource) {
       case "vidsrc":
@@ -223,16 +219,14 @@ function updatePlayerAndTabOption() {
       default:
         embedUrl = "";
         player.src = "";
-        openTabButton.disabled = true;
-        openPStreamButton.disabled = true;
+        
         break;
     }
     currentVideoUrl = embedUrl;
   } else if (finalSource && currentTMDBId && !currentIsMovie) {
     // If no specific season/episode selected, try to load the base series URL
     let embedUrl = "";
-    openTabButton.disabled = false;
-    openPStreamButton.disabled = false;
+    
 
     switch (finalSource) {
       case "vidsrc":
@@ -254,15 +248,13 @@ function updatePlayerAndTabOption() {
       default:
         embedUrl = "";
         player.src = "";
-        openTabButton.disabled = true;
-        openPStreamButton.disabled = true;
+        
         break;
     }
     currentVideoUrl = embedUrl;
   } else {
     player.src = "";
-    openTabButton.disabled = true;
-    openPStreamButton.disabled = true;
+    
   }
 }
 
@@ -284,8 +276,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
   currentSeasons = seasons;
   document.getElementById("overlay-title").innerText = title;
   document.getElementById("video-source-select").value = "vidsrccc";
-  document.getElementById("open-player-tab").disabled = true;
-  document.getElementById("open-pstream").disabled = true;
+  
   const tmdbButton = document.getElementById("tmdb-button");
   tmdbButton.onclick = () =>
     window.open(
@@ -323,8 +314,7 @@ function closeOverlay() {
   document.getElementById("video-overlay").style.display = "none";
   document.getElementById("video-player-iframe").src = "";
   currentVideoUrl = "";
-  document.getElementById("open-player-tab").disabled = true;
-  document.getElementById("open-pstream").disabled = true;
+  
   const tvControls = document.getElementById("tv-controls");
   tvControls.style.display = "none";
   const toggleButton = document.getElementById("toggle-episodes");
@@ -350,8 +340,7 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
   currentSeasons = seasons;
   document.getElementById("overlay-title").innerText = "A Minecraft Movie";
   document.getElementById("video-source-select").value = "vidsrccc";
-  document.getElementById("open-player-tab").disabled = true;
-  document.getElementById("open-pstream").disabled = true;
+  
   const tmdbButton = document.getElementById("tmdb-button");
   tmdbButton.onclick = () =>
     window.open(
