@@ -57,7 +57,9 @@
       <div>
         <button class="nav-button" onclick="showHomePage()">🏠Home</button>
         <button class="nav-button" onclick="showMoviesPage()">🎥Movies</button>
-        <button class="nav-button" onclick="showTVShowsPage()">📺TV Series</button>
+        <button class="nav-button" onclick="showTVShowsPage()">
+          📺TV Series
+        </button>
         <button class="nav-button" onclick="showSportsPage()">🏈Sports</button>
       </div>
     </header>
@@ -74,7 +76,9 @@
           <p class="banner-subtitle">
             PG 2025 - Adventure/Comedy <span class="rating">4.2⭐</span>
           </p>
-          <button class="blue-button" onclick="openBannerMovie()">▶ Watch Now</button>
+          <button class="blue-button" onclick="openBannerMovie()">
+            ▶ Watch Now
+          </button>
         </div>
       </div>
 
@@ -92,7 +96,6 @@
     </div>
 
     <div class="content" id="all-movies-section" style="display: none">
-      
       <h2>All Movies</h2>
       <div class="search-bar">
         <input
@@ -102,7 +105,7 @@
         />
         <button onclick="performSearch()" class="blue-button">Search</button>
       </div>
-      <br>
+      <br />
       <div class="movie-section" id="all-movies"></div>
     </div>
 
@@ -116,7 +119,7 @@
         />
         <button onclick="performSearch()" class="blue-button">Search</button>
       </div>
-      <br>
+      <br />
       <div class="movie-section" id="all-tv-shows"></div>
     </div>
 
@@ -173,27 +176,25 @@
               id="video-source-select"
               onchange="updatePlayerAndTabOption()"
             >
-              
               <option value="vidsrccc">VidSrc.cc (Recommended)</option>
               <option value="vidsrc">VidSrc.xyz</option>
               <option value="autoembed">AutoEmbed</option>
               <option value="embedsu">Embed.su (Movies Only)</option>
             </select>
-            <button id="open-player-tab" class="blue-button" disabled>
-              Open in New Tab
+            <button
+              id="open-player-tab"
+              class="blue-button"
+              onclick="window.location.href='https://forms.gle/MV3hcsBhSJMasxDa6';"
+            >
+              Advertise here! Click to apply.
             </button>
-            <button id="open-pstream" class="blue-button" disabled>
-              Open on PStream
-            </button>
+            
             <button id="tmdb-button" class="blue-button">View on TMDB</button>
           </div>
         </div>
       </div>
     </div>
 
-    
-
     <script src="script.js"></script>
   </body>
 </html>
-
