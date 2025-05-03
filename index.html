@@ -171,15 +171,18 @@
               justify-content: center;
             "
           >
-            <label for="video-source-select">Watch on:</label>
+            <label for="video-source-select">Select source:</label>
             <select
               id="video-source-select"
               onchange="updatePlayerAndTabOption()"
             >
-              <option value="vidsrccc">VidSrc.cc (Recommended)</option>
+              <option value="vidsrccc">VidSrc.cc</option>
               <option value="vidsrc">VidSrc.xyz</option>
+              <option value="vidsrcvip">VidSrc.vip</option>
               <option value="autoembed">AutoEmbed</option>
-              <option value="embedsu">Embed.su (Movies Only)</option>
+              <option value="embedsu">Embed.su</option>
+              
+              <option value="vidora">Hexa (Adless)</option>
             </select>
             <button
               id="open-player-tab"
@@ -189,7 +192,9 @@
               Advertise here! Click to apply.
             </button>
             
-            <button id="tmdb-button" class="blue-button">View on TMDB</button>
+            <button id="tmdb-button" class="blue-button">Description</button>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
+     crossorigin="anonymous"></script>
           </div>
         </div>
       </div>
@@ -198,3 +203,4 @@
     <script src="script.js"></script>
   </body>
 </html>
+
