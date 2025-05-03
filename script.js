@@ -1,124 +1,188 @@
 const allMoviesData = [
-        {
-          title: "A Minecraft Movie",
-          img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuYD3spgNTPkZOsL-4v4CfSd0gjuVNmySD5SCg5Sm5Tpra1-Jf",
-          tmdb: 950387,
-        },
-        {
-          title: "The Wild Robot",
-          img: "https://upload.wikimedia.org/wikipedia/en/7/70/The_Wild_Robot_poster.jpg",
-          tmdb: 1184918,
-        },
-        {
-          title: "Dog Man",
-          img: "https://upload.wikimedia.org/wikipedia/en/6/67/Dog_Man_film_poster.jpg",
-          tmdb: 774370,
-        },
-        {
-          title: "The Garfield Movie",
-          img: "https://peoplesbanktheatre.com/wp-content/uploads/2024/05/garfield.webp",
-          tmdb: 33051,
-        },
-        {
-          title: "The Bad Guys",
-          img: "https://upload.wikimedia.org/wikipedia/en/0/00/The_Bad_Guys_poster.jpeg",
-          tmdb: 822271,
-        },
-        {
-          title: "Sonic the Hedgehog 3",
-          img: "https://upload.wikimedia.org/wikipedia/en/f/f2/Sonic_the_Hedgehog_3_film_poster.jpg",
-          tmdb: 1222264,
-        },
-        {
-          title: "Inside Out 2",
-          img: "https://upload.wikimedia.org/wikipedia/en/f/f7/Inside_Out_2_poster.jpg",
-          tmdb: 1022789,
-        },
-        {
-          title: "Moana 2",
-          img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4ctemLCUypsHiL19p_1Rl9lt2pttZ0YOlfpYzgd3R198-eEmD",
-          tmdb: 1241982,
-        },
-        {
-          title: "The Simpsons Movie",
-          img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT5agDoSWFxgMhBlk04VdLCsCfrc2gGaHPH4eFi6lnh47qt8s6f6BM95z76MGu-TXcrAlEk",
-          tmdb: 35,
-        },
-        {
-          title: "The Monkey",
-          img: "https://upload.wikimedia.org/wikipedia/en/9/9d/The_Monkey_film_poster.jpg?20250109000452",
-          tmdb: 1124620,
-        },
-        {
-          title: "Mickey 17",
-          img: "https://image.tmdb.org/t/p/w1280/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg",
-          tmdb: 696506,
-        },
-        {
-          title: "A Working Man",
-          img: "https://image.tmdb.org/t/p/w1280/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg",
-          tmdb: 1197306,
-        },
-      ];
+  {
+    title: "A Minecraft Movie",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuYD3spgNTPkZOsL-4v4CfSd0gjuVNmySD5SCg5Sm5Tpra1-Jf",
+    tmdb: 950387,
+  },
+  {
+    title: "The Wild Robot",
+    img: "https://upload.wikimedia.org/wikipedia/en/7/70/The_Wild_Robot_poster.jpg",
+    tmdb: 1184918,
+  },
+  {
+    title: "Dog Man",
+    img: "https://upload.wikimedia.org/wikipedia/en/6/67/Dog_Man_film_poster.jpg",
+    tmdb: 774370,
+  },
+  {
+    title: "The Garfield Movie",
+    img: "https://peoplesbanktheatre.com/wp-content/uploads/2024/05/garfield.webp",
+    tmdb: 33051,
+  },
+  {
+    title: "The Bad Guys",
+    img: "https://upload.wikimedia.org/wikipedia/en/0/00/The_Bad_Guys_poster.jpeg",
+    tmdb: 822271,
+  },
+  {
+    title: "Sonic the Hedgehog 3",
+    img: "https://upload.wikimedia.org/wikipedia/en/f/f2/Sonic_the_Hedgehog_3_film_poster.jpg",
+    tmdb: 1222264,
+  },
+  {
+    title: "Inside Out 2",
+    img: "https://upload.wikimedia.org/wikipedia/en/f/f7/Inside_Out_2_poster.jpg",
+    tmdb: 1022789,
+  },
+  {
+    title: "Moana 2",
+    img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4ctemLCUypsHiL19p_1Rl9lt2pttZ0YOlfpYzgd3R198-eEmD",
+    tmdb: 1241982,
+  },
+  {
+    title: "The Simpsons Movie",
+    img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT5agDoSWFxgMhBlk04VdLCsCfrc2gGaHPH4eFi6lnh47qt8s6f6BM95z76MGu-TXcrAlEk",
+    tmdb: 35,
+  },
+  {
+    title: "The Monkey",
+    img: "https://upload.wikimedia.org/wikipedia/en/9/9d/The_Monkey_film_poster.jpg?20250109000452",
+    tmdb: 1124620,
+  },
+  {
+    title: "Mickey 17",
+    img: "https://image.tmdb.org/t/p/w1280/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg",
+    tmdb: 696506,
+  },
+  {
+    title: "A Working Man",
+    img: "https://image.tmdb.org/t/p/w1280/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg",
+    tmdb: 1197306,
+  },
+  {
+    title: "Kung Fu Panda 4",
+    img: "https://i.ebayimg.com/images/g/K3cAAOSw1N5lf5eq/s-l400.jpg",
+    tmdb: 1011985,
+  },
+  {
+    title: "Despicable Me 4",
+    img: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSUcXoO649zeJk4bpgcpp9kmqjPObW0P4_TA05HehzA-ho2jrpZwsVBKwlN3hwI6LgFIP_I",
+    tmdb: 438695,
+  },
+  {
+    title: "Wonka",
+    img: "https://m.media-amazon.com/images/M/MV5BM2Y1N2ZhNjctYjVhZC00MDg2LWFhNTItMzI3ZjAwZDhjYmFiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    tmdb: 787699,
+  },
+  
+  {
+    title: "Elemental",
+    img: "https://m.media-amazon.com/images/I/718jC7PE5ZL.jpg",
+    tmdb: 976573,
+  },
+];
 
-      const newReleases = allMoviesData.slice(0, 4);
+const newReleases = allMoviesData.slice(0, 4);
 
-      const allTVShowsData = [
-        {
-          title: "South Park",
-          img: "https://image.tmdb.org/t/p/w1280/xJnbMTrJ2fl1AXAKx34U4BPvOhs.jpg",
-          tmdb: 231,
-          seasons: 27,
-        },
-        {
-          title: "The Simpsons",
-          img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTAxmhnrzBIDS4CJHsPXkLqtsmUuBKiuLgnrL8WwuiCePcHFk02",
-          tmdb: 456,
-          seasons: 36,
-        },
-        {
-          title: "Family Guy",
-          img: "https://image.tmdb.org/t/p/w1280/8o8kiBkWFK3gVytHdyzEWUBXVfK.jpg",
-          tmdb: 1434,
-          seasons: 22,
-        },
-        {
-          title: "Gravity Falls",
-          img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/dNxEEK5CdNQbp4YcEtICXelRqvP.jpg",
-          tmdb: 40075,
-          seasons: 2,
-        },
-        {
-          title: "The Good Doctor",
-          img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/luhKkdD80qe62fwop6sdrXK9jUT.jpg",
-          tmdb: 71712,
-          seasons: 5,
-        },
-        {
-          title: "Young Sheldon",
-          img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/kidkbZRBGbsEIrX7pODRSKi9ipl.jpg",
-          tmdb: 71728,
-          seasons: 7,
-        },
-        {
-          title: "Futurama",
-          img: "https://image.tmdb.org/t/p/w1280/sdJcX2cXirwQurLLlrDLYov7hcD.jpg",
-          tmdb: 615,
-          seasons: 12,
-        },
-        {
-          title: "American Dad",
-          img: "https://m.media-amazon.com/images/M/MV5BZDI4ZWYwMGUtZGE1Yi00OTc5LWI3NDctMGY4ZWE4NzI4NWUwXkEyXkFqcGc@._V1_.jpg",
-          tmdb: 1433,
-          seasons: 21,
-        },
-        {
-          title: "Severance",
-          img: "https://image.tmdb.org/t/p/w1280/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg",
-          tmdb: 95396,
-          seasons: 2,
-        },
-      ];
+const allTVShowsData = [
+  {
+    title: "South Park",
+    img: "https://image.tmdb.org/t/p/w1280/xJnbMTrJ2fl1AXAKx34U4BPvOhs.jpg",
+    tmdb: 231,
+    seasons: 27,
+  },
+  {
+    title: "The Simpsons",
+    img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTAxmhnrzBIDS4CJHsPXkLqtsmUuBKiuLgnrL8WwuiCePcHFk02",
+    tmdb: 456,
+    seasons: 36,
+  },
+  {
+    title: "Family Guy",
+    img: "https://image.tmdb.org/t/p/w1280/8o8kiBkWFK3gVytHdyzEWUBXVfK.jpg",
+    tmdb: 1434,
+    seasons: 22,
+  },
+  {
+    title: "Gravity Falls",
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/dNxEEK5CdNQbp4YcEtICXelRqvP.jpg",
+    tmdb: 40075,
+    seasons: 2,
+  },
+  {
+    title: "The Good Doctor",
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/luhKkdD80qe62fwop6sdrXK9jUT.jpg",
+    tmdb: 71712,
+    seasons: 5,
+  },
+  {
+    title: "Young Sheldon",
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/kidkbZRBGbsEIrX7pODRSKi9ipl.jpg",
+    tmdb: 71728,
+    seasons: 7,
+  },
+  {
+    title: "Futurama",
+    img: "https://image.tmdb.org/t/p/w1280/sdJcX2cXirwQurLLlrDLYov7hcD.jpg",
+    tmdb: 615,
+    seasons: 12,
+  },
+  {
+    title: "American Dad",
+    img: "https://m.media-amazon.com/images/M/MV5BZDI4ZWYwMGUtZGE1Yi00OTc5LWI3NDctMGY4ZWE4NzI4NWUwXkEyXkFqcGc@._V1_.jpg",
+    tmdb: 1433,
+    seasons: 21,
+  },
+  {
+    title: "Severance",
+    img: "https://image.tmdb.org/t/p/w1280/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg",
+    tmdb: 95396,
+    seasons: 2,
+  },
+  {
+    title: "Rick and Morty",
+    img: "https://m.media-amazon.com/images/I/81YuxdsIuoL._AC_UF894,1000_QL80_.jpg",
+    tmdb: 60625,
+    seasons: 7,
+  },
+  {
+    title: "Bluey",
+    img: "https://i.ebayimg.com/images/g/C0UAAOSwZ61itFa3/s-l400.jpg",
+    tmdb: 82900,
+    seasons: 3,
+  },
+  {
+    title: "The Mandalorian",
+    img: "https://m.media-amazon.com/images/I/518cyoMPU8L._AC_UF894,1000_QL80_.jpg",
+    tmdb: 82856,
+    seasons: 3,
+  },
+  {
+    title: "Wednesday",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzKDOhOKsrp9aPcrtjdZbFkFtltZZfB_Nsq3oSmJVlSz7DFD7dNxsUl15UkYZv0maX96pv",
+    tmdb: 119051,
+    seasons: 1,
+  },
+  {
+    title: "The Amazing Digital Circus",
+    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/lpfrgfomX8uNFxv4VaEzvJGs9TK.jpg",
+    tmdb: 261145,
+    seasons: 1,
+  },
+  {
+    title: "Manifest",
+    img: "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p17602726_b_v13_aa.jpg",
+    tmdb: 79696,
+    seasons: 4,
+  },
+  {
+    title: "Mayday",
+    img: "https://image.tmdb.org/t/p/w1280/2uuVIAb4MtPmMNTpOyID5V8DzrU.jpg",
+    tmdb: 90,
+    seasons: 25,
+  },
+
+];
 
 let currentTMDBId = null;
 
@@ -145,7 +209,7 @@ let searchingTMDBId = false;
 function updatePlayerAndTabOption() {
   const source = document.getElementById("video-source-select").value;
   const player = document.getElementById("video-player-iframe");
-  
+
   const seasonInput = document.getElementById("current-season");
   const episodeInput = document.getElementById("current-episode");
 
@@ -167,13 +231,13 @@ function updatePlayerAndTabOption() {
     currentEpisode
   ) {
     let embedUrl = "";
-    
+
     let episodeString = String(currentEpisode).padStart(2, "0");
     let seasonString = String(currentSeason).padStart(2, "0");
 
     switch (finalSource) {
       case "vidsrc":
-        embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=<span class="math-inline">\{currentTMDBId\}&season\=</span>{seasonString}&episode=${episodeString}`;
+        embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}&season=${seasonString}&episode=${episodeString}`;
         player.src = embedUrl;
         break;
       case "embedsu":
@@ -185,19 +249,26 @@ function updatePlayerAndTabOption() {
         player.src = embedUrl;
         break;
       case "autoembed":
-        embedUrl = `https://player.autoembed.cc/embed/tv/<span class="math-inline">\{currentTMDBId\}?season\=</span>{seasonString}&episode=${episodeString}`;
+        embedUrl = `https://player.autoembed.cc/embed/tv/${currentTMDBId}/?season\=${seasonString}&episode=${episodeString}`;
+        player.src = embedUrl;
+        break;
+      case "vidora":
+        embedUrl = `https://hexa.watch/watch/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        player.src = embedUrl;
+        break;
+      case "vidsrcvip":
+        embedUrl = `https://vidsrc.vip/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
         player.src = embedUrl;
         break;
       default:
         embedUrl = "";
         player.src = "";
-        
+
         break;
     }
     currentVideoUrl = embedUrl;
   } else if (finalSource && currentTMDBId && currentIsMovie) {
     let embedUrl = "";
-   
 
     switch (finalSource) {
       case "vidsrc":
@@ -216,17 +287,24 @@ function updatePlayerAndTabOption() {
         embedUrl = `https://player.autoembed.cc/embed/movie/${currentTMDBId}`;
         player.src = embedUrl;
         break;
+      case "vidora":
+        embedUrl = `https://hexa.watch/watch/movie/${currentTMDBId}`;
+        player.src = embedUrl;
+        break;
+      case "vidsrcvip":
+        embedUrl = `https://vidsrc.vip/embed/movie/${currentTMDBId}`;
+        player.src = embedUrl;
+        break;
       default:
         embedUrl = "";
         player.src = "";
-        
+
         break;
     }
     currentVideoUrl = embedUrl;
   } else if (finalSource && currentTMDBId && !currentIsMovie) {
     // If no specific season/episode selected, try to load the base series URL
     let embedUrl = "";
-    
 
     switch (finalSource) {
       case "vidsrc":
@@ -245,16 +323,23 @@ function updatePlayerAndTabOption() {
         embedUrl = `https://player.autoembed.cc/embed/tv/${currentTMDBId}?season=1&episode=1`; // Provide a default
         player.src = embedUrl;
         break;
+      case "vidora":
+        embedUrl = `https://hexa.watch/watch/tv/${currentTMDBId}/1/1`;
+        player.src = embedUrl;
+        break;
+      case "vidsrcvip":
+        embedUrl = `https://vidsrc.vip/embed/tv/${currentTMDBId}/1/1`;
+        player.src = embedUrl;
+        break;
       default:
         embedUrl = "";
         player.src = "";
-        
+
         break;
     }
     currentVideoUrl = embedUrl;
   } else {
     player.src = "";
-    
   }
 }
 
@@ -276,7 +361,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
   currentSeasons = seasons;
   document.getElementById("overlay-title").innerText = title;
   document.getElementById("video-source-select").value = "vidsrccc";
-  
+
   const tmdbButton = document.getElementById("tmdb-button");
   tmdbButton.onclick = () =>
     window.open(
@@ -314,7 +399,7 @@ function closeOverlay() {
   document.getElementById("video-overlay").style.display = "none";
   document.getElementById("video-player-iframe").src = "";
   currentVideoUrl = "";
-  
+
   const tvControls = document.getElementById("tv-controls");
   tvControls.style.display = "none";
   const toggleButton = document.getElementById("toggle-episodes");
@@ -340,7 +425,7 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
   currentSeasons = seasons;
   document.getElementById("overlay-title").innerText = "A Minecraft Movie";
   document.getElementById("video-source-select").value = "vidsrccc";
-  
+
   const tmdbButton = document.getElementById("tmdb-button");
   tmdbButton.onclick = () =>
     window.open(
@@ -378,13 +463,48 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
 let sportsContainer = null;
 function addSportsCards() {
   const sports = [
-    { name: "Basketball", imageUrl: "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f3c0.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/basketball" },
-    { name: "Football", imageUrl: "https://images.emojiterra.com/google/android-12l/512px/1f3c8.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/american-football" },
-    { name: "Soccer", imageUrl: "https://images.emojiterra.com/google/android-10/512px/26bd.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/football" },
-    { name: "Hockey", imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3d2_flat.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/hockey" },
-    { name: "Tennis", imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3be_flat.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/tennis" },
-    { name: "Cricket", imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3cf_flat.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/cricket" },
-    { name: "Baseball", imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/26be_flat.png", url: "https://streamedsueasy.global.ssl.fastly.net/category/baseball" },
+    {
+      name: "Basketball",
+      imageUrl:
+        "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f3c0.png",
+      url: "https://streamedsueasy.global.ssl.fastly.net/category/basketball",
+    },
+    {
+      name: "Football",
+      imageUrl:
+        "https://images.emojiterra.com/google/android-12l/512px/1f3c8.png",
+      url: "https://streamedsueasy.global.ssl.fastly.net/category/american-football",
+    },
+    {
+      name: "Soccer",
+      imageUrl:
+        "https://images.emojiterra.com/google/android-10/512px/26bd.png",
+      url: "https://streamedsueasy.global.ssl.fastly.net/category/football",
+    },
+    {
+      name: "Hockey",
+      imageUrl:
+        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3d2_flat.png",
+      url: "https://streamedsueasy.global.ssl.fastly.net/category/hockey",
+    },
+    {
+      name: "Tennis",
+      imageUrl:
+        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3be_flat.png",
+      url: "https://streamedsueasy.global.ssl.fastly.net/category/tennis",
+    },
+    {
+      name: "Cricket",
+      imageUrl:
+        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3cf_flat.png",
+      url: "https://streamedsueasy.global.ssl.fastly.net/category/cricket",
+    },
+    {
+      name: "Baseball",
+      imageUrl:
+        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/26be_flat.png",
+      url: "https://streamedsueasy.global.ssl.fastly.net/category/baseball",
+    },
   ];
 
   sportsContainer = document.createElement("div");
@@ -596,3 +716,4 @@ function toggleEpisodeDropdowns() {
 }
 function playSpecificEpisodeFromCard(tmdbId, title, totalSeasons) {}
 renderSection(newReleases, "new-releases");
+
