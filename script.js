@@ -1,346 +1,42 @@
-const allMoviesData = [
-  {
-    title: "A Minecraft Movie",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuYD3spgNTPkZOsL-4v4CfSd0gjuVNmySD5SCg5Sm5Tpra1-Jf",
-    tmdb: 950387,
-  },
-  {
-    title: "The Wild Robot",
-    img: "https://upload.wikimedia.org/wikipedia/en/7/70/The_Wild_Robot_poster.jpg",
-    tmdb: 1184918,
-  },
-  {
-    title: "Dog Man",
-    img: "https://upload.wikimedia.org/wikipedia/en/6/67/Dog_Man_film_poster.jpg",
-    tmdb: 774370,
-  },
-  {
-    title: "The Garfield Movie",
-    img: "https://peoplesbanktheatre.com/wp-content/uploads/2024/05/garfield.webp",
-    tmdb: 33051,
-  },
-  {
-    title: "The Bad Guys",
-    img: "https://upload.wikimedia.org/wikipedia/en/0/00/The_Bad_Guys_poster.jpeg",
-    tmdb: 822271,
-  },
-  {
-    title: "Sonic the Hedgehog 3",
-    img: "https://upload.wikimedia.org/wikipedia/en/f/f2/Sonic_the_Hedgehog_3_film_poster.jpg",
-    tmdb: 1222264,
-  },
-  {
-    title: "Inside Out 2",
-    img: "https://upload.wikimedia.org/wikipedia/en/f/f7/Inside_Out_2_poster.jpg",
-    tmdb: 1022789,
-  },
-  {
-    title: "Moana 2",
-    img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4ctemLCUypsHiL19p_1Rl9lt2pttZ0YOlfpYzgd3R198-eEmD",
-    tmdb: 1241982,
-  },
-  {
-    title: "The Simpsons Movie",
-    img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT5agDoSWFxgMhBlk04VdLCsCfrc2gGaHPH4eFi6lnh47qt8s6f6BM95z76MGu-TXcrAlEk",
-    tmdb: 35,
-  },
-  {
-    title: "The Monkey",
-    img: "https://upload.wikimedia.org/wikipedia/en/9/9d/The_Monkey_film_poster.jpg?20250109000452",
-    tmdb: 1124620,
-  },
-  {
-    title: "Mickey 17",
-    img: "https://image.tmdb.org/t/p/w1280/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg",
-    tmdb: 696506,
-  },
-  {
-    title: "A Working Man",
-    img: "https://image.tmdb.org/t/p/w1280/xUkUZ8eOnrOnnJAfusZUqKYZiDu.jpg",
-    tmdb: 1197306,
-  },
-  {
-    title: "Kung Fu Panda 4",
-    img: "https://i.ebayimg.com/images/g/K3cAAOSw1N5lf5eq/s-l400.jpg",
-    tmdb: 1011985,
-  },
-  {
-    title: "Despicable Me 4",
-    img: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSUcXoO649zeJk4bpgcpp9kmqjPObW0P4_TA05HehzA-ho2jrpZwsVBKwlN3hwI6LgFIP_I",
-    tmdb: 438695,
-  },
-  {
-    title: "Wonka",
-    img: "https://m.media-amazon.com/images/M/MV5BM2Y1N2ZhNjctYjVhZC00MDg2LWFhNTItMzI3ZjAwZDhjYmFiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-    tmdb: 787699,
-  },
-  
-  {
-    title: "Elemental",
-    img: "https://m.media-amazon.com/images/I/718jC7PE5ZL.jpg",
-    tmdb: 976573,
-  },
-];
+const apiKey = 'cad8d8114ffeedb538fcff20c4be6d21'; // Replace with your actual API key
+const baseUrl = 'https://api.themoviedb.org/3';
+const imageBaseUrl = 'https://image.tmdb.org/t/p/w500'; // You can choose different image sizes
 
-const newReleases = allMoviesData.slice(0, 4);
-
-const allTVShowsData = [
-  {
-    title: "South Park",
-    img: "https://image.tmdb.org/t/p/w1280/xJnbMTrJ2fl1AXAKx34U4BPvOhs.jpg",
-    tmdb: 231,
-    seasons: 27,
-  },
-  {
-    title: "The Simpsons",
-    img: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTAxmhnrzBIDS4CJHsPXkLqtsmUuBKiuLgnrL8WwuiCePcHFk02",
-    tmdb: 456,
-    seasons: 36,
-  },
-  {
-    title: "Family Guy",
-    img: "https://image.tmdb.org/t/p/w1280/8o8kiBkWFK3gVytHdyzEWUBXVfK.jpg",
-    tmdb: 1434,
-    seasons: 22,
-  },
-  {
-    title: "Gravity Falls",
-    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/dNxEEK5CdNQbp4YcEtICXelRqvP.jpg",
-    tmdb: 40075,
-    seasons: 2,
-  },
-  {
-    title: "The Good Doctor",
-    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/luhKkdD80qe62fwop6sdrXK9jUT.jpg",
-    tmdb: 71712,
-    seasons: 5,
-  },
-  {
-    title: "Young Sheldon",
-    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/kidkbZRBGbsEIrX7pODRSKi9ipl.jpg",
-    tmdb: 71728,
-    seasons: 7,
-  },
-  {
-    title: "Futurama",
-    img: "https://image.tmdb.org/t/p/w1280/sdJcX2cXirwQurLLlrDLYov7hcD.jpg",
-    tmdb: 615,
-    seasons: 12,
-  },
-  {
-    title: "American Dad",
-    img: "https://m.media-amazon.com/images/M/MV5BZDI4ZWYwMGUtZGE1Yi00OTc5LWI3NDctMGY4ZWE4NzI4NWUwXkEyXkFqcGc@._V1_.jpg",
-    tmdb: 1433,
-    seasons: 21,
-  },
-  {
-    title: "Severance",
-    img: "https://image.tmdb.org/t/p/w1280/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg",
-    tmdb: 95396,
-    seasons: 2,
-  },
-  {
-    title: "Rick and Morty",
-    img: "https://m.media-amazon.com/images/I/81YuxdsIuoL._AC_UF894,1000_QL80_.jpg",
-    tmdb: 60625,
-    seasons: 7,
-  },
-  {
-    title: "Bluey",
-    img: "https://i.ebayimg.com/images/g/C0UAAOSwZ61itFa3/s-l400.jpg",
-    tmdb: 82900,
-    seasons: 3,
-  },
-  {
-    title: "The Mandalorian",
-    img: "https://m.media-amazon.com/images/I/518cyoMPU8L._AC_UF894,1000_QL80_.jpg",
-    tmdb: 82856,
-    seasons: 3,
-  },
-  {
-    title: "Wednesday",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzKDOhOKsrp9aPcrtjdZbFkFtltZZfB_Nsq3oSmJVlSz7DFD7dNxsUl15UkYZv0maX96pv",
-    tmdb: 119051,
-    seasons: 1,
-  },
-  {
-    title: "The Amazing Digital Circus",
-    img: "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/lpfrgfomX8uNFxv4VaEzvJGs9TK.jpg",
-    tmdb: 261145,
-    seasons: 1,
-  },
-  {
-    title: "Manifest",
-    img: "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p17602726_b_v13_aa.jpg",
-    tmdb: 79696,
-    seasons: 4,
-  },
-  {
-    title: "Mayday",
-    img: "https://image.tmdb.org/t/p/w1280/2uuVIAb4MtPmMNTpOyID5V8DzrU.jpg",
-    tmdb: 90,
-    seasons: 25,
-  },
-
-];
-
+// Declare these variables in a scope accessible by the relevant functions
 let currentTMDBId = null;
-
 let currentTitle = "";
-
-let currentVideoUrl = "";
-
 let currentIsMovie = true;
-
 let currentSeasons = 0;
-
 let currentSeason = null;
-
 let currentEpisode = 1;
-
-let allMedia = [
-  ...allMoviesData,
-
-  ...allTVShowsData.map((tvShow) => ({ ...tvShow, isMovie: false })),
-];
-
+let currentVideoUrl = "";
 let searchingTMDBId = false;
+let sportsContainer = null;
 
-function updatePlayerAndTabOption() {
-  const source = document.getElementById("video-source-select").value;
-  const player = document.getElementById("video-player-iframe");
-
-  const seasonInput = document.getElementById("current-season");
-  const episodeInput = document.getElementById("current-episode");
-
-  if (seasonInput && episodeInput) {
-    currentSeason = seasonInput.value;
-    currentEpisode = episodeInput.value;
+async function fetchTMDBData(endpoint) {
+  try {
+    const response = await fetch(`${baseUrl}/${endpoint}?api_key=${apiKey}`);
+    const data = await response.json();
+    return data.results || data;
+  } catch (error) {
+    console.error('Error fetching TMDB data:', error);
+    return [];
   }
+}
 
-  let finalSource = source;
-  if (!source) {
-    finalSource = "vidsrccc"; // Set default source to vidsrccc
-  }
+async function getNewReleasesFromTMDB() {
+  // Example: Fetch popular movies as "new releases"
+  return await fetchTMDBData('trending/movie/week');
+}
 
-  if (
-    finalSource &&
-    currentTMDBId &&
-    !currentIsMovie &&
-    currentSeason &&
-    currentEpisode
-  ) {
-    let embedUrl = "";
+async function getAllMoviesFromTMDB() {
+  // Example: Fetch popular movies as "new releases"
+  return await fetchTMDBData('movie/popular');
+}
 
-    let episodeString = String(currentEpisode).padStart(2, "0");
-    let seasonString = String(currentSeason).padStart(2, "0");
-
-    switch (finalSource) {
-      case "vidsrc":
-        embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}&season=${seasonString}&episode=${episodeString}`;
-        player.src = embedUrl;
-        break;
-      case "embedsu":
-        embedUrl = `https://embed.su/embed/tv/${currentTMDBId}/${currentSeason}/${currentEpisode}`;
-        player.src = embedUrl;
-        break;
-      case "vidsrccc":
-        embedUrl = `https://vidsrc.cc/v2/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}?autoPlay=false`;
-        player.src = embedUrl;
-        break;
-      case "autoembed":
-        embedUrl = `https://player.autoembed.cc/embed/tv/${currentTMDBId}/?season\=${seasonString}&episode=${episodeString}`;
-        player.src = embedUrl;
-        break;
-      case "vidora":
-        embedUrl = `https://hexa.watch/watch/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
-        player.src = embedUrl;
-        break;
-      case "vidsrcvip":
-        embedUrl = `https://vidsrc.vip/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
-        player.src = embedUrl;
-        break;
-      default:
-        embedUrl = "";
-        player.src = "";
-
-        break;
-    }
-    currentVideoUrl = embedUrl;
-  } else if (finalSource && currentTMDBId && currentIsMovie) {
-    let embedUrl = "";
-
-    switch (finalSource) {
-      case "vidsrc":
-        embedUrl = `https://vidsrc.xyz/embed/movie?tmdb=${currentTMDBId}`;
-        player.src = embedUrl;
-        break;
-      case "embedsu":
-        embedUrl = `https://embed.su/embed/movie/${currentTMDBId}`;
-        player.src = embedUrl;
-        break;
-      case "vidsrccc":
-        embedUrl = `https://vidsrc.cc/v2/embed/movie/${currentTMDBId}?autoPlay=false`;
-        player.src = embedUrl;
-        break;
-      case "autoembed":
-        embedUrl = `https://player.autoembed.cc/embed/movie/${currentTMDBId}`;
-        player.src = embedUrl;
-        break;
-      case "vidora":
-        embedUrl = `https://hexa.watch/watch/movie/${currentTMDBId}`;
-        player.src = embedUrl;
-        break;
-      case "vidsrcvip":
-        embedUrl = `https://vidsrc.vip/embed/movie/${currentTMDBId}`;
-        player.src = embedUrl;
-        break;
-      default:
-        embedUrl = "";
-        player.src = "";
-
-        break;
-    }
-    currentVideoUrl = embedUrl;
-  } else if (finalSource && currentTMDBId && !currentIsMovie) {
-    // If no specific season/episode selected, try to load the base series URL
-    let embedUrl = "";
-
-    switch (finalSource) {
-      case "vidsrc":
-        embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}`;
-        player.src = embedUrl;
-        break;
-      case "embedsu":
-        embedUrl = `https://embed.su/embed/tv/${currentTMDBId}/1/1`; // Provide a default to try and load the player
-        player.src = embedUrl;
-        break;
-      case "vidsrccc":
-        embedUrl = `https://vidsrc.cc/v2/embed/tv/${currentTMDBId}?autoPlay=false`;
-        player.src = embedUrl;
-        break;
-      case "autoembed":
-        embedUrl = `https://player.autoembed.cc/embed/tv/${currentTMDBId}?season=1&episode=1`; // Provide a default
-        player.src = embedUrl;
-        break;
-      case "vidora":
-        embedUrl = `https://hexa.watch/watch/tv/${currentTMDBId}/1/1`;
-        player.src = embedUrl;
-        break;
-      case "vidsrcvip":
-        embedUrl = `https://vidsrc.vip/embed/tv/${currentTMDBId}/1/1`;
-        player.src = embedUrl;
-        break;
-      default:
-        embedUrl = "";
-        player.src = "";
-
-        break;
-    }
-    currentVideoUrl = embedUrl;
-  } else {
-    player.src = "";
-  }
+async function getAllTVShowsFromTMDB() {
+  // Example: Fetch popular TV shows
+  return await fetchTMDBData('tv/popular');
 }
 
 function renderSection(items, sectionId, isMovie = true) {
@@ -349,11 +45,117 @@ function renderSection(items, sectionId, isMovie = true) {
   items.forEach((item) => {
     const card = document.createElement("div");
     card.className = "movie-card";
-    const watchButtonHTML = `<button onclick="openVideoOverlay(${item.tmdb}, '${item.title}', ${isMovie}, ${item.seasons})">Watch</button>`;
-    card.innerHTML = `<div class="poster-container"><img src="${item.img}" alt="${item.title}"></div><h3>${item.title}</h3>${watchButtonHTML}`;
+    const imageUrl = item.poster_path ? `${imageBaseUrl}${item.poster_path}` : 'placeholder_image_url.jpg';
+    const title = item.title || item.name;
+    const tmdbId = item.id;
+    const seasons = item.number_of_seasons || 0;
+    const watchButtonHTML = `<button onclick="openVideoOverlay(${tmdbId}, '${title}', ${isMovie}, ${seasons})">Watch</button>`;
+    card.innerHTML = `<div class="poster-container"><img src="${imageUrl}" alt="${title}"></div><h3>${title}</h3>${watchButtonHTML}`;
     section.appendChild(card);
   });
 }
+
+function updatePlayerAndTabOption() {
+  const source = document.getElementById("video-source-select").value;
+  const player = document.getElementById("video-player-iframe");
+  const seasonInput = document.getElementById("current-season");
+  const episodeInput = document.getElementById("current-episode");
+
+  const selectedSeason = seasonInput ? seasonInput.value : currentSeason;
+  const selectedEpisode = episodeInput ? episodeInput.value : currentEpisode;
+
+  let finalSource = source || "vidsrccc"; // Default to vidsrccc if no source selected
+
+  if (finalSource && currentTMDBId && !currentIsMovie && selectedSeason && selectedEpisode) {
+    const seasonString = String(selectedSeason).padStart(2, "0");
+    const episodeString = String(selectedEpisode).padStart(2, "0");
+    let embedUrl = "";
+
+    switch (finalSource) {
+      case "vidsrc":
+        embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}&season=${seasonString}&episode=${episodeString}`;
+        break;
+      case "embedsu":
+        embedUrl = `https://embed.su/embed/tv/${currentTMDBId}/${selectedSeason}/${selectedEpisode}`;
+        break;
+      case "vidsrccc":
+        embedUrl = `https://vidsrc.cc/v2/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}?autoPlay=false`;
+        break;
+      case "autoembed":
+        embedUrl = `https://player.autoembed.cc/embed/tv/${currentTMDBId}/?season=${seasonString}&episode=${episodeString}`;
+        break;
+      case "vidora":
+        embedUrl = `https://vidora.su/tv/${currentTMDBId}/${seasonString}/${episodeString}?autoplay=true&colour=00ff9d&backbutton=https://streameasy.glitch.me/&logo=https://shorturl.at/tvWQf?v=1745537855225%22width=%22100%%22height=%22100%%22allowfullscreen`;
+        break;
+      case "vidsrcvip":
+        embedUrl = `https://vidsrc.vip/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      default:
+        embedUrl = "";
+        break;
+    }
+    player.src = embedUrl;
+    currentVideoUrl = embedUrl;
+  } else if (finalSource && currentTMDBId && currentIsMovie) {
+    let embedUrl = "";
+    switch (finalSource) {
+      case "vidsrc":
+        embedUrl = `https://vidsrc.xyz/embed/movie?tmdb=${currentTMDBId}`;
+        break;
+      case "embedsu":
+        embedUrl = `https://embed.su/embed/movie/${currentTMDBId}`;
+        break;
+      case "vidsrccc":
+        embedUrl = `https://vidsrc.cc/v2/embed/movie/${currentTMDBId}?autoPlay=false`;
+        break;
+      case "autoembed":
+        embedUrl = `https://player.autoembed.cc/embed/movie/${currentTMDBId}`;
+        break;
+      case "vidora":
+        embedUrl = `https://vidora.su/movie/${currentTMDBId}?autoplay=true&colour=00ff9d&backbutton=https://streameasy.glitch.me/&logo=https://shorturl.at/tvWQf?v=1745537855225%22width=%22100%%22height=%22100%%22allowfullscreen`;
+        break;
+      case "vidsrcvip":
+        embedUrl = `https://vidsrc.vip/embed/movie/${currentTMDBId}`;
+        break;
+      default:
+        embedUrl = "";
+        break;
+    }
+    player.src = embedUrl;
+    currentVideoUrl = embedUrl;
+  } else if (finalSource && currentTMDBId && !currentIsMovie) {
+    let embedUrl = "";
+    switch (finalSource) {
+      case "vidsrc":
+        embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}`;
+        break;
+      case "embedsu":
+        embedUrl = `https://embed.su/embed/tv/${currentTMDBId}/1/1`;
+        break;
+      case "vidsrccc":
+        embedUrl = `https://vidsrc.cc/v2/embed/tv/${currentTMDBId}?autoPlay=false`;
+        break;
+      case "autoembed":
+        embedUrl = `https://player.autoembed.cc/embed/tv/${currentTMDBId}?season=1&episode=1`;
+        break;
+      case "vidora":
+        embedUrl = `https://vidora.su/tv/${currentTMDBId}/1/1?autoplay=true&colour=00ff9d&backbutton=https://streameasy.glitch.me/&logo=https://shorturl.at/tvWQf?v=1745537855225%22width=%22100%%22height=%22100%%22allowfullscreen`;
+        break;
+      case "vidsrcvip":
+        embedUrl = `https://vidsrc.vip/embed/tv/${currentTMDBId}/1/1`;
+        break;
+      default:
+        embedUrl = "";
+        break;
+    }
+    player.src = embedUrl;
+    currentVideoUrl = embedUrl;
+  } else {
+    player.src = "";
+    currentVideoUrl = "";
+  }
+}
+
 function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
   currentTMDBId = tmdbId;
   currentTitle = title;
@@ -372,6 +174,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
   const tvControls = document.getElementById("tv-controls");
   const episodeSelection = document.getElementById("episode-selection");
   const toggleButton = document.getElementById("toggle-episodes");
+
   if (!isMovie && seasons > 0) {
     tvControls.style.display = "block";
     toggleButton.style.display = "block";
@@ -379,8 +182,8 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
     episodeSelection.classList.add("row");
     toggleButton.textContent = "Hide Episodes";
     overlayContent.classList.add("tv-active");
-    document.getElementById("current-season").value = currentSeason || "";
-    document.getElementById("current-episode").value = currentEpisode || "";
+    document.getElementById("current-season").value = currentSeason || 1; // Initialize with 1 or a stored value
+    document.getElementById("current-episode").value = currentEpisode || 1; // Initialize with 1 or a stored value
   } else {
     tvControls.style.display = "none";
     toggleButton.style.display = "none";
@@ -395,6 +198,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
   document.getElementById("video-player-iframe").src = "";
   currentVideoUrl = "";
 }
+
 function closeOverlay() {
   document.getElementById("video-overlay").style.display = "none";
   document.getElementById("video-player-iframe").src = "";
@@ -418,10 +222,11 @@ function closeOverlay() {
     mediaTypeSelection.remove();
   }
 }
+
 function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
   currentTMDBId = 950387;
   currentTitle = "A Minecraft Movie";
-  currentIsMovie = "true";
+  currentIsMovie = true; // Ensure this is a boolean
   currentSeasons = seasons;
   document.getElementById("overlay-title").innerText = "A Minecraft Movie";
   document.getElementById("video-source-select").value = "vidsrccc";
@@ -443,8 +248,8 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
     episodeSelection.classList.add("row");
     toggleButton.textContent = "Hide Episodes";
     overlayContent.classList.add("tv-active");
-    document.getElementById("current-season").value = currentSeason || "";
-    document.getElementById("current-episode").value = currentEpisode || "";
+    document.getElementById("current-season").value = currentSeason || 1;
+    document.getElementById("current-episode").value = currentEpisode || 1;
   } else {
     tvControls.style.display = "none";
     toggleButton.style.display = "none";
@@ -460,49 +265,41 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
   currentVideoUrl = "";
 }
 
-let sportsContainer = null;
 function addSportsCards() {
   const sports = [
     {
       name: "Basketball",
-      imageUrl:
-        "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f3c0.png",
+      imageUrl: "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f3c0.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/basketball",
     },
     {
       name: "Football",
-      imageUrl:
-        "https://images.emojiterra.com/google/android-12l/512px/1f3c8.png",
+      imageUrl: "https://images.emojiterra.com/google/android-12l/512px/1f3c8.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/american-football",
     },
     {
       name: "Soccer",
-      imageUrl:
-        "https://images.emojiterra.com/google/android-10/512px/26bd.png",
+      imageUrl: "https://images.emojiterra.com/google/android-10/512px/26bd.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/football",
     },
     {
       name: "Hockey",
-      imageUrl:
-        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3d2_flat.png",
+      imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3d2_flat.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/hockey",
     },
     {
       name: "Tennis",
-      imageUrl:
-        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3be_flat.png",
+      imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3be_flat.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/tennis",
     },
     {
       name: "Cricket",
-      imageUrl:
-        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3cf_flat.png",
+      imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3cf_flat.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/cricket",
     },
     {
       name: "Baseball",
-      imageUrl:
-        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/26be_flat.png",
+      imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/26be_flat.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/baseball",
     },
   ];
@@ -548,61 +345,44 @@ function addSportsCards() {
   sportsContainer.appendChild(cardWrapper);
 
   const style = document.createElement("style");
-  style.textContent = `
-    .sports-card { width: 150px; height: 180px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background-color: #f8f9fa; }
+  style.textContent = `.sports-card { width: 150px; height: 180px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease-in-out; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background-color: #f8f9fa; }
     .sports-card:hover { transform: scale(1.05); }
     .sports-card img { width: 80px; height: 80px; object-fit: cover; border-radius: 50%; margin-bottom: 10px; }
     .sports-card h3 { margin: 0; font-size: 1.2em; color: #333; }
   `;
   document.head.appendChild(style);
 }
+
 function showHomePage() {
+  loadHomePageData();
   document.getElementById("homepage-section").style.display = "block";
   document.getElementById("all-movies-section").style.display = "none";
   if (sportsContainer) {
     sportsContainer.style.display = "none";
-    const poweredByElement = document.querySelector("h1");
-    if (
-      poweredByElement &&
-      poweredByElement.textContent === "Live Sports, Powered by Streamed.su"
-    ) {
-      poweredByElement.remove();
-    }
   }
   document.getElementById("all-tv-shows-section").style.display = "none";
 }
+
 function showMoviesPage() {
-  renderSection(allMoviesData, "all-movies", true);
+  loadAllMoviesPage();
   document.getElementById("homepage-section").style.display = "none";
   document.getElementById("all-tv-shows-section").style.display = "none";
   if (sportsContainer) {
     sportsContainer.style.display = "none";
-    const poweredByElement = document.querySelector("h1");
-    if (
-      poweredByElement &&
-      poweredByElement.textContent === "Live Sports, Powered by Streamed.su"
-    ) {
-      poweredByElement.remove();
-    }
   }
   document.getElementById("all-movies-section").style.display = "block";
 }
+
 function showTVShowsPage() {
-  renderSection(allTVShowsData, "all-tv-shows", false);
+  loadAllTVShowsPage();
   document.getElementById("homepage-section").style.display = "none";
   document.getElementById("all-movies-section").style.display = "none";
   if (sportsContainer) {
     sportsContainer.style.display = "none";
-    const poweredByElement = document.querySelector("h1");
-    if (
-      poweredByElement &&
-      poweredByElement.textContent === "Live Sports, Powered by Streamed.su"
-    ) {
-      poweredByElement.remove();
-    }
   }
   document.getElementById("all-tv-shows-section").style.display = "block";
 }
+
 function showSportsPage() {
   if (!sportsContainer) {
     addSportsCards();
@@ -623,7 +403,7 @@ function showSportsPage() {
   document.getElementById("all-tv-shows-section").style.display = "none";
 }
 
-function handleTMDBIdSearch(tmdbId) {
+async function handleTMDBIdSearch(tmdbId) {
   searchingTMDBId = true;
   const overlayContent = document.querySelector(".overlay-content");
   const mediaTypeSelection = document.createElement("div");
@@ -651,9 +431,11 @@ function handleTMDBIdSearch(tmdbId) {
   const tvShowButton = document.createElement("button");
   tvShowButton.textContent = "TV Show";
   tvShowButton.className = "blue-button";
-  tvShowButton.onclick = () => {
+  tvShowButton.onclick = async () => {
     currentIsMovie = false;
-    currentSeasons = 5;
+    // Fetch TV show details to get the number of seasons
+    const tvShowDetails = await fetchTMDBData(`tv/${tmdbId}`);
+    currentSeasons = tvShowDetails ? tvShowDetails.number_of_seasons : 1; // Default to 1 if info not found
     const tvControls = document.getElementById("tv-controls");
     tvControls.style.display = "block";
     document.getElementById("toggle-episodes").style.display = "block";
@@ -662,7 +444,7 @@ function handleTMDBIdSearch(tmdbId) {
     episodeSelection.classList.add("row");
     const overlayContent = document.querySelector(".overlay-content");
     overlayContent.classList.add("tv-active");
-    openVideoOverlay(tmdbId, `TMDB ID: ${tmdbId} (TV Show)`, false, 5);
+    openVideoOverlay(tmdbId, `TMDB ID: ${tmdbId} (TV Show)`, false, currentSeasons);
     mediaTypeSelection.remove();
     searchingTMDBId = false;
   };
@@ -677,7 +459,8 @@ function handleTMDBIdSearch(tmdbId) {
   document.getElementById("video-player-iframe").src = "";
   currentVideoUrl = "";
 }
-function performSearch() {
+
+async function performSearch() {
   const searchTerm = document.getElementById("searchInput").value.trim();
   if (!searchTerm) {
     alert("Please enter a TMDB ID or keywords.");
@@ -687,22 +470,27 @@ function performSearch() {
     const tmdbId = parseInt(searchTerm);
     handleTMDBIdSearch(tmdbId);
   } else {
-    const results = allMedia.filter((item) =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    if (results.length > 0) {
-      const firstResult = results[0];
+    const [movieResults, tvResults] = await Promise.all([
+      fetchTMDBData(`search/movie?query=${encodeURIComponent(searchTerm)}`),
+      fetchTMDBData(`search/tv?query=${encodeURIComponent(searchTerm)}`)
+    ]);
+
+    const allSearchResults = [...(movieResults || []), ...(tvResults || [])];
+
+    if (allSearchResults.length > 0) {
+      const firstResult = allSearchResults[0];
       openVideoOverlay(
-        firstResult.tmdb,
-        firstResult.title,
-        !firstResult.isMovie,
-        firstResult.seasons
+        firstResult.id,
+        firstResult.title || firstResult.name,
+        !!firstResult.title,
+        firstResult.number_of_seasons || 0
       );
     } else {
       alert(`No results found for "${searchTerm}".`);
     }
   }
 }
+
 function toggleEpisodeDropdowns() {
   const episodeSelection = document.getElementById("episode-selection");
   const toggleButton = document.getElementById("toggle-episodes");
@@ -714,6 +502,29 @@ function toggleEpisodeDropdowns() {
       ? "Show Episodes"
       : "Hide Episodes";
 }
-function playSpecificEpisodeFromCard(tmdbId, title, totalSeasons) {}
-renderSection(newReleases, "new-releases");
 
+function playSpecificEpisodeFromCard(tmdbId, title, totalSeasons) {
+  currentTMDBId = tmdbId;
+  currentTitle = title;
+  currentIsMovie = false;
+  currentSeasons = totalSeasons;
+  openVideoOverlay(tmdbId, title, false, totalSeasons);
+}
+
+async function loadHomePageData() {
+  const newReleasesData = await getNewReleasesFromTMDB();
+  renderSection(newReleasesData.slice(0, 4), "new-releases");
+}
+
+async function loadAllMoviesPage() {
+  const allMoviesData = await getAllMoviesFromTMDB();
+  renderSection(allMoviesData, "all-movies", true);
+}
+
+async function loadAllTVShowsPage() {
+  const allTVShowsData = await getAllTVShowsFromTMDB();
+  renderSection(allTVShowsData, "all-tv-shows", false);
+}
+
+// Initialize the homepage data
+showHomePage();
