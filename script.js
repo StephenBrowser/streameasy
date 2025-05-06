@@ -1,6 +1,6 @@
-const apiKey = 'cad8d8114ffeedb538fcff20c4be6d21'; // Replace with your actual API key
-const baseUrl = 'https://api.themoviedb.org/3';
-const imageBaseUrl = 'https://image.tmdb.org/t/p/w500'; // You can choose different image sizes
+const apiKey = "cad8d8114ffeedb538fcff20c4be6d21"; // Replace with your actual API key
+const baseUrl = "https://api.themoviedb.org/3";
+const imageBaseUrl = "https://image.tmdb.org/t/p/w500"; // You can choose different image sizes
 
 // Declare these variables in a scope accessible by the relevant functions
 let currentTMDBId = null;
@@ -12,31 +12,63 @@ let currentEpisode = 1;
 let currentVideoUrl = "";
 let searchingTMDBId = false;
 let sportsContainer = null;
+let networkId = "19";
+// Remove the global genre variable
+// let genre = "10751";
 
 async function fetchTMDBData(endpoint) {
   try {
-    const response = await fetch(`${baseUrl}/${endpoint}?api_key=${apiKey}`);
+    const separator = endpoint.includes('?') ? '&' : '?';
+    const url = `${baseUrl}/${endpoint}${separator}api_key=${apiKey}`;
+    const response = await fetch(url);
     const data = await response.json();
     return data.results || data;
   } catch (error) {
-    console.error('Error fetching TMDB data:', error);
+    console.error("Error fetching TMDB data:", error);
     return [];
   }
 }
 
 async function getNewReleasesFromTMDB() {
   // Example: Fetch popular movies as "new releases"
-  return await fetchTMDBData('trending/movie/week');
+  const genre = "10751";
+  return await fetchTMDBData(`discover/movie?with_genres=${genre}`);
 }
 
 async function getAllMoviesFromTMDB() {
-  // Example: Fetch popular movies as "new releases"
-  return await fetchTMDBData('movie/popular');
+  const genre = "10751";
+  return await fetchTMDBData(`discover/movie?with_genres=${genre}`);
 }
 
 async function getAllTVShowsFromTMDB() {
-  // Example: Fetch popular TV shows
-  return await fetchTMDBData('tv/popular');
+  // Fetch animated TV shows from the US, excluding "Kids" and "Family" genres
+  const animationGenreId = 16;
+  const kidsGenreIdToExclude = 10762;
+  const familyGenreIdToExclude = 10751;
+  const originCountryUS = "US";
+  const ninjagoTMDBIdToRemove = 38693; // Replace with the actual TMDB ID for Ninjago
+  const weirdshowsTMDBIdToRemove= 46825;
+  const weirdshow2TMDBIdToRemove = 39373;
+  const weirdshow3TMDBIdToRemove = 251;
+  const endpoint = `discover/tv?with_genres=${animationGenreId}&without_genres=${kidsGenreIdToExclude},${familyGenreIdToExclude}&with_origin_country=${originCountryUS}`;
+  const allResults = await fetchTMDBData(endpoint);
+
+  // Filter out Ninjago from the results
+  const filteredResults = allResults.filter(show => show.id !== ninjagoTMDBIdToRemove);
+  const filteredResults2 = filteredResults.filter(show => show.id !== weirdshowsTMDBIdToRemove);
+  const filteredResults3 = filteredResults2.filter(show => show.id !== weirdshow2TMDBIdToRemove);
+  const filteredResults4 = filteredResults3.filter(show => show.id !== weirdshow3TMDBIdToRemove);
+  return filteredResults4;
+}
+async function getTVShowDetails(tvShowId) {
+  try {
+    const response = await fetch(`${baseUrl}/tv/${tvShowId}?api_key=${apiKey}`);
+    const data = await response.json();
+    return data.number_of_seasons || 0;
+  } catch (error) {
+    console.error(`Error fetching details for TV show ${tvShowId}:`, error);
+    return 0;
+  }
 }
 
 function renderSection(items, sectionId, isMovie = true) {
@@ -45,9 +77,12 @@ function renderSection(items, sectionId, isMovie = true) {
   items.forEach((item) => {
     const card = document.createElement("div");
     card.className = "movie-card";
-    const imageUrl = item.poster_path ? `${imageBaseUrl}${item.poster_path}` : 'placeholder_image_url.jpg';
+    const imageUrl = item.poster_path
+      ? `${imageBaseUrl}${item.poster_path}`
+      : "placeholder_image_url.jpg";
     const title = item.title || item.name;
     const tmdbId = item.id;
+    // Now the number_of_seasons should be available in the item object
     const seasons = item.number_of_seasons || 0;
     const watchButtonHTML = `<button onclick="openVideoOverlay(${tmdbId}, '${title}', ${isMovie}, ${seasons})">Watch</button>`;
     card.innerHTML = `<div class="poster-container"><img src="${imageUrl}" alt="${title}"></div><h3>${title}</h3>${watchButtonHTML}`;
@@ -66,7 +101,13 @@ function updatePlayerAndTabOption() {
 
   let finalSource = source || "vidsrccc"; // Default to vidsrccc if no source selected
 
-  if (finalSource && currentTMDBId && !currentIsMovie && selectedSeason && selectedEpisode) {
+  if (
+    finalSource &&
+    currentTMDBId &&
+    !currentIsMovie &&
+    selectedSeason &&
+    selectedEpisode
+  ) {
     const seasonString = String(selectedSeason).padStart(2, "0");
     const episodeString = String(selectedEpisode).padStart(2, "0");
     let embedUrl = "";
@@ -76,7 +117,7 @@ function updatePlayerAndTabOption() {
         embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}&season=${seasonString}&episode=${episodeString}`;
         break;
       case "embedsu":
-        embedUrl = `https://embed.su/embed/tv/${currentTMDBId}/${selectedSeason}/${selectedEpisode}`;
+        embedUrl = `https://embed.su/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
         break;
       case "vidsrccc":
         embedUrl = `https://vidsrc.cc/v2/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}?autoPlay=false`;
@@ -269,37 +310,44 @@ function addSportsCards() {
   const sports = [
     {
       name: "Basketball",
-      imageUrl: "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f3c0.png",
+      imageUrl:
+        "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/1f3c0.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/basketball",
     },
     {
       name: "Football",
-      imageUrl: "https://images.emojiterra.com/google/android-12l/512px/1f3c8.png",
+      imageUrl:
+        "https://images.emojiterra.com/google/android-12l/512px/1f3c8.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/american-football",
     },
     {
       name: "Soccer",
-      imageUrl: "https://images.emojiterra.com/google/android-10/512px/26bd.png",
+      imageUrl:
+        "https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/1024px/26bd.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/football",
     },
     {
       name: "Hockey",
-      imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3d2_flat.png",
+      imageUrl:
+        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3d2_flat.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/hockey",
     },
     {
       name: "Tennis",
-      imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3be_flat.png",
+      imageUrl:
+        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3be_flat.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/tennis",
     },
     {
       name: "Cricket",
-      imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3cf_flat.png",
+      imageUrl:
+        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/1f3cf_flat.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/cricket",
     },
     {
       name: "Baseball",
-      imageUrl: "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/26be_flat.png",
+      imageUrl:
+        "https://images.emojiterra.com/microsoft/fluent-emoji/15.1/256px/26be_flat.png",
       url: "https://streamedsueasy.global.ssl.fastly.net/category/baseball",
     },
   ];
@@ -444,7 +492,12 @@ async function handleTMDBIdSearch(tmdbId) {
     episodeSelection.classList.add("row");
     const overlayContent = document.querySelector(".overlay-content");
     overlayContent.classList.add("tv-active");
-    openVideoOverlay(tmdbId, `TMDB ID: ${tmdbId} (TV Show)`, false, currentSeasons);
+    openVideoOverlay(
+      tmdbId,
+      `TMDB ID: ${tmdbId} (TV Show)`,
+      false,
+      currentSeasons
+    );
     mediaTypeSelection.remove();
     searchingTMDBId = false;
   };
@@ -472,7 +525,7 @@ async function performSearch() {
   } else {
     const [movieResults, tvResults] = await Promise.all([
       fetchTMDBData(`search/movie?query=${encodeURIComponent(searchTerm)}`),
-      fetchTMDBData(`search/tv?query=${encodeURIComponent(searchTerm)}`)
+      fetchTMDBData(`search/tv?query=${encodeURIComponent(searchTerm)}`),
     ]);
 
     const allSearchResults = [...(movieResults || []), ...(tvResults || [])];
@@ -522,9 +575,17 @@ async function loadAllMoviesPage() {
 }
 
 async function loadAllTVShowsPage() {
-  const allTVShowsData = await getAllTVShowsFromTMDB();
-  renderSection(allTVShowsData, "all-tv-shows", false);
+  const popularTVShows = await getAllTVShowsFromTMDB();
+  const tvShowsWithSeasons = [];
+
+  for (const show of popularTVShows) {
+    const seasons = await getTVShowDetails(show.id);
+    tvShowsWithSeasons.push({ ...show, number_of_seasons: seasons });
+  }
+
+  renderSection(tvShowsWithSeasons, "all-tv-shows", false);
 }
 
 // Initialize the homepage data
 showHomePage();
+
