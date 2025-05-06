@@ -2,9 +2,8 @@
 streamEasy is probably the simplest movie streaming site possible. 
 Adless, simple UI, and static... no need to host a proxy on Node.js or whatnot.
 
-streamEasy has 16 movies and 16 TV shows built in, with more accessible through our search which allows the input of a TMBD ID, which can be retrieved from the end of a TMBD description page for a movie. In addition, we offer sports streaming via Fastly that connects to Streamed.Su to avoid blockages.
+streamEasy has 20 movies and 16 TV shows dynamically built in, with more accessible through our search which allows the input of a TMBD ID, which can be found [here.](https://streameasy.glitch.me/tmdb-id-finder.html) In addition, we offer sports streaming via Fastly that connects to Streamed.Su to avoid blockages.
 
-We are not affiliated with any strea
 
 ## 🌐 Main Site
 - [streameasy.pages.dev](https://streameasy.pages.dev) 🌟
