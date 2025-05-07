@@ -1,7 +1,7 @@
 const apiKey = "cad8d8114ffeedb538fcff20c4be6d21"; // Replace with your actual API key
 const baseUrl = "https://api.themoviedb.org/3";
 const imageBaseUrl = "https://image.tmdb.org/t/p/w500"; // You can choose different image sizes
-
+// Add Vidsrc.rip to Sources
 // Declare these variables in a scope accessible by the relevant functions
 let currentTMDBId = null;
 let currentTitle = "";
@@ -41,24 +41,33 @@ async function getAllMoviesFromTMDB() {
 }
 
 async function getAllTVShowsFromTMDB() {
-  // Fetch animated TV shows from the US, excluding "Kids" and "Family" genres
   const animationGenreId = 16;
-  const kidsGenreIdToExclude = 10762;
-  const familyGenreIdToExclude = 10751;
+  const excludedGenreIds = [10762, 10751]; // Kids, Family
+  const excludedShowIds = [38693, 46825, 39373, 251]; // Ninjago, weird shows
+  const includedShowIds = [456, 47480, 80587, 65733]; // The Simpsons, Big City Greens, Doraemon, Tom & Jerry
   const originCountryUS = "US";
-  const ninjagoTMDBIdToRemove = 38693; // Replace with the actual TMDB ID for Ninjago
-  const weirdshowsTMDBIdToRemove= 46825;
-  const weirdshow2TMDBIdToRemove = 39373;
-  const weirdshow3TMDBIdToRemove = 251;
-  const endpoint = `discover/tv?with_genres=${animationGenreId}&without_genres=${kidsGenreIdToExclude},${familyGenreIdToExclude}&with_origin_country=${originCountryUS}`;
+
+  const endpoint = `discover/tv?with_genres=${animationGenreId}&without_genres=${excludedGenreIds.join(',')}&with_origin_country=${originCountryUS}`;
   const allResults = await fetchTMDBData(endpoint);
 
-  // Filter out Ninjago from the results
-  const filteredResults = allResults.filter(show => show.id !== ninjagoTMDBIdToRemove);
-  const filteredResults2 = filteredResults.filter(show => show.id !== weirdshowsTMDBIdToRemove);
-  const filteredResults3 = filteredResults2.filter(show => show.id !== weirdshow2TMDBIdToRemove);
-  const filteredResults4 = filteredResults3.filter(show => show.id !== weirdshow3TMDBIdToRemove);
-  return filteredResults4;
+  const filteredResults = allResults.filter(show => !excludedShowIds.includes(show.id));
+
+  let finalResults = [...filteredResults];
+
+  for (const showId of includedShowIds) {
+    const showAlreadyPresent = finalResults.some(show => show.id === showId);
+    if (!showAlreadyPresent) {
+      try {
+        const showDetailsResponse = await fetch(`${baseUrl}/tv/${showId}?api_key=${apiKey}`);
+        const showDetails = await showDetailsResponse.json();
+        finalResults.push(showDetails);
+      } catch (error) {
+        console.error(`Error fetching details for show ID ${showId}:`, error);
+      }
+    }
+  }
+
+  return finalResults;
 }
 async function getTVShowDetails(tvShowId) {
   try {
@@ -131,6 +140,27 @@ function updatePlayerAndTabOption() {
       case "vidsrcvip":
         embedUrl = `https://vidsrc.vip/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
         break;
+      case "vidfast":
+        embedUrl = `https://vidfast.pro/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      case "vidlink":
+        embedUrl = `https://vidlink.pro/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      case "moviekex":
+        embedUrl = `https://moviekex.online/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      case "2embed":
+        embedUrl = `https://2embed.cc/embedtv/${currentTMDBId}&s=${seasonString}&e=${episodeString}`;
+        break;
+      case "videasy":
+        embedUrl = `https://player.videasy.net/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      case "moviesclub":
+        embedUrl = `https://moviesapi.club/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      case "vidsrcrip":
+        embedUrl = `https://vidsrc.rip/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
       default:
         embedUrl = "";
         break;
@@ -158,6 +188,27 @@ function updatePlayerAndTabOption() {
       case "vidsrcvip":
         embedUrl = `https://vidsrc.vip/embed/movie/${currentTMDBId}`;
         break;
+      case "vidfast":
+        embedUrl = `https://vidfast.pro/movie/${currentTMDBId}`;
+        break;
+      case "vidlink":
+        embedUrl = `https://vidlink.pro/movie/${currentTMDBId}`;
+        break;
+      case "moviekex":
+        embedUrl = `https://moviekex.online/embed/movie/${currentTMDBId}`;
+        break;
+      case "2embed":
+        embedUrl = `https://2embed.cc/embed/${currentTMDBId}`;
+        break;
+      case "videasy":
+        embedUrl = `https://player.videasy.net/movie/${currentTMDBId}`;
+        break;
+      case "moviesclub":
+        embedUrl = `https://moviesapi.club/movie/${currentTMDBId}`;
+        break;
+      case "vidsrcrip":
+        embedUrl = `https://vidsrc.rip/embed/movie/${currentTMDBId}`;
+        break;
       default:
         embedUrl = "";
         break;
@@ -184,6 +235,27 @@ function updatePlayerAndTabOption() {
         break;
       case "vidsrcvip":
         embedUrl = `https://vidsrc.vip/embed/tv/${currentTMDBId}/1/1`;
+        break;
+      case "vidfast":
+        embedUrl = `https://vidfast.pro/tv/${currentTMDBId}/1/1`;
+        break;
+      case "vidlink":
+        embedUrl = `https://vidlink.pro/tv/${currentTMDBId}/1/1`;
+        break;
+      case "moviekex":
+        embedUrl = `https://moviekex.online/embed/tv/${currentTMDBId}/1/1`;
+        break;
+      case "2embed":
+        embedUrl = `https://2embed.cc/embedtvfull/${currentTMDBId}`;
+        break;
+      case "videasy":
+        embedUrl = `https://player,videasy.net/tv/${currentTMDBId}/1/1`;
+        break;
+      case "moviesclub":
+        embedUrl = `https://moviesapi.club/tv/${currentTMDBId}/1/1`;
+        break;
+      case "vidsrcrip":
+        embedUrl = `https://vidsrc.rip/embed/tv/${currentTMDBId}/1/1`;
         break;
       default:
         embedUrl = "";
