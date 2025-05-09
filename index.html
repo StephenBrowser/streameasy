@@ -17,6 +17,37 @@
     <link rel="stylesheet" href="style.css" />
 
 </head>
+  <script>
+  // Disable right-click
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Block common devtool shortcuts
+  document.addEventListener('keydown', e => {
+    // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S, Ctrl+Shift+C
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key)) ||
+      (e.ctrlKey && ['U', 'S'].includes(e.key))
+    ) {
+      e.preventDefault();
+    }
+  });
+
+  // Block copy/paste
+  document.addEventListener('copy', e => e.preventDefault());
+  document.addEventListener('cut', e => e.preventDefault());
+  document.addEventListener('paste', e => e.preventDefault());
+
+  // Try to disrupt DevTools detection
+  setInterval(() => {
+    const before = performance.now();
+    debugger;
+    const after = performance.now();
+    if (after - before > 100) {
+      document.body.innerHTML = "<h1 style='color:red;text-align:center;'>DevTools Detected — Access Denied</h1>";
+    }
+  }, 1000);
+</script>
 <body>
     <header>
         <h1>🎞️StreamEasy</h1>
@@ -27,7 +58,8 @@
                 📺TV Series
             </button>
             <button class="nav-button" onclick="showSportsPage()">🏈Sports</button>
-            
+            <button class="nav-button" onclick="window.open('https://manganow.glitch.me', '_self');">📚Manga</button>
+
         </div>
     </header>
 
@@ -138,6 +170,7 @@
                         <option value="vidsrcrip">VidSrc.rip</option>
                         <option value="2embed">2Embed</option>
                         <option value="autoembed">AutoEmbed</option>
+                        <option value="superembed">SuperEmbed</option>
                         <option value="embedsu">Embed.su</option>
                         <option value="moviekex">Moviekex</option>
                         <option value="moviesclub">Moviesclub</option>
@@ -149,9 +182,9 @@
                     <button
                         id="open-player-tab"
                         class="blue-button"
-                        onclick="window.location.href='https://forms.gle/MV3hcsBhSJMasxDa6';"
+                        onclick="window.location.href='https://media.tenor.com/KUdAow8LKG4AAAAe/you-have-no-aura-aura.png';"
                     >
-                        Advertise here! Click to apply.
+                       Click to get aura [AD]
                     </button>
                     <button id="tmdb-button" class="blue-button">Description</button>
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
