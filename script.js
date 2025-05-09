@@ -161,6 +161,9 @@ function updatePlayerAndTabOption() {
       case "vidsrcrip":
         embedUrl = `https://vidsrc.rip/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
         break;
+      case "superembed":
+        embedUrl = `https://multiembed.mov/directstream.php?video_id=tt0000000&tmdb=${currentTMDBId}&s=${seasonString}&e=${episodeString}`;
+        break;
       default:
         embedUrl = "";
         break;
@@ -209,6 +212,9 @@ function updatePlayerAndTabOption() {
       case "vidsrcrip":
         embedUrl = `https://vidsrc.rip/embed/movie/${currentTMDBId}`;
         break;
+      case "superembed":
+        embedUrl = `https://multiembed.mov/directstream.php?video_id=tt0000000&tmdb=${currentTMDBId}`;
+        break;
       default:
         embedUrl = "";
         break;
@@ -256,6 +262,9 @@ function updatePlayerAndTabOption() {
         break;
       case "vidsrcrip":
         embedUrl = `https://vidsrc.rip/embed/tv/${currentTMDBId}/1/1`;
+        break;
+      case "superembed":
+        embedUrl = `https://multiembed.mov/directstream.php?video_id=tt0000000&tmdb=${currentTMDBId}&s=1&e=1`;
         break;
       default:
         embedUrl = "";
