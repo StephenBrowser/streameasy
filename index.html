@@ -1,88 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StreamEasy</title>
 
     <link
-        rel="icon"
-        href="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Untitled%20design.png?v=1745537855225"
-        type="image/png"
+      rel="icon"
+      href="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Untitled%20design.png?v=1745537855225"
+      type="image/png"
     />
     <link
-        href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400;500&display=swap"
-        rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400;500&display=swap"
+      rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-
-</head>
+  </head>
   <script>
-  // Disable right-click
-  document.addEventListener('contextmenu', e => e.preventDefault());
+    // Disable right-click
+    document.addEventListener("contextmenu", (e) => e.preventDefault());
 
-  // Block common devtool shortcuts
-  document.addEventListener('keydown', e => {
-    // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S, Ctrl+Shift+C
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key)) ||
-      (e.ctrlKey && ['U', 'S'].includes(e.key))
-    ) {
-      e.preventDefault();
-    }
-  });
+    // Block common devtool shortcuts
+    document.addEventListener("keydown", (e) => {
+      // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S, Ctrl+Shift+C
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) ||
+        (e.ctrlKey && ["U", "S"].includes(e.key))
+      ) {
+        e.preventDefault();
+      }
+    });
 
-  // Block copy/paste
-  document.addEventListener('copy', e => e.preventDefault());
-  document.addEventListener('cut', e => e.preventDefault());
-  document.addEventListener('paste', e => e.preventDefault());
+    // Block copy/paste
+    document.addEventListener("copy", (e) => e.preventDefault());
+    document.addEventListener("cut", (e) => e.preventDefault());
+    document.addEventListener("paste", (e) => e.preventDefault());
 
-  // Try to disrupt DevTools detection
-  setInterval(() => {
-    const before = performance.now();
-    debugger;
-    const after = performance.now();
-    if (after - before > 100) {
-      document.body.innerHTML = "<h1 style='color:red;text-align:center;'>DevTools Detected — Access Denied</h1>";
-    }
-  }, 1000);
-</script>
-<body>
+    // Try to disrupt DevTools detection
+    setInterval(() => {
+      const before = performance.now();
+      debugger;
+      const after = performance.now();
+      if (after - before > 100) {
+        document.body.innerHTML =
+          "<h1 style='color:red;text-align:center;'>DevTools Detected — Access Denied</h1>";
+      }
+    }, 1000);
+  </script>
+  <script>
+    // Get the first 10 letters of the hostname
+    const prefix = window.location.hostname.slice(0, 10);
+
+    // Replace the <h1> text in the header with emoji + prefix
+    window.addEventListener("DOMContentLoaded", () => {
+      const headerTitle = document.querySelector("header h1");
+      if (headerTitle) {
+        headerTitle.textContent = `🎞️${prefix}`;
+      }
+    });
+  </script>
+
+  <body>
     <header>
-        <h1>🎞️StreamEasy</h1>
-        <div>
-            <button class="nav-button" onclick="showHomePage()">🏠Home</button>
-            <button class="nav-button" onclick="showMoviesPage()">🎥Movies</button>
-            <button class="nav-button" onclick="showTVShowsPage()">
-                📺TV Series
-            </button>
-            <button class="nav-button" onclick="showSportsPage()">🏈Sports</button>
-            <button class="nav-button" onclick="window.open('https://manganow.glitch.me', '_self');">📚Manga</button>
-
-        </div>
+      <h1>🎞️StreamEasy</h1>
+      <div>
+        <button class="nav-button" onclick="showHomePage()">🏠Home</button>
+        <button class="nav-button" onclick="showMoviesPage()">🎥Movies</button>
+        <button class="nav-button" onclick="showTVShowsPage()">
+          📺TV Series
+        </button>
+        <button class="nav-button" onclick="showSportsPage()">🏈Sports</button>
+        <button
+          class="nav-button"
+          onclick="window.open('https://manganow.glitch.me', '_self');"
+        >
+          📚Manga
+        </button>
+      </div>
     </header>
 
-    
-
     <div class="content" id="homepage-section">
-        <div class="banner">
-            <img
-                src="https://images.squarespace-cdn.com/content/v1/5c95f8d416b640656eb7765a/1740717090534-50YM4GUSXU0I0KV6A1CA/A+Minecraft+Movie+new.jpg?format=2500w"
-                alt="Banner"
-                class="banner-image"
-            />
-            <div class="banner-overlay">
-                <h2 class="banner-title">A Minecraft Movie</h2>
-                <p class="banner-subtitle">
-                    PG 2025 - Adventure/Comedy <span class="rating">4.2⭐</span>
-                </p>
-                <button class="blue-button" onclick="openBannerMovie()">
-                    ▶ Watch Now
-                </button>
-            </div>
+      <div class="banner">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5c95f8d416b640656eb7765a/1740717090534-50YM4GUSXU0I0KV6A1CA/A+Minecraft+Movie+new.jpg?format=2500w"
+          alt="Banner"
+          class="banner-image"
+        />
+        <div class="banner-overlay">
+          <h2 class="banner-title">A Minecraft Movie</h2>
+          <p class="banner-subtitle">
+            PG 2025 - Adventure/Comedy <span class="rating">4.2⭐</span>
+          </p>
+          <button class="blue-button" onclick="openBannerMovie()">
+            ▶ Watch Now
+          </button>
         </div>
-<div class="search-bar">
+      </div>
+      <div class="search-bar">
         <input
           type="text"
           id="searchInput"
@@ -90,110 +105,132 @@
         />
         <button onclick="performSearch()" class="blue-button">Search</button>
       </div>
-      <div style="text-align: center;">
-          <small>Find TMDB IDs <a href="tmdb-id-finder.html">here.</a></small>
+      <div style="text-align: center">
+        <small>Find TMDB IDs <a href="tmdb-id-finder.html">here.</a></small>
       </div>
-        <h2>New Releases</h2>
-      
-        <div class="movie-section" id="new-releases"></div>
+      <h2>New Releases</h2>
+
+      <div class="movie-section" id="new-releases"></div>
     </div>
 
     <div class="content" id="all-movies-section" style="display: none">
-        <h2>All Movies</h2>
-        <br />
-        <div class="movie-section" id="all-movies"></div>
+      <h2>All Movies</h2>
+      <br />
+      <div class="movie-section" id="all-movies"></div>
     </div>
 
     <div class="content" id="all-tv-shows-section" style="display: none">
-        <h2>All TV Shows</h2>
-        <br />
-        <div class="movie-section" id="all-tv-shows"></div>
+      <h2>All TV Shows</h2>
+      <br />
+      <div class="movie-section" id="all-tv-shows"></div>
     </div>
 
     <div id="video-overlay" class="overlay" style="display: none">
-        <div class="overlay-content">
-            <div class="overlay-header">
-                <h2 id="overlay-title"></h2>
-                <button class="close-button" onclick="closeOverlay()">&times;</button>
-            </div>
-          <div id="tv-controls" style="display: none">
-                <button
-                    id="toggle-episodes"
-                    class="blue-button"
-                    onclick="toggleEpisodeDropdowns()"
-                >
-                    Show Episodes
-                </button>
-                <div id="episode-selection" style="display: none">
-                    <div class="episode-selector">
-                        <label for="current-season">Season:</label>
-                        <input type="number" id="current-season" min="1" onchange="updatePlayerAndTabOption()"/>
-                    </div>
-                    <div class="episode-selector">
-                        <label for="current-episode">Episode:</label>
-                        <input type="number" id="current-episode" min="1" onchange="updatePlayerAndTabOption()"/>
-                    </div>
-                    <button
-                        id="submit-episode"
-                        class="blue-button"
-                        onclick="updatePlayerAndTabOption()"
-                    >
-                        Watch
-                    </button>
-                </div>
-            </div>
-            <iframe
-                id="video-player-iframe"
-                src=""
-                frameborder="0"
-                allowfullscreen
-            ></iframe>
-            
-            <div class="source-selector">
-                <div
-                    style="
-                        display: flex;
-                        align-items: center;
-                        flex-wrap: wrap;
-                        gap: 10px;
-                        justify-content: center;
-                    "
-                >
-                    <label for="video-source-select">Select source:</label>
-                    <select
-                        id="video-source-select"
-                        onchange="updatePlayerAndTabOption()"
-                    >
-                        <option value="vidsrccc">VidSrc.cc</option>
-                        <option value="vidsrc">VidSrc.xyz</option>
-                        <option value="vidsrcvip">VidSrc.vip</option>
-                        <option value="vidsrcrip">VidSrc.rip</option>
-                        <option value="2embed">2Embed</option>
-                        <option value="autoembed">AutoEmbed</option>
-                        <option value="superembed">SuperEmbed</option>
-                        <option value="embedsu">Embed.su</option>
-                        <option value="moviekex">Moviekex</option>
-                        <option value="moviesclub">Moviesclub</option>
-                        <option value="vidfast">Vidfast</option>
-                        <option value="vidlink">Vidlink</option>
-                        <option value="videasy">Videasy</option>         
-                        <option value="vidora">Vidora (Adless)</option>
-                    </select>
-                    <button
-                        id="open-player-tab"
-                        class="blue-button"
-                        onclick="window.location.href='https://media.tenor.com/KUdAow8LKG4AAAAe/you-have-no-aura-aura.png';"
-                    >
-                       Click to get aura [AD]
-                    </button>
-                    <button id="tmdb-button" class="blue-button">Description</button>
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
-                        crossorigin="anonymous"></script>
-                </div>
-            </div>
+      <div class="overlay-content">
+        <div class="overlay-header">
+          <h2 id="overlay-title"></h2>
+          <button class="close-button" onclick="closeOverlay()">&times;</button>
         </div>
+        <div id="tv-controls" style="display: none">
+          <button
+            id="toggle-episodes"
+            class="blue-button"
+            onclick="toggleEpisodeDropdowns()"
+          >
+            Show Episodes
+          </button>
+          <div id="episode-selection" style="display: none">
+            <div class="episode-selector">
+              <label for="current-season">Season:</label>
+              <input
+                type="number"
+                id="current-season"
+                min="1"
+                onchange="updatePlayerAndTabOption()"
+              />
+            </div>
+            <div class="episode-selector">
+              <label for="current-episode">Episode:</label>
+              <input
+                type="number"
+                id="current-episode"
+                min="1"
+                onchange="updatePlayerAndTabOption()"
+              />
+            </div>
+            <button
+              id="submit-episode"
+              class="blue-button"
+              onclick="updatePlayerAndTabOption()"
+            >
+              Watch
+            </button>
+          </div>
+        </div>
+        <iframe
+          id="video-player-iframe"
+          src=""
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+
+        <div class="source-selector">
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 10px;
+              justify-content: center;
+            "
+          >
+            <label for="video-source-select">Select source:</label>
+            <select
+              id="video-source-select"
+              onchange="updatePlayerAndTabOption()"
+            >
+              <option value="vidsrccc">VidSrc.cc</option>
+              <option value="vidsrc">VidSrc.xyz</option>
+              
+              <option value="vidsrcvip">VidSrc.vip</option>
+              <option value="vidsrcrip">VidSrc.rip</option>
+              <option value="vidsrcco">VidSrc.co (Adless)</option>
+              <option value="vidsrcsu">VidSrc.su (Adless)</option>
+              <option value="2embed">2Embed</option>
+              <option value="autoembed">AutoEmbed</option>
+              <option value="superembed">SuperEmbed</option>
+              <option value="embedescape">EmbedEscape (Adless)</option>
+              <option value="embedsu">Embed.su</option>
+              
+              <option value="moviekex">MovieKex</option>
+              <option value="moviesclub">MoviesClub</option>
+              <option value="111movies">111Movies (Adless)</option>
+              <option value="vidfast">VidFast</option>
+              <option value="vidlink">VidLink</option>
+              <option value="vidjoy">VidJoy</option>
+              <option value="videasy">VidEasy</option>
+              <option value="vidbinge">VidBinge (Adless)</option>
+              <option value="vidora">Vidora (Adless)</option>
+              
+            </select>
+            <button
+              id="open-player-tab"
+              class="blue-button"
+              onclick="window.location.href='https://media.tenor.com/KUdAow8LKG4AAAAe/you-have-no-aura-aura.png';"
+            >
+              Click to get aura [AD]
+            </button>
+            <button id="tmdb-button" class="blue-button">Description</button>
+            <script
+              async
+              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
+              crossorigin="anonymous"
+            ></script>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
