@@ -18,7 +18,7 @@ let networkId = "19";
 
 async function fetchTMDBData(endpoint) {
   try {
-    const separator = endpoint.includes('?') ? '&' : '?';
+    const separator = endpoint.includes("?") ? "&" : "?";
     const url = `${baseUrl}/${endpoint}${separator}api_key=${apiKey}`;
     const response = await fetch(url);
     const data = await response.json();
@@ -47,18 +47,24 @@ async function getAllTVShowsFromTMDB() {
   const includedShowIds = [456, 47480, 80587, 65733]; // The Simpsons, Big City Greens, Doraemon, Tom & Jerry
   const originCountryUS = "US";
 
-  const endpoint = `discover/tv?with_genres=${animationGenreId}&without_genres=${excludedGenreIds.join(',')}&with_origin_country=${originCountryUS}`;
+  const endpoint = `discover/tv?with_genres=${animationGenreId}&without_genres=${excludedGenreIds.join(
+    ","
+  )}&with_origin_country=${originCountryUS}`;
   const allResults = await fetchTMDBData(endpoint);
 
-  const filteredResults = allResults.filter(show => !excludedShowIds.includes(show.id));
+  const filteredResults = allResults.filter(
+    (show) => !excludedShowIds.includes(show.id)
+  );
 
   let finalResults = [...filteredResults];
 
   for (const showId of includedShowIds) {
-    const showAlreadyPresent = finalResults.some(show => show.id === showId);
+    const showAlreadyPresent = finalResults.some((show) => show.id === showId);
     if (!showAlreadyPresent) {
       try {
-        const showDetailsResponse = await fetch(`${baseUrl}/tv/${showId}?api_key=${apiKey}`);
+        const showDetailsResponse = await fetch(
+          `${baseUrl}/tv/${showId}?api_key=${apiKey}`
+        );
         const showDetails = await showDetailsResponse.json();
         finalResults.push(showDetails);
       } catch (error) {
@@ -164,6 +170,25 @@ function updatePlayerAndTabOption() {
       case "superembed":
         embedUrl = `https://multiembed.mov/directstream.php?video_id=tt0000000&tmdb=${currentTMDBId}&s=${seasonString}&e=${episodeString}`;
         break;
+      case "vidsrcco":
+        embedUrl = ` https://player.vidsrc.co/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}?autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=16px&opacity=0.5&font=Helvetica&server=1`;
+        break;
+      case "vidsrcsu":
+        embedUrl = ` https://vidsrc.su/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      case "vidbinge":
+        embedUrl = ` https://dodo-v2.pages.dev/media/tmdb-tv-${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      case "embedescape":
+        embedUrl = ` https://embed.escape.com.np/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      case "vidjoy":
+        embedUrl = ` https://vidjoy.pro/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+      case "111movies":
+        embedUrl = ` https://111movies.com/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
+
       default:
         embedUrl = "";
         break;
@@ -215,6 +240,24 @@ function updatePlayerAndTabOption() {
       case "superembed":
         embedUrl = `https://multiembed.mov/directstream.php?video_id=tt0000000&tmdb=${currentTMDBId}`;
         break;
+      case "vidsrcco":
+        embedUrl = ` https://player.vidsrc.co/embed/movie/${currentTMDBId}?autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=16px&opacity=0.5&font=Helvetica&server=1`;
+        break;
+      case "vidsrcsu":
+        embedUrl = ` https://vidsrc.su/embed/movie/${currentTMDBId}`;
+        break;
+      case "vidbinge":
+        embedUrl = ` https://dodo-v2.pages.dev/media/tmdb-movie-${currentTMDBId}`;
+        break;
+      case "embedescape":
+        embedUrl = ` https://embed.escape.com.np/movie/${currentTMDBId}`;
+        break;
+      case "vidjoy":
+        embedUrl = ` https://vidjoy.pro/embed/movie/${currentTMDBId}`;
+        break;
+      case "111movies":
+        embedUrl = ` https://111movies.com/movie/${currentTMDBId}`;
+        break;
       default:
         embedUrl = "";
         break;
@@ -265,6 +308,9 @@ function updatePlayerAndTabOption() {
         break;
       case "superembed":
         embedUrl = `https://multiembed.mov/directstream.php?video_id=tt0000000&tmdb=${currentTMDBId}&s=1&e=1`;
+        break;
+      case "vidsrcco":
+        embedUrl = ` https://player.vidsrc.co/embed/tv/${currentTMDBId}/1/1?autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=16px&opacity=0.5&font=Helvetica&server=1`;
         break;
       default:
         embedUrl = "";
@@ -669,4 +715,3 @@ async function loadAllTVShowsPage() {
 
 // Initialize the homepage data
 showHomePage();
-
