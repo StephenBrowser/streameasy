@@ -256,7 +256,7 @@ function updatePlayerAndTabOption() {
         embedUrl = ` https://vidjoy.pro/embed/movie/${currentTMDBId}`;
         break;
       case "111movies":
-        embedUrl = ` https://111movies.com/movie/${currentTMDBId}`;
+        embedUrl = ` https://111movies.com/embed/movie/${currentTMDBId}`;
         break;
       default:
         embedUrl = "";
