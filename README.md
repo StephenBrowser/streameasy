@@ -10,6 +10,7 @@ StreamEasy has 20 sources to stream from, of which 6 are adless (for now...)
 - [streameasy.pages.dev](https://streameasy.pages.dev) 🌟
   > ⚠️ Taken down by CloudFlare *
 - [streameasy.glitch.me](https://streameasy.glitch.me) 🌟
+- [streamez.pages.dev](https://streamez.pages.dev) 🌟
 ## 🚀 Instances
 - [streameasy-example.netlify.app](https://streameasy-example.netlify.app) ⭐   
 - [stephenbrowser.github.io/streameasy](https://stephenbrowser.github.io/streameasy) ⭐  
