@@ -32,6 +32,6 @@ This project is a personal, non-commercial creation intended for educational and
 
 ## Other sites like this
 - [Heartive](https://heartive-us4.pages.dev)
-- [Dodo TV] (https://dodo-tv.live)
-- [Ableflix] (https://ableflix.cc)
-- [PStream] (https://pstream.org)
+- [Dodo TV](https://dodo-tv.live)
+- [Ableflix](https://ableflix.cc)
+- [PStream](https://pstream.org)
