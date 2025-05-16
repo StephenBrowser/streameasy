@@ -1,528 +1,272 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>StreamEasy - Search</title>
-    
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>StreamEasy | Search</title>
     <link
       rel="icon"
       href="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Untitled%20design.png?v=1745537855225"
       type="image/png"
     />
-  </head>
-  <style>
-    body {
-      font-family: Helvetica, sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #ffffff;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-    }
-
-    header h1 {
-      font-size: 24px;
-      color: #5a5a5a;
-      margin: 0;
-    }
-
-    header .nav-button {
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    header .nav-button:hover {
-      background-color: #0056b3;
-    }
-
-    .search-bar {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-      gap: 10px; /* Space between input and button */
-      align-items: center; /* Vertically align input and button */
-    }
-
-    .search-bar input {
-      width: 50%;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-
-    .content {
-      padding: 20px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin: 20px;
-    }
-
-    .movie-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 15px;
-    }
-
-    .movie-card {
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      width: calc(25% - 15px);
-      margin-bottom: 20px;
-      text-align: center;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .movie-card .poster-container {
-      background-color: #ccc;
-      width: 100%;
-      aspect-ratio: 2/3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5em;
-      color: #555;
-    }
-
-    .movie-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .movie-card h3 {
-      padding: 10px;
-      margin: 0;
-      color: #333;
-      font-size: 1em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .movie-card button {
-      background-color: #007bff;
-      color: white;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
-      margin-top: auto;
-      cursor: pointer;
-      font-size: 0.8em;
-    }
-
-    .movie-card button:hover {
-      background-color: #0056b3;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #ffffff;
-      margin-top: 20px;
-      border-top: 1px solid #ddd;
-    }
-
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .overlay-content {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-      width: 80%;
-      max-width: 800px;
-      position: relative;
-      display: flex;
-      flex-direction: column; /* Keep vertical for overall layout */
-    }
-
-    .overlay-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .overlay-header h2 {
-      margin: 0;
-      flex-grow: 1; /* Allow title to take up space */
-    }
-
-    .close-button {
-      background: none;
-      border: none;
-      color: #555;
-      font-size: 20px;
-      cursor: pointer;
-      margin-left: 15px; /* Space from the title */
-    }
-
-    .close-button:hover {
-      color: #000000;
-    }
-
-    .episode-selector select {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #cccccc;
-      font-size: 0.9em;
-    }
-
-    .source-selector {
-      margin-top: 15px;
-      text-align: center;
-    }
-
-    .source-selector > div {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .source-selector label {
-      margin-right: 5px;
-      font-weight: bold;
-    }
-
-    .source-selector select {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ccccc;
-    }
-
-    #video-source-select {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 0.9em;
-    }
-
-    #tv-controls {
-      display: flex;
-      flex-direction: column; /* Arrange button and inputs vertically initially */
-      gap: 10px;
-      margin-bottom: 10px;
-      align-items: flex-start; /* Align items to the left */
-    }
-
-    #episode-selection {
-      display: none; /* Hidden by default */
-      flex-direction: column; /* Stack season and episode selectors initially */
-      gap: 5px;
-      margin-top: 5px;
-    }
-
-    #episode-selection.row {
-      display: flex !important; /* Override display: none and set to flex */
-      flex-direction: row; /* Arrange season and episode selectors in a row */
-      align-items: center;
-      gap: 10px; /* Space between season, episode, and submit */
-    }
-
-    .episode-selector {
-      display: flex;
-      align-items: center;
-      gap: 5px; /* Space between label and input */
-    }
-
-    .episode-selector label {
-      font-weight: bold;
-      font-size: 0.9em;
-      cursor: pointer; /* Indicate interaction */
-    }
-
-    .episode-selector input[type="number"] {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 0.9em;
-      width: 60px; /* Adjust width as needed */
-    }
-
-    #submit-episode {
-      background-color: #28a745;
-      color: white;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9em;
-    }
-
-    #submit-episode:hover {
-      background-color: #218838;
-    }
-
-    #tmdb-button {
-      background-color: #17a2b8;
-      color: white;
-      padding: 8px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.9em;
-    }
-
-    #tmdb-button {
-      background-color: #dc3545;
-    }
-
-    #tmdb-button:hover {
-      background-color: #c82333;
-    }
-
-    .overlay-content iframe {
-      width: 100%;
-      height: 450px;
-      border: none;
-      border-radius: 5px;
-      margin-top: 15px; /* Space between controls and iframe */
-      margin-bottom: 15px; /* Space between iframe and buttons */
-    }
-
-    /* Specific iframe styling when TV controls are visible */
-    .overlay-content.tv-active iframe {
-      height: 300px; /* Reduced height for TV shows */
-    }
-
-    .blue-button {
-      font-family: Helvetica, sans-serif;
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-
-    .blue-button:hover {
-      background-color: #0056b3;
-    }
-
-    #media-type-selection button.blue-button {
-      padding: 8px 15px;
-      font-size: 0.9em;
-    }
-    .banner {
-      position: relative;
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 20px auto;
-      /* Remove max-width */
-    }
-
-    .banner-image {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .banner-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 0 0 12px 12px;
-      text-align: left;
-    }
-
-    .banner-title {
-      font-size: 2.8rem;
-      margin: 0;
-      font-weight: bold;
-    }
-
-    .banner-subtitle {
-      margin: 8px 0;
-      font-size: 1rem;
-      color: #444;
-    }
-
-    .rating {
-      font-weight: bold;
-      color: #f5a623;
-    }
-
-    body,
-    header h1,
-    header .nav-button,
-    .search-bar input,
-    .content h2,
-    .movie-card h3,
-    .movie-card button,
-    footer,
-    .overlay-header h2,
-    .close-button,
-    .episode-selector label,
-    .episode-selector input[type="number"],
-    #submit-episode,
-    #tmdb-button,
-    #video-source-select,
-    #toggle-episodes,
-    .blue-button,
-    #media-type-selection {
-      font-family: Helvetica, sans-serif !important;
-    }
-
-    /* NEW CSS FOR YOUR ADDED HTML STRUCTURE */
-    .main-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      gap: 20px;
-    }
-
-    .card {
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      width: 100%;
-      max-width: 800px; /* Limit card width */
-      box-sizing: border-box; /* Include padding in width */
-    }
-
-    .search-card {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .search-card h1 {
-      font-size: 28px;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    .input-group {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 400px;
-      gap: 5px;
-    }
-
-    .input-group label {
-      font-weight: bold;
-      color: #555;
-      text-align: left;
-      margin-bottom: 5px; /* Space between label and input */
-    }
-
-    .input-group input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    .example-button {
-      margin-top: 10px;
-    }
-
-    .results-card {
-      margin-top: 20px;
-    }
-
-    .results-card h2 {
-      font-size: 22px;
-      color: #333;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-    /* Styles for the container of the search input and button */
-    .search-input-and-type {
-      display: flex; /* Arranges children (input and button) in a row */
-      align-items: center; /* Vertically aligns items in the middle */
-      gap: 10px; /* Adds space between the input and the button */
-      width: 100%; /* Makes the container take full width of its parent */
-      max-width: 400px; /* Optional: limits the maximum width of the search bar for better aesthetics on larger screens */
-      margin-bottom: 15px; /* Adds some space below the search bar if there are other elements below it */
-      box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
-    }
-
-    /* Styles for the search input field */
-    .search-input-and-type input[type="text"] {
-      flex-grow: 1; /* Allows the input field to take up most of the available space */
-      padding: 12px; /* Inner spacing within the input field */
-      border: 1px solid #ccc; /* Light grey border */
-      border-radius: 5px; /* Slightly rounded corners */
-      font-size: 16px; /* Font size for the input text */
-      box-sizing: border-box; /* Include padding in the element's total width */
-    }
-  </style>
-  <body>
-    <div class="main-container">
-      <div class="card search-card">
-        <h1>Search</h1>
-        <label for="searchInput" style="display: block"
-          >Enter Movie Name or TMDB ID:</label
-        >
-        <div class="search-input-and-type">
-          <br />
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="e.g., Inception, The Office, 1399"
-          />
-          <button onclick="performSearch()" class="blue-button">Search</button>
-          <button class="blue-button" onclick="window.location.href='index.html'">
-          Back
-        </button>
-        </div>
-      </div>
-
-      <div
-        class="card results-card"
-        id="searchResultsCard"
-        style="display: none"
-      >
-        <h2>Search Results</h2>
-        <div id="searchResults" class="movie-section"></div>
+    <script src="script.js"></script>
+    <style>
+      body {
+        font-family: Helvetica, Arial, sans-serif;
+        background: #fff;
+        margin: 20px;
+      }
+      #search-container {
+        display: flex;
+        gap: 8px;
+        max-width: 800px;
+        margin: 0 auto 20px;
+      }
+      #search-input {
+        flex: 1 1 auto;
+        font-size: 16px;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      #media-type-select {
+        flex: 0 0 100px;
+        font-size: 16px;
+        padding: 8px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background: #fff;
+        cursor: pointer;
+      }
+      #search-button {
+        flex: 0 0 80px;
+        background: #007bff;
+        border: none;
+        color: white;
         
-      </div>
-    </div>
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      #back-button {
+        flex: 0 0 80px;
+        background: #007bff;
+        border: none;
+        color: white;
+        
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      #back-button:hover {
+        background: #0056b3;
+      }
+      #search-button:hover {
+        background: #0056b3;
+      }
+      #results-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+      }
+      .result-card {
+        width: 130px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .result-poster {
+        width: 130px;
+        height: 195px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      .result-title {
+        margin-top: 6px;
+        font-weight: 600;
+        font-size: 14px;
+        color: #333;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+  <div id="search-container">
+    <input
+      id="search-input"
+      type="text"
+      placeholder="Search movies or TV shows..."
+    />
+    <select id="media-type-select" title="Select category to search">
+      <option value="multi">All Results</option>
+      <option value="movie">Movies Only</option>
+      <option value="tv">TV Shows Only</option>
+    </select>
+    <button id="search-button">Search</button>
+    <button id="back-button" onclick="window.location.href='index.html'">
+      Back
+    </button>
+  </div>
 
-    <div id="video-overlay" class="overlay" style="display: none">
+  <!-- Start message + back button -->
+  <div
+    id="start-message"
+    style="
+      text-align: center;
+      margin-top: 100px;
+      font-size: 24px;
+      color: #666;
+    "
+  >
+    <p>Start searching to get started</p>
+    
+  </div>
+
+  <div id="results-container"></div>
+
+  <script>
+    // Replace with your TMDb API key
+    const TMDB_API_KEY = "cad8d8114ffeedb538fcff20c4be6d21";
+    const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w300";
+
+    const searchInput = document.getElementById("search-input");
+    const mediaTypeSelect = document.getElementById("media-type-select");
+    const searchButton = document.getElementById("search-button");
+    const resultsContainer = document.getElementById("results-container");
+    const startMessage = document.getElementById("start-message");
+
+    function showStartMessage(show) {
+      if (show) {
+        startMessage.style.display = "block";
+        resultsContainer.style.display = "none";
+      } else {
+        startMessage.style.display = "none";
+        resultsContainer.style.display = "flex";
+      }
+    }
+
+    async function searchTMDb(query, type) {
+      if (!query.trim()) {
+        showStartMessage(true);
+        resultsContainer.innerHTML = "";
+        return;
+      }
+
+      showStartMessage(false);
+      resultsContainer.innerHTML = "<p>Loading...</p>";
+
+      let results = [];
+
+      try {
+        if (type === "multi") {
+          const [moviesRes, tvRes] = await Promise.all([
+            fetch(
+              `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+                query
+              )}`
+            ).then((r) => r.json()),
+            fetch(
+              `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+                query
+              )}`
+            ).then((r) => r.json()),
+          ]);
+          results = [
+            ...moviesRes.results.map((item) => ({
+              ...item,
+              media_type: "movie",
+            })),
+            ...tvRes.results.map((item) => ({ ...item, media_type: "tv" })),
+          ];
+        } else {
+          const res = await fetch(
+            `https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+              query
+            )}`
+          );
+          const data = await res.json();
+          results = data.results.map((item) => ({
+            ...item,
+            media_type: type,
+          }));
+        }
+
+        if (!results.length) {
+          resultsContainer.innerHTML = "<p>No results found.</p>";
+          return;
+        }
+
+        resultsContainer.innerHTML = "";
+
+        results.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "result-card";
+
+          const img = document.createElement("img");
+          img.className = "result-poster";
+          img.alt = (item.title || item.name) + " poster";
+          const fallbackPoster =
+            "https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-22%20085327.png?v=1745326888308";
+
+          img.src = item.poster_path
+            ? TMDB_IMAGE_BASE + item.poster_path
+            : fallbackPoster;
+          img.onerror = () => {
+            img.onerror = null; // Prevent infinite loop
+            img.src = fallbackPoster;
+          };
+
+          const titleEl = document.createElement("div");
+          titleEl.className = "result-title";
+          titleEl.textContent = item.title || item.name;
+
+          card.appendChild(img);
+          card.appendChild(titleEl);
+
+          card.onclick = async () => {
+            if (item.media_type === "tv") {
+              try {
+                const tvDetailsRes = await fetch(
+                  `https://api.themoviedb.org/3/tv/${item.id}?api_key=${TMDB_API_KEY}`
+                );
+                const tvDetails = await tvDetailsRes.json();
+                const seasons = tvDetails.number_of_seasons || 1;
+                openVideoOverlay(item.id, titleEl.textContent, false, seasons);
+              } catch (e) {
+                console.error("Failed to fetch TV show details:", e);
+                openVideoOverlay(item.id, titleEl.textContent, false, 1);
+              }
+            } else {
+              openVideoOverlay(item.id, titleEl.textContent, true, 0);
+            }
+          };
+
+          resultsContainer.appendChild(card);
+        });
+      } catch (error) {
+        console.error(error);
+        resultsContainer.innerHTML = "<p>Error loading results.</p>";
+      }
+    }
+
+    searchButton.addEventListener("click", () => {
+      searchTMDb(searchInput.value, mediaTypeSelect.value);
+    });
+
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        searchTMDb(searchInput.value, mediaTypeSelect.value);
+      }
+    });
+
+    // Show start message initially
+    showStartMessage(true);
+  </script>
+
+  </body>
+  <div id="video-overlay" class="overlay" style="display: none">
       <div class="overlay-content">
         <div class="overlay-header">
           <h2 id="overlay-title"></h2>
@@ -572,7 +316,15 @@
         ></iframe>
 
         <div class="source-selector">
-          <div>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 10px;
+              justify-content: center;
+            "
+          >
             <label for="video-source-select">Select source:</label>
             <select
               id="video-source-select"
@@ -580,6 +332,7 @@
             >
               <option value="vidsrccc">VidSrc.cc</option>
               <option value="vidsrc">VidSrc.xyz</option>
+              
               <option value="vidsrcvip">VidSrc.vip</option>
               <option value="vidsrcrip">VidSrc.rip</option>
               <option value="vidsrcco">VidSrc.co (Adless)</option>
@@ -589,6 +342,7 @@
               <option value="superembed">SuperEmbed</option>
               <option value="embedescape">EmbedEscape (Adless)</option>
               <option value="embedsu">Embed.su</option>
+              
               <option value="moviekex">MovieKex</option>
               <option value="moviesclub">MoviesClub</option>
               <option value="111movies">111Movies (Adless)</option>
@@ -598,6 +352,7 @@
               <option value="videasy">VidEasy</option>
               <option value="vidbinge">VidBinge (Adless)</option>
               <option value="vidora">Vidora (Adless)</option>
+              
             </select>
             <button
               id="open-player-tab"
@@ -616,7 +371,5 @@
         </div>
       </div>
     </div>
-
-    <script src="script.js"></script>
-  </body>
 </html>
+
