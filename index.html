@@ -78,9 +78,8 @@
           📚Manga
         </button>
         <button
-              class="nav-button"
-              
-              onclick="window.location.href='search.html';"
+          class="nav-button"
+          onclick="window.location.href='search.html';"
         >
           🔍Search
         </button>
@@ -104,22 +103,36 @@
           </button>
         </div>
       </div>
-      
+
       <h2>New Releases</h2>
 
       <div class="movie-section" id="new-releases"></div>
+      <h2>Top-Rated TV</h2>
+      <div class="movie-section" id="top-rated-tv-shows"></div>
+      <h2>Trending this Week</h2>
+      <div class="movie-section" id="trending-movies"></div>
     </div>
 
     <div class="content" id="all-movies-section" style="display: none">
-      <h2>All Movies</h2>
+      <h2>Popular</h2>
       <br />
       <div class="movie-section" id="all-movies"></div>
+      <h2>Trending this Week</h2>
+      <div class="movie-section" id="trending-movies-2"></div>
+      <h2>
+        Top-Rated
+      </h2>
+      <div class="movie-section" id="top-movies"></div>
     </div>
 
     <div class="content" id="all-tv-shows-section" style="display: none">
-      <h2>All TV Shows</h2>
-      <br />
+      <h2>Popular TV</h2>
+
       <div class="movie-section" id="all-tv-shows"></div>
+      <h2>Trending This Week</h2>
+      <div class="movie-section" id="trending-tv-shows"></div>
+      <h2>Top-Rated</h2>
+      <div class="movie-section" id="top-rated-tv-shows-2"></div>
     </div>
 
     <div id="video-overlay" class="overlay" style="display: none">
@@ -188,7 +201,7 @@
             >
               <option value="vidsrccc">VidSrc.cc</option>
               <option value="vidsrc">VidSrc.xyz</option>
-              
+
               <option value="vidsrcvip">VidSrc.vip</option>
               <option value="vidsrcrip">VidSrc.rip</option>
               <option value="vidsrcco">VidSrc.co (Adless)</option>
@@ -198,7 +211,7 @@
               <option value="superembed">SuperEmbed</option>
               <option value="embedescape">EmbedEscape (Adless)</option>
               <option value="embedsu">Embed.su</option>
-              
+
               <option value="moviekex">MovieKex</option>
               <option value="moviesclub">MoviesClub</option>
               <option value="111movies">111Movies (Adless)</option>
@@ -208,7 +221,6 @@
               <option value="videasy">VidEasy</option>
               <option value="vidbinge">VidBinge (Adless)</option>
               <option value="vidora">Vidora (Adless)</option>
-              
             </select>
             <button
               id="open-player-tab"
