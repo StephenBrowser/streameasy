@@ -31,50 +31,35 @@ async function fetchTMDBData(endpoint) {
 
 async function getNewReleasesFromTMDB() {
   // Example: Fetch popular movies as "new releases"
-  const genre = "10751";
-  return await fetchTMDBData(`discover/movie?with_genres=${genre}`);
+  
+  return await fetchTMDBData(`discover/movie`);
+}
+async function getTopRatedFromTMDB() {
+  // Example: Fetch popular movies as "new releases"
+  
+  return await fetchTMDBData(`discover/movie?include_adult=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=200`);
 }
 
 async function getAllMoviesFromTMDB() {
-  const genre = "10751";
-  return await fetchTMDBData(`discover/movie?with_genres=${genre}`);
+  
+  return await fetchTMDBData(`discover/movie`);
+}
+async function getTrendingMoviesFromTMDB() {
+  
+  return await fetchTMDBData(`trending/movie/week`);
 }
 
-async function getAllTVShowsFromTMDB() {
-  const animationGenreId = 16;
-  const excludedGenreIds = [10762, 10751]; // Kids, Family
-  const excludedShowIds = [38693, 46825, 39373, 251]; // Ninjago, weird shows
-  const includedShowIds = [456, 47480, 80587, 65733]; // The Simpsons, Big City Greens, Doraemon, Tom & Jerry
-  const originCountryUS = "US";
 
-  const endpoint = `discover/tv?with_genres=${animationGenreId}&without_genres=${excludedGenreIds.join(
-    ","
-  )}&with_origin_country=${originCountryUS}`;
-  const allResults = await fetchTMDBData(endpoint);
-
-  const filteredResults = allResults.filter(
-    (show) => !excludedShowIds.includes(show.id)
-  );
-
-  let finalResults = [...filteredResults];
-
-  for (const showId of includedShowIds) {
-    const showAlreadyPresent = finalResults.some((show) => show.id === showId);
-    if (!showAlreadyPresent) {
-      try {
-        const showDetailsResponse = await fetch(
-          `${baseUrl}/tv/${showId}?api_key=${apiKey}`
-        );
-        const showDetails = await showDetailsResponse.json();
-        finalResults.push(showDetails);
-      } catch (error) {
-        console.error(`Error fetching details for show ID ${showId}:`, error);
-      }
-    }
-  }
-
-  return finalResults;
+async function getAllTVShowsFromTMDB() {   
+  return await fetchTMDBData(`discover/tv`);
 }
+async function getTrendingTVShowsFromTMDB() {   
+  return await fetchTMDBData(`trending/tv/week`);
+}
+async function getTopRatedTVShowsFromTMDB() {   
+  return await fetchTMDBData(`discover/tv?include_adult=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=200`);
+}
+
 async function getTVShowDetails(tvShowId) {
   try {
     const response = await fetch(`${baseUrl}/tv/${tvShowId}?api_key=${apiKey}`);
@@ -693,24 +678,53 @@ function playSpecificEpisodeFromCard(tmdbId, title, totalSeasons) {
 
 async function loadHomePageData() {
   const newReleasesData = await getNewReleasesFromTMDB();
+  const topRatedTVData = await getTopRatedTVShowsFromTMDB();
+  const trendingMovies = await getTrendingMoviesFromTMDB();
+  const topRatedTVShowsWithSeasons = [];
   renderSection(newReleasesData.slice(0, 4), "new-releases");
+  for (const show of topRatedTVData) {
+    const seasons = await getTVShowDetails(show.id);
+    topRatedTVShowsWithSeasons.push({ ...show, number_of_seasons: seasons });
+  }
+  
+  renderSection(newReleasesData.slice(0, 4), "new-releases");
+  renderSection(topRatedTVShowsWithSeasons.slice(0, 4), "top-rated-tv-shows", false);
+  renderSection(trendingMovies.slice(0, 4), "trending-movies", true);
 }
 
 async function loadAllMoviesPage() {
   const allMoviesData = await getAllMoviesFromTMDB();
-  renderSection(allMoviesData, "all-movies", true);
+  const topRatedMoviesData = await getTopRatedFromTMDB();
+  const trendingMovies = await getTrendingMoviesFromTMDB();
+  renderSection(allMoviesData.slice(0, 8), "all-movies", true);
+  renderSection(topRatedMoviesData.slice(0, 8), "top-movies", true);
+  renderSection(trendingMovies.slice(0, 8), "trending-movies-2", true);
 }
 
 async function loadAllTVShowsPage() {
   const popularTVShows = await getAllTVShowsFromTMDB();
+  const trendingTVData = await getTrendingTVShowsFromTMDB();
+  const topRatedTVData = await getTopRatedTVShowsFromTMDB();
   const tvShowsWithSeasons = [];
-
+  const trendingTVShowsWithSeasons = [];
+  const topRatedTVShowsWithSeasons = [];
+  
   for (const show of popularTVShows) {
     const seasons = await getTVShowDetails(show.id);
     tvShowsWithSeasons.push({ ...show, number_of_seasons: seasons });
   }
+  for (const show of trendingTVData) {
+    const seasons = await getTVShowDetails(show.id);
+    trendingTVShowsWithSeasons.push({ ...show, number_of_seasons: seasons });
+  }
+  for (const show of topRatedTVData) {
+    const seasons = await getTVShowDetails(show.id);
+    topRatedTVShowsWithSeasons.push({ ...show, number_of_seasons: seasons });
+  }
 
-  renderSection(tvShowsWithSeasons, "all-tv-shows", false);
+  renderSection(tvShowsWithSeasons.slice(0, 8), "all-tv-shows", false);
+  renderSection(trendingTVShowsWithSeasons.slice(0, 8), "trending-tv-shows", false);
+  renderSection(topRatedTVShowsWithSeasons.slice(0, 8), "top-rated-tv-shows-2", false);
 }
 
 // Initialize the homepage data
