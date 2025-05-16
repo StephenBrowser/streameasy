@@ -2,7 +2,7 @@
 streamEasy is probably the simplest open-source movie streaming site possible. 
 Adless, simple UI, and static... no need to host a proxy on Node.js or whatnot.
 
-streamEasy has 20 movies and 16 TV shows dynamically built in, with more accessible through our search which allows the input of a TMBD ID, which can be found [here.](https://streameasy.glitch.me/tmdb-id-finder.html) In addition, we offer sports streaming via Fastly that connects to Streamed.Su to avoid blockages.
+streamEasy has dynamically media functionality, with more accessible through our search. In addition, we offer sports streaming via Fastly that connects to Streamed.Su to avoid blockages.
 
 StreamEasy has 20 sources to stream from, of which 5 are adless (for now...)
 
