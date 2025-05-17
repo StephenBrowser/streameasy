@@ -20,6 +20,7 @@ StreamEasy has 20 sources to stream from, of which 5 are adless (for now...)
 - [streameasy.global.ssl.fastly.net](streameasy.global.ssl.fastly.net) ⭐
 - [thelindentravelblog.pages.dev](https://thelindentravelblog.pages.dev) ⭐
 - [streameasy.neetocode.com/site/stephen-browser/index](https://streameasy.neetocode.com/site/stephen-browser/index)⭐
+- [vn945s.csb.app](https://vn945s.csb.app/)⭐
 
 ---
 
