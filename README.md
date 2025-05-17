@@ -14,14 +14,12 @@ StreamEasy has 20 sources to stream from, of which 5 are adless (for now...)
 ## 🚀 Instances
 - [streameasy-example.netlify.app](https://streameasy-example.netlify.app) ⭐   
 - [stephenbrowser.github.io/streameasy](https://stephenbrowser.github.io/streameasy) ⭐  
-- [streameasywithstreameasy (Google Sites)](https://sites.google.com/view/streameasywithstreameasy) ⭐  
-  > ⚠️ My first website taken down by Google, RIP 😅*
-- [thelindenfamilysblog (Google Sites)](https://sites.google.com/view/thelindenfamilysblog) ⭐  
 - [streameasy-production.up.railway.app](https://streameasy-production.up.railway.app) ⭐  
 - [streameasy-roan.vercel.app](https://streameasy-roan.vercel.app) ⭐  
 - [stream.easygate.eu](https://stream.easygate.eu) ⭐
 - [streameasy.global.ssl.fastly.net](streameasy.global.ssl.fastly.net) ⭐
 - [thelindentravelblog.pages.dev](https://thelindentravelblog.pages.dev) ⭐
+- [streameasy.neetocode.com/site/stephen-browser/index](https://streameasy.neetocode.com/site/stephen-browser/index)⭐
 
 ---
 
