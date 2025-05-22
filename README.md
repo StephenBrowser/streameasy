@@ -9,7 +9,7 @@ StreamEasy has 20 sources to stream from, of which 5 are adless (for now...)
 ## 🌐 Main Site
 - [streameasy.pages.dev](https://streameasy.pages.dev) 🌟
   > ⚠️ Taken down by CloudFlare *
-# BREAKING: Glitch domain hosting will end on July 8, 2025. Our Glitch domain will shut down.
+### BREAKING: Glitch domain hosting will end on July 8, 2025. Our Glitch domain will shut down.
 - [streameasy.glitch.me](https://streameasy.glitch.me) 🌟
 - [streamez.pages.dev](https://streamez.pages.dev) 🌟
 ## 🚀 Instances
