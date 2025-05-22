@@ -71,24 +71,33 @@ async function getTVShowDetails(tvShowId) {
   }
 }
 
-function renderSection(items, sectionId, isMovie = true) {
+function renderSection(items, sectionId, isMovie = true) { 
   const section = document.getElementById(sectionId);
   section.innerHTML = "";
   items.forEach((item) => {
     const card = document.createElement("div");
     card.className = "movie-card";
+
     const imageUrl = item.poster_path
       ? `${imageBaseUrl}${item.poster_path}`
       : "placeholder_image_url.jpg";
+
     const title = item.title || item.name;
     const tmdbId = item.id;
-    // Now the number_of_seasons should be available in the item object
     const seasons = item.number_of_seasons || 0;
-    const watchButtonHTML = `<button onclick="openVideoOverlay(${tmdbId}, '${title}', ${isMovie}, ${seasons})">Watch</button>`;
-    card.innerHTML = `<div class="poster-container"><img src="${imageUrl}" alt="${title}"></div><h3>${title}</h3>${watchButtonHTML}`;
+
+    card.innerHTML = `
+      <div class="poster-container">
+        <img src="${imageUrl}" alt="${title}" onclick="openVideoOverlay(${tmdbId}, '${title.replace(/'/g, "\\'")}', ${isMovie}, ${seasons})">
+        <div class="title-overlay"><h3>${title}</h3></div>
+      </div>
+    `;
+
     section.appendChild(card);
   });
 }
+
+
 
 function updatePlayerAndTabOption() {
   const source = document.getElementById("video-source-select").value;
