@@ -56,7 +56,7 @@
     window.addEventListener("DOMContentLoaded", () => {
       const headerTitle = document.querySelector("header h1");
       if (headerTitle) {
-        headerTitle.textContent = `🎞️${prefix}`;
+        headerTitle.textContent = `🎞️StreamEasy`;
       }
     });
   </script>
@@ -71,12 +71,7 @@
           📺TV Series
         </button>
         <button class="nav-button" onclick="showSportsPage()">🏈Sports</button>
-        <button
-          class="nav-button"
-          onclick="window.open('https://manganow.glitch.me', '_self');"
-        >
-          📚Manga
-        </button>
+        
         <button
           class="nav-button"
           onclick="window.location.href='search.html';"
@@ -199,6 +194,7 @@
               id="video-source-select"
               onchange="updatePlayerAndTabOption()"
             >
+              <option value="selectsource">Select Source</option>
               <option value="vidsrccc">VidSrc.cc</option>
               <option value="vidsrc">VidSrc.xyz</option>
 
@@ -243,4 +239,5 @@
     <script src="script.js"></script>
   </body>
 </html>
+
 
