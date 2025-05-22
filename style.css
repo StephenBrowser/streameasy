@@ -1,10 +1,11 @@
-CSS
-
 body {
-    font-family: Helvetica, sans-serif;
+    font-family: Helvetica;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+}
+* {
+    font-family: Helvetica, sans-serif !important;
 }
 
 header {
@@ -40,8 +41,8 @@ header .nav-button:hover {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    gap: 10px; /* Space between input and button */
-    align-items: center; /* Vertically align input and button */
+    gap: 10px;
+    align-items: center;
 }
 
 .search-bar input {
@@ -68,42 +69,65 @@ header .nav-button:hover {
 }
 
 .movie-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    position: relative;
     width: calc(25% - 15px);
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    transition: transform 0.3s ease;
 }
 
-.movie-card .poster-container {
-    background-color: #ccc;
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.poster-container {
+    position: relative;
     width: 100%;
     aspect-ratio: 2/3;
+    background-color: #ccc;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
-    color: #555;
+    cursor: pointer;
 }
 
-.movie-card img {
+.poster-container img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
+    border-radius: 10px;
 }
 
-.movie-card h3 {
-    padding: 10px;
+.title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 8px 10px;
+    box-sizing: border-box;
+    text-align: left;
+    z-index: 2;
+}
+
+.title-overlay h3 {
     margin: 0;
-    color: #333;
-    font-size: 1em;
+    color: white;
+    font-size: 16px;
+    font-weight: 525px;
+    font-family: Helvetica, sans-serif;
+    z-index: 3;
+    position: relative;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .movie-card button {
@@ -115,6 +139,7 @@ header .nav-button:hover {
     margin-top: auto;
     cursor: pointer;
     font-size: 0.8em;
+    font-family: Helvetica, sans-serif;
 }
 
 .movie-card button:hover {
@@ -151,7 +176,7 @@ footer {
     max-width: 800px;
     position: relative;
     display: flex;
-    flex-direction: column; /* Keep vertical for overall layout */
+    flex-direction: column;
 }
 
 .overlay-header {
@@ -163,7 +188,8 @@ footer {
 
 .overlay-header h2 {
     margin: 0;
-    flex-grow: 1; /* Allow title to take up space */
+    flex-grow: 1;
+    font-family: Helvetica, sans-serif;
 }
 
 .close-button {
@@ -172,11 +198,21 @@ footer {
     color: #555;
     font-size: 20px;
     cursor: pointer;
-    margin-left: 15px; /* Space from the title */
+    margin-left: 15px;
 }
 
 .close-button:hover {
     color: #000000;
+}
+
+.episode-selector select,
+#video-source-select,
+#submit-episode,
+#tmdb-button,
+#toggle-episodes,
+.blue-button,
+#media-type-selection button {
+    font-family: Helvetica, sans-serif;
 }
 
 .episode-selector select {
@@ -207,7 +243,7 @@ footer {
 .source-selector select {
     padding: 8px;
     border-radius: 5px;
-    border: 1px solid #ccccc;
+    border: 1px solid #ccc;
 }
 
 #video-source-select {
@@ -219,36 +255,36 @@ footer {
 
 #tv-controls {
     display: flex;
-    flex-direction: column; /* Arrange button and inputs vertically initially */
+    flex-direction: column;
     gap: 10px;
     margin-bottom: 10px;
-    align-items: flex-start; /* Align items to the left */
+    align-items: flex-start;
 }
 
 #episode-selection {
-    display: none; /* Hidden by default */
-    flex-direction: column; /* Stack season and episode selectors initially */
+    display: none;
+    flex-direction: column;
     gap: 5px;
     margin-top: 5px;
 }
 
 #episode-selection.row {
-    display: flex !important; /* Override display: none and set to flex */
-    flex-direction: row; /* Arrange season and episode selectors in a row */
+    display: flex !important;
+    flex-direction: row;
     align-items: center;
-    gap: 10px; /* Space between season, episode, and submit */
+    gap: 10px;
 }
 
 .episode-selector {
     display: flex;
     align-items: center;
-    gap: 5px; /* Space between label and input */
+    gap: 5px;
 }
 
 .episode-selector label {
     font-weight: bold;
     font-size: 0.9em;
-    cursor: pointer; /* Indicate interaction */
+    cursor: pointer;
 }
 
 .episode-selector input[type="number"] {
@@ -256,7 +292,7 @@ footer {
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 0.9em;
-    width: 60px; /* Adjust width as needed */
+    width: 60px;
 }
 
 #submit-episode {
@@ -273,10 +309,8 @@ footer {
     background-color: #218838;
 }
 
-
-
 #tmdb-button {
-    background-color: #17a2b8;
+    background-color: #dc3545;
     color: white;
     padding: 8px 15px;
     border: none;
@@ -285,35 +319,23 @@ footer {
     font-size: 0.9em;
 }
 
-
-
-#tmdb-button {
-    background-color: #dc3545;
-}
-
 #tmdb-button:hover {
     background-color: #c82333;
 }
-
-
-
 
 .overlay-content iframe {
     width: 100%;
     height: 450px;
     border: none;
     border-radius: 5px;
-    margin-top: 15px; /* Space between controls and iframe */
-    margin-bottom: 15px; /* Space between iframe and buttons */
+    margin: 15px 0;
 }
 
-/* Specific iframe styling when TV controls are visible */
 .overlay-content.tv-active iframe {
-    height: 300px; /* Reduced height for TV shows */
+    height: 300px;
 }
 
 .blue-button {
-    font-family: Helvetica, sans-serif;
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -327,17 +349,12 @@ footer {
     background-color: #0056b3;
 }
 
-#media-type-selection button.blue-button {
-    padding: 8px 15px;
-    font-size: 0.9em;
-}
 .banner {
     position: relative;
     width: 100%;
     border-radius: 12px;
     overflow: hidden;
     margin: 20px auto;
-    /* Remove max-width */
 }
 
 .banner-image {
@@ -372,26 +389,4 @@ footer {
 .rating {
     font-weight: bold;
     color: #f5a623;
-}
-
-body,
-header h1,
-header .nav-button,
-.search-bar input,
-.content h2,
-.movie-card h3,
-.movie-card button,
-footer,
-.overlay-header h2,
-.close-button,
-.episode-selector label,
-.episode-selector input[type="number"],
-#submit-episode,
-
-#tmdb-button,
-#video-source-select,
-#toggle-episodes,
-.blue-button,
-#media-type-selection {
-    font-family: Helvetica, sans-serif !important;
 }
