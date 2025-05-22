@@ -108,7 +108,7 @@ function updatePlayerAndTabOption() {
   const selectedSeason = seasonInput ? seasonInput.value : currentSeason;
   const selectedEpisode = episodeInput ? episodeInput.value : currentEpisode;
 
-  let finalSource = source || "vidsrccc"; // Default to vidsrccc if no source selected
+  let finalSource = source || "selectsource"; // Default to vidsrccc if no source selected
 
   if (
     finalSource &&
@@ -122,6 +122,9 @@ function updatePlayerAndTabOption() {
     let embedUrl = "";
 
     switch (finalSource) {
+      case "selectsource":
+        embedUrl = `data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%2280%22%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffffff%22%3E%3C%2Frect%3E%0A%20%20%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20font-family%3D%22Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2224%22%20fill%3D%22%23000000%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3E%0A%20%20%20%20Select%20Source%0A%20%20%3C%2Ftext%3E%0A%3C%2Fsvg%3E%0A`;
+        break;
       case "vidsrc":
         embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}&season=${seasonString}&episode=${episodeString}`;
         break;
@@ -192,6 +195,9 @@ function updatePlayerAndTabOption() {
   } else if (finalSource && currentTMDBId && currentIsMovie) {
     let embedUrl = "";
     switch (finalSource) {
+      case "selectsource":
+        embedUrl = `data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%2280%22%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffffff%22%3E%3C%2Frect%3E%0A%20%20%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20font-family%3D%22Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2224%22%20fill%3D%22%23000000%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3E%0A%20%20%20%20Select%20Source%0A%20%20%3C%2Ftext%3E%0A%3C%2Fsvg%3E%0A`;
+        break;
       case "vidsrc":
         embedUrl = `https://vidsrc.xyz/embed/movie?tmdb=${currentTMDBId}`;
         break;
@@ -261,6 +267,9 @@ function updatePlayerAndTabOption() {
   } else if (finalSource && currentTMDBId && !currentIsMovie) {
     let embedUrl = "";
     switch (finalSource) {
+      case "selectsource":
+        embedUrl = `data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%2280%22%3E%0A%20%20%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffffff%22%3E%3C%2Frect%3E%0A%20%20%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20font-family%3D%22Helvetica%2C%20Arial%2C%20sans-serif%22%20font-size%3D%2224%22%20fill%3D%22%23000000%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3E%0A%20%20%20%20Select%20Source%0A%20%20%3C%2Ftext%3E%0A%3C%2Fsvg%3E%0A`;
+        break;
       case "vidsrc":
         embedUrl = `https://vidsrc.xyz/embed/tv?tmdb=${currentTMDBId}`;
         break;
@@ -324,7 +333,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
   currentIsMovie = isMovie;
   currentSeasons = seasons;
   document.getElementById("overlay-title").innerText = title;
-  document.getElementById("video-source-select").value = "vidsrccc";
+  document.getElementById("video-source-select").value = "selectsource";
 
   const tmdbButton = document.getElementById("tmdb-button");
   tmdbButton.onclick = () =>
@@ -391,7 +400,7 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
   currentIsMovie = true; // Ensure this is a boolean
   currentSeasons = seasons;
   document.getElementById("overlay-title").innerText = "A Minecraft Movie";
-  document.getElementById("video-source-select").value = "vidsrccc";
+  document.getElementById("video-source-select").value = "selectsource";
 
   const tmdbButton = document.getElementById("tmdb-button");
   tmdbButton.onclick = () =>
