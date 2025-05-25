@@ -278,7 +278,7 @@
             class="blue-button"
             onclick="toggleEpisodeDropdowns()"
           >
-            Show Episodes
+            Options
           </button>
           <div id="episode-selection" style="display: none">
             <div class="episode-selector">
@@ -302,15 +302,15 @@
             <button
               id="submit-episode"
               class="blue-button"
-              onclick="updatePlayerAndTabOption()"
+              onclick="nextEpisode()"
             >
-              Watch
+              Next Episode
             </button>
           </div>
         </div>
         <iframe
           id="video-player-iframe"
-          src=""
+          src="https://2embed.to"
           frameborder="0"
           allowfullscreen
         ></iframe>
@@ -325,34 +325,35 @@
               justify-content: center;
             "
           >
-            <label for="video-source-select">Select source:</label>
+            <label for="video-source-select">Source</label>
             <select
               id="video-source-select"
               onchange="updatePlayerAndTabOption()"
             >
-              <option value="vidsrccc">VidSrc.cc</option>
-              <option value="vidsrc">VidSrc.xyz</option>
-              
-              <option value="vidsrcvip">VidSrc.vip</option>
-              <option value="vidsrcrip">VidSrc.rip</option>
+              <option value="selectsource">Select Source</option>
               <option value="vidsrcco">VidSrc.co (Adless)</option>
               <option value="vidsrcsu">VidSrc.su (Adless)</option>
+              <option value="vidsrccc">VidSrc.cc</option>
+              <option value="vidsrc">VidSrc.xyz</option>
+
+              <option value="vidsrcvip">VidSrc.vip</option>
+              <option value="vidsrcrip">VidSrc.rip</option>
+              
               <option value="2embed">2Embed</option>
               <option value="autoembed">AutoEmbed</option>
               <option value="superembed">SuperEmbed</option>
               <option value="embedescape">EmbedEscape (Adless)</option>
               <option value="embedsu">Embed.su</option>
-              
+
               <option value="moviekex">MovieKex</option>
               <option value="moviesclub">MoviesClub</option>
-              <option value="111movies">111Movies (Adless)</option>
+              <option value="111movies">111Movies (Mostly Adless)</option>
               <option value="vidfast">VidFast</option>
               <option value="vidlink">VidLink</option>
               <option value="vidjoy">VidJoy</option>
               <option value="videasy">VidEasy</option>
               <option value="vidbinge">VidBinge (Adless)</option>
               <option value="vidora">Vidora (Adless)</option>
-              
             </select>
             <button
               id="open-player-tab"
@@ -362,6 +363,7 @@
               Click to get aura [AD]
             </button>
             <button id="tmdb-button" class="blue-button">Description</button>
+            
             <script
               async
               src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
@@ -372,4 +374,3 @@
       </div>
     </div>
 </html>
-
