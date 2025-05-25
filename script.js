@@ -71,6 +71,21 @@ async function getTVShowDetails(tvShowId) {
   }
 }
 
+function nextEpisode() {
+  const episodeInput = document.getElementById("current-episode");
+  const seasonInput = document.getElementById("current-season");
+
+  let episode = parseInt(episodeInput.value, 10);
+  let season = parseInt(seasonInput.value, 10);
+
+  episode += 1;
+
+  episodeInput.value = episode.toString().padStart(2, '0');
+  updatePlayerAndTabOption();
+}
+
+
+
 function renderSection(items, sectionId, isMovie = true) { 
   const section = document.getElementById(sectionId);
   section.innerHTML = "";
@@ -343,6 +358,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
     );
   const overlayContent = document.querySelector(".overlay-content");
   const tvControls = document.getElementById("tv-controls");
+  const tvControls2 = document.getElementById("tv-controls");
   const episodeSelection = document.getElementById("episode-selection");
   const toggleButton = document.getElementById("toggle-episodes");
 
@@ -351,7 +367,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
     toggleButton.style.display = "block";
     episodeSelection.style.display = "flex";
     episodeSelection.classList.add("row");
-    toggleButton.textContent = "Hide Episodes";
+    toggleButton.textContent = "Hide Options";
     overlayContent.classList.add("tv-active");
     document.getElementById("current-season").value = currentSeason || 1; // Initialize with 1 or a stored value
     document.getElementById("current-episode").value = currentEpisode || 1; // Initialize with 1 or a stored value
@@ -360,7 +376,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
     toggleButton.style.display = "none";
     episodeSelection.style.display = "none";
     episodeSelection.classList.remove("row");
-    toggleButton.textContent = "Show Episodes";
+    toggleButton.textContent = "Show Options";
     overlayContent.classList.remove("tv-active");
     currentSeason = null;
     currentEpisode = null;
@@ -376,10 +392,11 @@ function closeOverlay() {
   currentVideoUrl = "";
 
   const tvControls = document.getElementById("tv-controls");
+  const tvControls2 = document.getElementById("tv-controls");
   tvControls.style.display = "none";
   const toggleButton = document.getElementById("toggle-episodes");
   toggleButton.style.display = "none";
-  toggleButton.textContent = "Show Episodes";
+  toggleButton.textContent = "Show Options";
   const episodeSelection = document.getElementById("episode-selection");
   episodeSelection.style.display = "none";
   episodeSelection.classList.remove("row");
@@ -410,6 +427,7 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
     );
   const overlayContent = document.querySelector(".overlay-content");
   const tvControls = document.getElementById("tv-controls");
+  const tvControls2 = document.getElementById("tv-controls");
   const episodeSelection = document.getElementById("episode-selection");
   const toggleButton = document.getElementById("toggle-episodes");
   if (!isMovie && seasons > 0) {
@@ -417,7 +435,7 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
     toggleButton.style.display = "block";
     episodeSelection.style.display = "flex";
     episodeSelection.classList.add("row");
-    toggleButton.textContent = "Hide Episodes";
+    toggleButton.textContent = "Hide Options";
     overlayContent.classList.add("tv-active");
     document.getElementById("current-season").value = currentSeason || 1;
     document.getElementById("current-episode").value = currentEpisode || 1;
@@ -426,7 +444,7 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
     toggleButton.style.display = "none";
     episodeSelection.style.display = "none";
     episodeSelection.classList.remove("row");
-    toggleButton.textContent = "Show Episodes";
+    toggleButton.textContent = "Show Options";
     overlayContent.classList.remove("tv-active");
     currentSeason = null;
     currentEpisode = null;
@@ -597,6 +615,7 @@ async function handleTMDBIdSearch(tmdbId) {
     currentIsMovie = true;
     currentSeasons = 0;
     document.getElementById("tv-controls").style.display = "none";
+    const tvControls2 = document.getElementById("tv-controls").style.display = "none";
     document.getElementById("toggle-episodes").style.display = "none";
     document.getElementById("episode-selection").style.display = "none";
     document.getElementById("episode-selection").classList.remove("row");
@@ -615,6 +634,7 @@ async function handleTMDBIdSearch(tmdbId) {
     const tvShowDetails = await fetchTMDBData(`tv/${tmdbId}`);
     currentSeasons = tvShowDetails ? tvShowDetails.number_of_seasons : 1; // Default to 1 if info not found
     const tvControls = document.getElementById("tv-controls");
+    const tvControls2 = document.getElementById("tv-controls");
     tvControls.style.display = "block";
     document.getElementById("toggle-episodes").style.display = "block";
     const episodeSelection = document.getElementById("episode-selection");
@@ -682,8 +702,8 @@ function toggleEpisodeDropdowns() {
   episodeSelection.classList.toggle("row");
   toggleButton.textContent =
     episodeSelection.style.display === "none"
-      ? "Show Episodes"
-      : "Hide Episodes";
+      ? "Show Options"
+      : "Hide Options";
 }
 
 function playSpecificEpisodeFromCard(tmdbId, title, totalSeasons) {
