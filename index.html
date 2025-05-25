@@ -142,7 +142,7 @@
             class="blue-button"
             onclick="toggleEpisodeDropdowns()"
           >
-            Show Episodes
+            Options
           </button>
           <div id="episode-selection" style="display: none">
             <div class="episode-selector">
@@ -166,15 +166,15 @@
             <button
               id="submit-episode"
               class="blue-button"
-              onclick="updatePlayerAndTabOption()"
+              onclick="nextEpisode()"
             >
-              Watch
+              Next Episode
             </button>
           </div>
         </div>
         <iframe
           id="video-player-iframe"
-          src=""
+          src="https://2embed.to"
           frameborder="0"
           allowfullscreen
         ></iframe>
@@ -189,7 +189,7 @@
               justify-content: center;
             "
           >
-            <label for="video-source-select">Select source:</label>
+            <label for="video-source-select">Source</label>
             <select
               id="video-source-select"
               onchange="updatePlayerAndTabOption()"
@@ -227,6 +227,7 @@
               Click to get aura [AD]
             </button>
             <button id="tmdb-button" class="blue-button">Description</button>
+            
             <script
               async
               src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
