@@ -1,12 +1,10 @@
 body {
-    font-family: Helvetica;
+    font-family: Arial;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
 }
-* {
-    font-family: Helvetica, sans-serif !important;
-}
+
 
 header {
     background-color: #ffffff;
@@ -117,10 +115,10 @@ header .nav-button:hover {
     z-index: 2;
 }
 
-.title-overlay h3 {
+.title-overlay h2 {
     margin: 0;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 525px;
     font-family: Helvetica, sans-serif;
     z-index: 3;
@@ -296,7 +294,7 @@ footer {
 }
 
 #submit-episode {
-    background-color: #28a745;
+    background-color: #007bff;
     color: white;
     padding: 8px 15px;
     border: none;
@@ -306,7 +304,7 @@ footer {
 }
 
 #submit-episode:hover {
-    background-color: #218838;
+    background-color: #0056b3;
 }
 
 #tmdb-button {
@@ -390,3 +388,4 @@ footer {
     font-weight: bold;
     color: #f5a623;
 }
+
