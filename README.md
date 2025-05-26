@@ -7,9 +7,6 @@ streamEasy has dynamically media functionality, with more accessible through our
 StreamEasy has 20 sources to stream from, of which 5 are adless (for now...)
 
 ## 🌐 Main Site
-- [streameasy.pages.dev](https://streameasy.pages.dev) 🌟
-  > ⚠️ Taken down by CloudFlare *
-
 - [streameasy.glitch.me](https://streameasy.glitch.me) 🌟
 - [streamez.pages.dev](https://streamez.pages.dev) 🌟
 ## 🚀 Instances
