@@ -104,7 +104,7 @@ function renderSection(items, sectionId, isMovie = true) {
     card.innerHTML = `
       <div class="poster-container">
         <img src="${imageUrl}" alt="${title}" onclick="openVideoOverlay(${tmdbId}, '${title.replace(/'/g, "\\'")}', ${isMovie}, ${seasons})">
-        <div class="title-overlay"><h3>${title}</h3></div>
+        <div class="title-overlay"><h2>${title}</h2></div>
       </div>
     `;
 
@@ -412,8 +412,8 @@ function closeOverlay() {
 }
 
 function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
-  currentTMDBId = 950387;
-  currentTitle = "A Minecraft Movie";
+  currentTMDBId = 552524;
+  currentTitle = "Lilo and Stitch";
   currentIsMovie = true; // Ensure this is a boolean
   currentSeasons = seasons;
   document.getElementById("overlay-title").innerText = "A Minecraft Movie";
@@ -508,7 +508,7 @@ function addSportsCards() {
   sportsContainer.style.padding = "20px";
 
   const poweredBy = document.createElement("h1");
-  poweredBy.textContent = "Live Sports, Powered by Streamed.su";
+  poweredBy.textContent = "Live Sports";
   poweredBy.style.textAlign = "left";
   poweredBy.style.fontFamily = "Helvetica, sans-serif";
   poweredBy.style.margin = "10px 0";
