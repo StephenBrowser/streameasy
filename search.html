@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>StreamEasy | Search</title>
+    <script src="https://kit.fontawesome.com/50e3afc7ac.js" crossorigin="anonymous"></script>
     <link
       rel="icon"
       href="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Untitled%20design.png?v=1745537855225"
@@ -104,9 +105,9 @@
       <option value="movie">Movies Only</option>
       <option value="tv">TV Shows Only</option>
     </select>
-    <button id="search-button">Search</button>
+    <button id="search-button"><i class="fa-solid fa-magnifying-glass"> </i>Search</button>
     <button id="back-button" onclick="window.location.href='index.html'">
-      Back
+      <i class="fa-solid fa-circle-arrow-left"></i> Back
     </button>
   </div>
 
@@ -282,7 +283,7 @@
           </button>
           <div id="episode-selection" style="display: none">
             <div class="episode-selector">
-              <label for="current-season">Season:</label>
+              <label for="current-season">S</label>
               <input
                 type="number"
                 id="current-season"
@@ -291,7 +292,7 @@
               />
             </div>
             <div class="episode-selector">
-              <label for="current-episode">Episode:</label>
+              <label for="current-episode">E</label>
               <input
                 type="number"
                 id="current-episode"
@@ -304,7 +305,7 @@
               class="blue-button"
               onclick="nextEpisode()"
             >
-              Next Episode
+              Next Episode <i class="fa-solid fa-forward-step"></i>
             </button>
           </div>
         </div>
@@ -374,3 +375,4 @@
       </div>
     </div>
 </html>
+
