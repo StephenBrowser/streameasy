@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/50e3afc7ac.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StreamEasy</title>
@@ -14,7 +26,6 @@
       href="https://fonts.googleapis.com/css2?family=Helvetica:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
   </head>
   <script>
     // Disable right-click
@@ -48,35 +59,29 @@
       }
     }, 1000);
   </script>
-  <script>
-    // Get the first 10 letters of the hostname
-    const prefix = window.location.hostname.slice(0, 10);
-
-    // Replace the <h1> text in the header with emoji + prefix
-    window.addEventListener("DOMContentLoaded", () => {
-      const headerTitle = document.querySelector("header h1");
-      if (headerTitle) {
-        headerTitle.textContent = `🎞️StreamEasy`;
-      }
-    });
-  </script>
 
   <body>
     <header>
-      <h1>🎞️StreamEasy</h1>
+      <h1><i class="fa-solid fa-film"></i> StreamEasy</h1>
       <div>
-        <button class="nav-button" onclick="showHomePage()">🏠Home</button>
-        <button class="nav-button" onclick="showMoviesPage()">🎥Movies</button>
-        <button class="nav-button" onclick="showTVShowsPage()">
-          📺TV Series
+        <button class="nav-button" onclick="showHomePage()">
+          <i class="fa-solid fa-house"></i> Home
         </button>
-        <button class="nav-button" onclick="showSportsPage()">🏈Sports</button>
-        
+        <button class="nav-button" onclick="showMoviesPage()">
+          <i class="fa-solid fa-film"></i> Movies
+        </button>
+        <button class="nav-button" onclick="showTVShowsPage()">
+          <i class="fa-solid fa-tv"> </i> TV Series
+        </button>
+        <button class="nav-button" onclick="showSportsPage()">
+          <i class="fa-solid fa-baseball-bat-ball"> </i> Sports
+        </button>
+
         <button
           class="nav-button"
           onclick="window.location.href='search.html';"
         >
-          🔍Search
+          <i class="fa-solid fa-magnifying-glass"></i> Search
         </button>
       </div>
     </header>
@@ -84,49 +89,51 @@
     <div class="content" id="homepage-section">
       <div class="banner">
         <img
-          src="https://images.squarespace-cdn.com/content/v1/5c95f8d416b640656eb7765a/1740717090534-50YM4GUSXU0I0KV6A1CA/A+Minecraft+Movie+new.jpg?format=2500w"
+          src="https://dapsmagic.com/wp-content/uploads/2025/03/Lilo-Stitch-Featured-Image-2.jpg"
           alt="Banner"
           class="banner-image"
         />
         <div class="banner-overlay">
-          <h2 class="banner-title">A Minecraft Movie</h2>
+          <h2 class="banner-title">Lilo and Stitch</h2>
           <p class="banner-subtitle">
-            PG 2025 - Adventure/Comedy <span class="rating">4.2⭐</span>
+            PG 2025 - Comedy / Sci-Fi
+            <span class="rating">7.1 <i class="fa-solid fa-star"></i></span>
           </p>
           <button class="blue-button" onclick="openBannerMovie()">
-            ▶ Watch Now
+            <i class="fa-solid fa-play"></i> Watch Now
           </button>
         </div>
       </div>
 
-      <h2>New Releases</h2>
+      <h2><i class="fa-solid fa-film"></i> New Releases</h2>
 
       <div class="movie-section" id="new-releases"></div>
-      <h2>Top-Rated TV</h2>
+      <h2><i class="fa-solid fa-tv"> </i> Top-Rated TV</h2>
       <div class="movie-section" id="top-rated-tv-shows"></div>
-      <h2>Trending this Week</h2>
+      <h2>
+        <i class="fa-solid fa-chart-column"></i>
+        Trending this Week
+      </h2>
       <div class="movie-section" id="trending-movies"></div>
     </div>
 
     <div class="content" id="all-movies-section" style="display: none">
-      <h2>Popular</h2>
+      <h2><i class="fa-solid fa-fire"></i> Popular</h2>
       <br />
       <div class="movie-section" id="all-movies"></div>
-      <h2>Trending this Week</h2>
+      <h2><i class="fa-solid fa-chart-column"></i> Trending this Week</h2>
       <div class="movie-section" id="trending-movies-2"></div>
-      <h2>
-        Top-Rated
-      </h2>
+      <h2><i class="fa-solid fa-star"></i> Top-Rated</h2>
       <div class="movie-section" id="top-movies"></div>
     </div>
 
     <div class="content" id="all-tv-shows-section" style="display: none">
-      <h2>Popular TV</h2>
+      <h2><i class="fa-solid fa-fire"></i> Popular TV</h2>
 
       <div class="movie-section" id="all-tv-shows"></div>
-      <h2>Trending This Week</h2>
+      <h2><i class="fa-solid fa-chart-column"></i> Trending This Week</h2>
       <div class="movie-section" id="trending-tv-shows"></div>
-      <h2>Top-Rated</h2>
+      <h2><i class="fa-solid fa-star"></i> Top-Rated</h2>
       <div class="movie-section" id="top-rated-tv-shows-2"></div>
     </div>
 
@@ -146,7 +153,7 @@
           </button>
           <div id="episode-selection" style="display: none">
             <div class="episode-selector">
-              <label for="current-season">Season:</label>
+              <label for="current-season">S</label>
               <input
                 type="number"
                 id="current-season"
@@ -155,7 +162,7 @@
               />
             </div>
             <div class="episode-selector">
-              <label for="current-episode">Episode:</label>
+              <label for="current-episode">E</label>
               <input
                 type="number"
                 id="current-episode"
@@ -168,7 +175,7 @@
               class="blue-button"
               onclick="nextEpisode()"
             >
-              Next Episode
+              <i class="fa-solid fa-forward-step"></i> Next Episode
             </button>
           </div>
         </div>
@@ -202,7 +209,7 @@
 
               <option value="vidsrcvip">VidSrc.vip</option>
               <option value="vidsrcrip">VidSrc.rip</option>
-              
+
               <option value="2embed">2Embed</option>
               <option value="autoembed">AutoEmbed</option>
               <option value="superembed">SuperEmbed</option>
@@ -227,7 +234,7 @@
               Click to get aura [AD]
             </button>
             <button id="tmdb-button" class="blue-button">Description</button>
-            
+
             <script
               async
               src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
@@ -241,5 +248,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-
-
