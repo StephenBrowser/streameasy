@@ -83,7 +83,18 @@ function nextEpisode() {
   episodeInput.value = episode.toString().padStart(2, '0');
   updatePlayerAndTabOption();
 }
+function previousEpisode() {
+  const episodeInput = document.getElementById("current-episode");
+  const seasonInput = document.getElementById("current-season");
 
+  let episode = parseInt(episodeInput.value, 10);
+  let season = parseInt(seasonInput.value, 10);
+
+  episode -= 1;
+
+  episodeInput.value = episode.toString().padStart(2, '0');
+  updatePlayerAndTabOption();
+}
 
 
 function renderSection(items, sectionId, isMovie = true) { 
@@ -367,7 +378,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
     toggleButton.style.display = "block";
     episodeSelection.style.display = "flex";
     episodeSelection.classList.add("row");
-    toggleButton.textContent = "Hide Options";
+    
     overlayContent.classList.add("tv-active");
     document.getElementById("current-season").value = currentSeason || 1; // Initialize with 1 or a stored value
     document.getElementById("current-episode").value = currentEpisode || 1; // Initialize with 1 or a stored value
@@ -376,7 +387,7 @@ function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
     toggleButton.style.display = "none";
     episodeSelection.style.display = "none";
     episodeSelection.classList.remove("row");
-    toggleButton.textContent = "Show Options";
+    
     overlayContent.classList.remove("tv-active");
     currentSeason = null;
     currentEpisode = null;
@@ -396,7 +407,7 @@ function closeOverlay() {
   tvControls.style.display = "none";
   const toggleButton = document.getElementById("toggle-episodes");
   toggleButton.style.display = "none";
-  toggleButton.textContent = "Show Options";
+  
   const episodeSelection = document.getElementById("episode-selection");
   episodeSelection.style.display = "none";
   episodeSelection.classList.remove("row");
@@ -435,7 +446,7 @@ function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
     toggleButton.style.display = "block";
     episodeSelection.style.display = "flex";
     episodeSelection.classList.add("row");
-    toggleButton.textContent = "Hide Options";
+    
     overlayContent.classList.add("tv-active");
     document.getElementById("current-season").value = currentSeason || 1;
     document.getElementById("current-episode").value = currentEpisode || 1;
@@ -700,10 +711,7 @@ function toggleEpisodeDropdowns() {
   episodeSelection.style.display =
     episodeSelection.style.display === "none" ? "flex" : "none";
   episodeSelection.classList.toggle("row");
-  toggleButton.textContent =
-    episodeSelection.style.display === "none"
-      ? "Show Options"
-      : "Hide Options";
+  
 }
 
 function playSpecificEpisodeFromCard(tmdbId, title, totalSeasons) {
