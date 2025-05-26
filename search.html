@@ -6,6 +6,13 @@
     <title>StreamEasy | Search</title>
     <script src="https://kit.fontawesome.com/50e3afc7ac.js" crossorigin="anonymous"></script>
     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
       rel="icon"
       href="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Untitled%20design.png?v=1745537855225"
       type="image/png"
@@ -279,7 +286,7 @@
             class="blue-button"
             onclick="toggleEpisodeDropdowns()"
           >
-            Options
+            <i class="fa-solid fa-bars"></i> Options
           </button>
           <div id="episode-selection" style="display: none">
             <div class="episode-selector">
@@ -301,12 +308,20 @@
               />
             </div>
             <button
-              id="submit-episode"
+              
+              class="blue-button"
+              onclick="previousEpisode()"
+            >
+              <i class="fa-solid fa-backward-step"></i> Previous
+            </button>
+            <button
+              
               class="blue-button"
               onclick="nextEpisode()"
             >
-              Next Episode <i class="fa-solid fa-forward-step"></i>
+              <i class="fa-solid fa-forward-step"></i> Next
             </button>
+            
           </div>
         </div>
         <iframe
@@ -339,7 +354,7 @@
 
               <option value="vidsrcvip">VidSrc.vip</option>
               <option value="vidsrcrip">VidSrc.rip</option>
-              
+
               <option value="2embed">2Embed</option>
               <option value="autoembed">AutoEmbed</option>
               <option value="superembed">SuperEmbed</option>
@@ -364,7 +379,7 @@
               Click to get aura [AD]
             </button>
             <button id="tmdb-button" class="blue-button">Description</button>
-            
+
             <script
               async
               src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
@@ -375,4 +390,3 @@
       </div>
     </div>
 </html>
-
