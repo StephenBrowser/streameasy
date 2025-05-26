@@ -149,7 +149,7 @@
             class="blue-button"
             onclick="toggleEpisodeDropdowns()"
           >
-            Options
+            <i class="fa-solid fa-bars"></i> Options
           </button>
           <div id="episode-selection" style="display: none">
             <div class="episode-selector">
@@ -170,12 +170,11 @@
                 onchange="updatePlayerAndTabOption()"
               />
             </div>
-            <button
-              id="submit-episode"
-              class="blue-button"
-              onclick="nextEpisode()"
-            >
-              <i class="fa-solid fa-forward-step"></i> Next Episode
+            <button class="blue-button" onclick="previousEpisode()">
+              <i class="fa-solid fa-backward-step"></i> Previous
+            </button>
+            <button class="blue-button" onclick="nextEpisode()">
+              <i class="fa-solid fa-forward-step"></i> Next
             </button>
           </div>
         </div>
@@ -190,13 +189,13 @@
           <div
             style="
               display: flex;
-              align-items: center;
+              align-items: flex-start;
               flex-wrap: wrap;
               gap: 10px;
-              justify-content: center;
+              justify-content: flex-start;
             "
           >
-            <label for="video-source-select">Source</label>
+            
             <select
               id="video-source-select"
               onchange="updatePlayerAndTabOption()"
@@ -231,9 +230,9 @@
               class="blue-button"
               onclick="window.location.href='https://media.tenor.com/KUdAow8LKG4AAAAe/you-have-no-aura-aura.png';"
             >
-              Click to get aura [AD]
+              <i class="fa-solid fa-rectangle-ad"> </i> Click to get aura
             </button>
-            <button id="tmdb-button" class="blue-button">Description</button>
+            <button id="tmdb-button" class="blue-button"><i class="fa-solid fa-file-lines"></i> Description</button>
 
             <script
               async
