@@ -90,11 +90,13 @@ function previousEpisode() {
   let episode = parseInt(episodeInput.value, 10);
   let season = parseInt(seasonInput.value, 10);
 
-  episode -= 1;
-
-  episodeInput.value = episode.toString().padStart(2, '0');
-  updatePlayerAndTabOption();
+  if (episode > 1) {
+    episode -= 1;
+    episodeInput.value = episode.toString().padStart(2, '0');
+    updatePlayerAndTabOption();
+  }
 }
+
 
 
 function renderSection(items, sectionId, isMovie = true) { 
@@ -352,6 +354,18 @@ function updatePlayerAndTabOption() {
     currentVideoUrl = "";
   }
 }
+function openEmbedInNewTab() {
+  const iframe = document.getElementById("video-player-iframe");
+  const currentUrl = iframe?.src;
+
+  if (!currentUrl || currentUrl.includes("selectsource") || currentUrl === "about:blank") {
+    alert("No valid video URL set.");
+    return;
+  }
+
+  window.open(currentUrl, "_blank");
+}
+
 
 function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
   currentTMDBId = tmdbId;
