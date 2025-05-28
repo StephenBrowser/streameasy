@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>StreamEasy | Search</title>
-    <script src="https://kit.fontawesome.com/50e3afc7ac.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/50e3afc7ac.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -17,18 +20,47 @@
       href="https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Untitled%20design.png?v=1745537855225"
       type="image/png"
     />
-    <script src="script.js"></script>
+
+
     <style>
+      /* Crucial: Ensure HTML and Body take full viewport height */
+      html {
+        height: 100%; /* HTML must be 100% of viewport height */
+      }
+
       body {
         font-family: Helvetica, Arial, sans-serif;
-        background: #fff;
-        margin: 20px;
+        background: #f0f2f5; /* Lighter background to make the card stand out */
+        margin: 0; /* Remove default body margin */
+        padding: 20px; /* Padding for the body, which creates space around the card */
+        box-sizing: border-box; /* Include padding/border in element's total width/height */
+        min-height: 100%; /* Body must be at least 100% of HTML height */
+
+        display: flex; /* Make body a flex container */
+        justify-content: center; /* Center the main card horizontally */
+        align-items: stretch; /* Crucial: Make the main-card stretch vertically */
       }
+
+      /* Styling for the main content card */
+      .main-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 900px; /* Adjust max-width as needed */
+        width: 100%; /* Take full width up to max-width */
+        flex-grow: 1; /* Allows the card to grow and fill available vertical space within the flex container (body) */
+
+        display: flex; /* Make the card itself a flex container */
+        flex-direction: column; /* Stack its children vertically */
+        min-height: 0; /* Important: Prevents content from overflowing, allowing flex-grow to work properly */
+      }
+
       #search-container {
         display: flex;
         gap: 8px;
-        max-width: 800px;
-        margin: 0 auto 20px;
+        width: 100%; /* Ensure it takes the full width of its parent (.main-card) */
+        margin-bottom: 20px; /* Use margin-bottom for spacing below the search bar */
       }
       #search-input {
         flex: 1 1 auto;
@@ -47,11 +79,10 @@
         cursor: pointer;
       }
       #search-button {
-        flex: 0 0 80px;
+        flex: 0 0 100px;
         background: #007bff;
         border: none;
         color: white;
-        
         font-size: 16px;
         border-radius: 4px;
         cursor: pointer;
@@ -62,7 +93,6 @@
         background: #007bff;
         border: none;
         color: white;
-        
         font-size: 16px;
         border-radius: 4px;
         cursor: pointer;
@@ -74,20 +104,26 @@
       #search-button:hover {
         background: #0056b3;
       }
+
+      /* CSS Grid for results-container to ensure even gaps */
       #results-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        justify-content: center;
+        display: grid; /* Changed to grid */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Responsive columns */
+        gap: 15px; /* Consistent gap between grid items */
+        flex-grow: 1; /* Allow results container to take up remaining vertical space */
+        align-content: flex-start; /* Important for multi-line grid items to align to start */
       }
+
       .result-card {
-        width: 130px;
         cursor: pointer;
         text-align: center;
+        box-sizing: border-box; /* Include padding/border in the element's total width */
+        /* No fixed width or calc() needed here, grid handles it */
       }
       .result-poster {
-        width: 130px;
-        height: 195px;
+        width: 100%; /* Make poster fill the card width */
+        height: auto; /* Maintain aspect ratio */
+        aspect-ratio: 2/3; /* Standard movie poster aspect ratio */
         object-fit: cover;
         border-radius: 4px;
       }
@@ -96,292 +132,305 @@
         font-weight: 600;
         font-size: 14px;
         color: #333;
+        overflow: hidden; /* Hide overflow text */
+        text-overflow: ellipsis; /* Add ellipsis for overflow */
+        white-space: nowrap; /* Prevent text from wrapping */
+      }
+      #start-message {
+        font-size: 24px;
+        color: #666;
+        flex-grow: 1; /* Allow start message to take up remaining vertical space */
+        display: flex; /* Use flexbox for vertical centering of its content */
+        align-items: center; /* Vertically center the paragraph */
+        justify-content: center; /* Horizontally center the paragraph */
+      }
+      #start-message p {
+        margin: 0; /* Remove default paragraph margin */
       }
     </style>
     <link rel="stylesheet" href="style.css" />
-  </head>
+
   <body>
-  <div id="search-container">
-    <input
-      id="search-input"
-      type="text"
-      placeholder="Search movies or TV shows..."
-    />
-    <select id="media-type-select" title="Select category to search">
-      <option value="multi">All Results</option>
-      <option value="movie">Movies Only</option>
-      <option value="tv">TV Shows Only</option>
-    </select>
-    <button id="search-button"><i class="fa-solid fa-magnifying-glass"> </i>Search</button>
-    <button id="back-button" onclick="window.location.href='index.html'">
-      <i class="fa-solid fa-circle-arrow-left"></i>Back
-    </button>
-  </div>
+    <div class="main-card">
+      <div id="search-container">
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search movies or TV shows..."
+        />
+        <select id="media-type-select" title="Select category to search">
+          <option value="multi">All Results</option>
+          <option value="movie">Movies Only</option>
+          <option value="tv">TV Shows Only</option>
+        </select>
+        <button id="search-button">
+          <i class="fa-solid fa-magnifying-glass"> </i> Search
+        </button>
+        <button
+          id="back-button"
+          onclick="window.location.href='index.html'"
+        >
+          <i class="fa-solid fa-circle-arrow-left"></i> Back
+        </button>
+      </div>
 
-  <!-- Start message + back button -->
-  <div
-    id="start-message"
-    style="
-      text-align: center;
-      margin-top: 100px;
-      font-size: 24px;
-      color: #666;
-    "
-  >
-    <p>Start searching to get started</p>
-    
-  </div>
+      <div id="start-message">
+        <p>Start searching to get started</p>
+      </div>
 
-  <div id="results-container"></div>
+      <div id="results-container"></div>
+    </div>
 
-  <script>
-    // Replace with your TMDb API key
-    const TMDB_API_KEY = "cad8d8114ffeedb538fcff20c4be6d21";
-    const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w300";
+    <script>
+      // Replace with your TMDb API key
+      const TMDB_API_KEY = "cad8d8114ffeedb538fcff20c4be6d21";
+      const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w300";
 
-    const searchInput = document.getElementById("search-input");
-    const mediaTypeSelect = document.getElementById("media-type-select");
-    const searchButton = document.getElementById("search-button");
-    const resultsContainer = document.getElementById("results-container");
-    const startMessage = document.getElementById("start-message");
+      const searchInput = document.getElementById("search-input");
+      const mediaTypeSelect = document.getElementById("media-type-select");
+      const searchButton = document.getElementById("search-button");
+      const resultsContainer = document.getElementById("results-container");
+      const startMessage = document.getElementById("start-message");
 
-    function showStartMessage(show) {
-      if (show) {
-        startMessage.style.display = "block";
-        resultsContainer.style.display = "none";
-      } else {
-        startMessage.style.display = "none";
-        resultsContainer.style.display = "flex";
-      }
-    }
-
-    async function searchTMDb(query, type) {
-      if (!query.trim()) {
-        showStartMessage(true);
-        resultsContainer.innerHTML = "";
-        return;
-      }
-
-      showStartMessage(false);
-      resultsContainer.innerHTML = "<p>Loading...</p>";
-
-      let results = [];
-
-      try {
-        if (type === "multi") {
-          const [moviesRes, tvRes] = await Promise.all([
-            fetch(
-              `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
-                query
-              )}`
-            ).then((r) => r.json()),
-            fetch(
-              `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
-                query
-              )}`
-            ).then((r) => r.json()),
-          ]);
-          results = [
-            ...moviesRes.results.map((item) => ({
-              ...item,
-              media_type: "movie",
-            })),
-            ...tvRes.results.map((item) => ({ ...item, media_type: "tv" })),
-          ];
+      function showStartMessage(show) {
+        if (show) {
+          startMessage.style.display = "flex"; /* Changed to flex for centering content */
+          resultsContainer.style.display = "none";
         } else {
-          const res = await fetch(
-            `https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
-              query
-            )}`
-          );
-          const data = await res.json();
-          results = data.results.map((item) => ({
-            ...item,
-            media_type: type,
-          }));
+          startMessage.style.display = "none";
+          resultsContainer.style.display = "grid"; // Changed to grid
         }
+      }
 
-        if (!results.length) {
-          resultsContainer.innerHTML = "<p>No results found.</p>";
+      async function searchTMDb(query, type) {
+        if (!query.trim()) {
+          showStartMessage(true);
+          resultsContainer.innerHTML = "";
           return;
         }
 
-        resultsContainer.innerHTML = "";
+        showStartMessage(false);
+        resultsContainer.innerHTML = "<p>Loading...</p>";
 
-        results.forEach((item) => {
-          const card = document.createElement("div");
-          card.className = "result-card";
+        let results = [];
 
-          const img = document.createElement("img");
-          img.className = "result-poster";
-          img.alt = (item.title || item.name) + " poster";
-          const fallbackPoster =
-            "https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-22%20085327.png?v=1745326888308";
+        try {
+          if (type === "multi") {
+            const [moviesRes, tvRes] = await Promise.all([
+              fetch(
+                `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+                  query
+                )}`
+              ).then((r) => r.json()),
+              fetch(
+                `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+                  query
+                )}`
+              ).then((r) => r.json()),
+            ]);
+            results = [
+              ...moviesRes.results.map((item) => ({
+                ...item,
+                media_type: "movie",
+              })),
+              ...tvRes.results.map((item) => ({ ...item, media_type: "tv" })),
+            ];
+          } else {
+            const res = await fetch(
+              `https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+                query
+              )}`
+            );
+            const data = await res.json();
+            results = data.results.map((item) => ({
+              ...item,
+              media_type: type,
+            }));
+          }
 
-          img.src = item.poster_path
-            ? TMDB_IMAGE_BASE + item.poster_path
-            : fallbackPoster;
-          img.onerror = () => {
-            img.onerror = null; // Prevent infinite loop
-            img.src = fallbackPoster;
-          };
+          if (!results.length) {
+            resultsContainer.innerHTML = "<p>No results found.</p>";
+            return;
+          }
 
-          const titleEl = document.createElement("div");
-          titleEl.className = "result-title";
-          titleEl.textContent = item.title || item.name;
+          resultsContainer.innerHTML = "";
 
-          card.appendChild(img);
-          card.appendChild(titleEl);
+          results.forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "result-card";
 
-          card.onclick = async () => {
-            if (item.media_type === "tv") {
-              try {
-                const tvDetailsRes = await fetch(
-                  `https://api.themoviedb.org/3/tv/${item.id}?api_key=${TMDB_API_KEY}`
-                );
-                const tvDetails = await tvDetailsRes.json();
-                const seasons = tvDetails.number_of_seasons || 1;
-                openVideoOverlay(item.id, titleEl.textContent, false, seasons);
-              } catch (e) {
-                console.error("Failed to fetch TV show details:", e);
-                openVideoOverlay(item.id, titleEl.textContent, false, 1);
+            const img = document.createElement("img");
+            img.className = "result-poster";
+            img.alt = (item.title || item.name) + " poster";
+            const fallbackPoster =
+              "https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-22%20085327.png?v=1745326888308";
+
+            img.src = item.poster_path
+              ? TMDB_IMAGE_BASE + item.poster_path
+              : fallbackPoster;
+            img.onerror = () => {
+              img.onerror = null; // Prevent infinite loop
+              img.src = fallbackPoster;
+            };
+
+            const titleEl = document.createElement("div");
+            titleEl.className = "result-title";
+            titleEl.textContent = item.title || item.name;
+
+            card.appendChild(img);
+            card.appendChild(titleEl);
+
+            card.onclick = async () => {
+              if (item.media_type === "tv") {
+                try {
+                  const tvDetailsRes = await fetch(
+                    `https://api.themoviedb.org/3/tv/${item.id}?api_key=${TMDB_API_KEY}`
+                  );
+                  const tvDetails = await tvDetailsRes.json();
+                  const seasons = tvDetails.number_of_seasons || 1;
+                  openVideoOverlay(item.id, titleEl.textContent, false, seasons);
+                } catch (e) {
+                  console.error("Failed to fetch TV show details:", e);
+                  openVideoOverlay(item.id, titleEl.textContent, false, 1);
+                }
+              } else {
+                openVideoOverlay(item.id, titleEl.textContent, true, 0);
               }
-            } else {
-              openVideoOverlay(item.id, titleEl.textContent, true, 0);
-            }
-          };
+            };
 
-          resultsContainer.appendChild(card);
-        });
-      } catch (error) {
-        console.error(error);
-        resultsContainer.innerHTML = "<p>Error loading results.</p>";
+            resultsContainer.appendChild(card);
+          });
+        } catch (error) {
+          console.error(error);
+          resultsContainer.innerHTML = "<p>Error loading results.</p>";
+        }
       }
-    }
 
-    searchButton.addEventListener("click", () => {
-      searchTMDb(searchInput.value, mediaTypeSelect.value);
-    });
-
-    searchInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
+      searchButton.addEventListener("click", () => {
         searchTMDb(searchInput.value, mediaTypeSelect.value);
-      }
-    });
+      });
 
-    // Show start message initially
-    showStartMessage(true);
-  </script>
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          searchTMDb(searchInput.value, mediaTypeSelect.value);
+        }
+      });
 
+      // Show start message initially
+      showStartMessage(true);
+    </script>
   </body>
   <div id="video-overlay" class="overlay" style="display: none">
-      <div class="overlay-content">
-        <div class="overlay-header">
-          <h2 id="overlay-title"></h2>
-          <button class="close-button" onclick="closeOverlay()">&times;</button>
-        </div>
-        <div id="tv-controls" style="display: none">
-          <button
-            id="toggle-episodes"
-            class="blue-button"
-            onclick="toggleEpisodeDropdowns()"
-          >
-            <i class="fa-solid fa-bars"></i> Options
-          </button>
-          <div id="episode-selection" style="display: none">
-            <div class="episode-selector">
-              <label for="current-season">S</label>
-              <input
-                type="number"
-                id="current-season"
-                min="1"
-                onchange="updatePlayerAndTabOption()"
-              />
-            </div>
-            <div class="episode-selector">
-              <label for="current-episode">E</label>
-              <input
-                type="number"
-                id="current-episode"
-                min="1"
-                onchange="updatePlayerAndTabOption()"
-              />
-            </div>
-            <button class="blue-button" onclick="previousEpisode()">
-              <i class="fa-solid fa-backward-step"></i> Previous
-            </button>
-            <button class="blue-button" onclick="nextEpisode()">
-              <i class="fa-solid fa-forward-step"></i> Next
-            </button>
-          </div>
-        </div>
-        <iframe
-          id="video-player-iframe"
-          src="https://2embed.to"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
-
-        <div class="source-selector">
-          <div
-            style="
-              display: flex;
-              align-items: flex-start;
-              flex-wrap: wrap;
-              gap: 10px;
-              justify-content: flex-start;
-            "
-          >
-            <select
-              id="video-source-select"
+    <div class="overlay-content">
+      <div class="overlay-header">
+        <h2 id="overlay-title"></h2>
+        <button class="close-button" onclick="closeOverlay()">&times;</button>
+      </div>
+      <div id="tv-controls" style="display: none">
+        <button
+          id="toggle-episodes"
+          class="blue-button"
+          onclick="toggleEpisodeDropdowns()"
+        >
+          <i class="fa-solid fa-bars"></i> Options
+        </button>
+        <div id="episode-selection" style="display: none">
+          <div class="episode-selector">
+            <label for="current-season">S</label>
+            <input
+              type="number"
+              id="current-season"
+              min="1"
               onchange="updatePlayerAndTabOption()"
-            >
-              <option value="selectsource">Select Source</option>
-              <option value="vidsrcco">VidSrc.co (Adless)</option>
-              <option value="vidsrcsu">VidSrc.su (Adless)</option>
-              <option value="vidsrccc">VidSrc.cc</option>
-              <option value="vidsrc">VidSrc.xyz</option>
-
-              <option value="vidsrcvip">VidSrc.vip</option>
-              <option value="vidsrcrip">VidSrc.rip</option>
-
-              <option value="2embed">2Embed</option>
-              <option value="autoembed">AutoEmbed</option>
-              <option value="superembed">SuperEmbed</option>
-              <option value="embedescape">EmbedEscape (Adless)</option>
-              <option value="embedsu">Embed.su</option>
-
-              <option value="moviekex">MovieKex</option>
-              <option value="moviesclub">MoviesClub</option>
-              <option value="111movies">111Movies (Mostly Adless)</option>
-              <option value="vidfast">VidFast</option>
-              <option value="vidlink">VidLink</option>
-              <option value="vidjoy">VidJoy</option>
-              <option value="videasy">VidEasy</option>
-              <option value="vidbinge">VidBinge (Adless)</option>
-              <option value="vidora">Vidora (Adless)</option>
-            </select>
-            <button
-              id="open-player-tab"
-              class="blue-button"
-              onclick="window.location.href='https://media.tenor.com/KUdAow8LKG4AAAAe/you-have-no-aura-aura.png';"
-            >
-              <i class="fa-solid fa-rectangle-ad"> </i> Click to get aura
-            </button>
-            <button id="tmdb-button" class="blue-button">
-              <i class="fa-solid fa-file-lines"></i> Description
-            </button>
-            <button class="blue-button" onclick="openEmbedInNewTab()">
-              <i class="fa-solid fa-up-right-from-square"></i> View in Browser
-            </button>
-
-            <script
-              async
-              src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
-              crossorigin="anonymous"
-            ></script>
+            />
           </div>
+          <div class="episode-selector">
+            <label for="current-episode">E</label>
+            <input
+              type="number"
+              id="current-episode"
+              min="1"
+              onchange="updatePlayerAndTabOption()"
+            />
+          </div>
+          <button class="blue-button" onclick="previousEpisode()">
+            <i class="fa-solid fa-backward-step"></i> Previous
+          </button>
+          <button class="blue-button" onclick="nextEpisode()">
+            <i class="fa-solid fa-forward-step"></i> Next
+          </button>
+        </div>
+      </div>
+      <iframe
+        id="video-player-iframe"
+        src="https://2embed.to"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+
+      <div class="source-selector">
+        <div
+          style="
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            justify-content: flex-start;
+          "
+        >
+          <select
+            id="video-source-select"
+            onchange="updatePlayerAndTabOption()"
+          >
+            <option value="selectsource">Select Source</option>
+            <option value="vidsrcco">VidSrc.co (Adless)</option>
+            <option value="vidsrcsu">VidSrc.su (Adless)</option>
+            <option value="vidsrccc">VidSrc.cc</option>
+            <option value="vidsrc">VidSrc.xyz</option>
+
+            <option value="vidsrcvip">VidSrc.vip</option>
+            <option value="vidsrcrip">VidSrc.rip</option>
+
+            <option value="2embed">2Embed</option>
+            <option value="autoembed">AutoEmbed</option>
+            <option value="superembed">SuperEmbed</option>
+            <option value="embedescape">EmbedEscape (Adless)</option>
+            <option value="embedsu">Embed.su</option>
+
+            <option value="moviekex">MovieKex</option>
+            <option value="moviesclub">MoviesClub</option>
+            <option value="111movies">111Movies (Mostly Adless)</option>
+            <option value="vidfast">VidFast</option>
+            <option value="vidlink">VidLink</option>
+            <option value="vidjoy">VidJoy</option>
+            <option value="videasy">VidEasy</option>
+            <option value="vidbinge">VidBinge (Adless)</option>
+            <option value="vidora">Vidora (Adless)</option>
+          </select>
+          <button
+            id="open-player-tab"
+            class="blue-button"
+            onclick="window.location.href='https://media.tenor.com/KUdAow8LKG4AAAAe/you-have-no-aura-aura.png';"
+          >
+            <i class="fa-solid fa-rectangle-ad"> </i> Click to get aura
+          </button>
+          <button id="tmdb-button" class="blue-button">
+            <i class="fa-solid fa-file-lines"></i> Description
+          </button>
+          <button class="blue-button" onclick="openEmbedInNewTab()">
+            <i class="fa-solid fa-up-right-from-square"></i> View in Browser
+          </button>
+
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
+            crossorigin="anonymous"
+          ></script>
         </div>
       </div>
     </div>
+  </div>
+    <script src = "script.js"></script>
+  </head>
 </html>
