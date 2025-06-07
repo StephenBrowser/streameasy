@@ -169,12 +169,14 @@ footer {
     background-color: #ffffff;
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 -0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     width: 80%;
     max-width: 800px;
     position: relative;
     display: flex;
     flex-direction: column;
+    max-height: 80vh; /* Set max height to 80% of the viewport height */
+    overflow-y: auto; /* Make content scrollable if it exceeds the max-height */
 }
 
 .overlay-header {
@@ -189,6 +191,7 @@ footer {
     flex-grow: 1;
     font-family: 'Inter', sans-serif;
 }
+
 
 .close-button {
     background: none;
