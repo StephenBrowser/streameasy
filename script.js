@@ -51,13 +51,18 @@ async function getTrendingMoviesFromTMDB() {
 
 
 async function getAllTVShowsFromTMDB() {   
-  return await fetchTMDBData(`discover/tv`);
+  const shows = await fetchTMDBData(`discover/tv`);
+  return shows.filter(show => !show.name.toLowerCase().includes("late"));
 }
+
 async function getTrendingTVShowsFromTMDB() {   
-  return await fetchTMDBData(`trending/tv/week`);
+  const shows = await fetchTMDBData(`trending/tv/week`);
+  return shows.filter(show => !show.name.toLowerCase().includes("late"));
 }
+
 async function getTopRatedTVShowsFromTMDB() {   
-  return await fetchTMDBData(`discover/tv?include_adult=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=200`);
+  const shows = await fetchTMDBData(`discover/tv?include_adult=false&language=en-US&page=1&sort_by=vote_average.desc&vote_count.gte=200`);
+  return shows.filter(show => !show.name.toLowerCase().includes("late"));
 }
 
 async function getTVShowDetails(tvShowId) {
