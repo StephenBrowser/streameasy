@@ -14,16 +14,21 @@ header {
     align-items: center;
     border-bottom: 1px solid #ddd;
 }
-header h1 img {
-  height: 1em;
-  max-height: 100%;
-  display: block;
+header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  color: #000;
+  margin: 0;
+  display: flex;
+  align-items: center; /* center image & text vertically */
+  gap: 0.4em;
 }
 
-header h1 {
-    font-size: 24px;
-    color: #000000;
-    margin: 0;
+header h1 img {
+  height: 1.3em;          /* match Inter visually */
+  display: block;
+  object-fit: contain;    /* ensures clean scaling */
 }
 
 header .nav-button {
