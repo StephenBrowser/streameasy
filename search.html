@@ -317,4 +317,116 @@
       showStartMessage(true);
     </script>
   </body>
+    <div id="video-overlay" class="overlay" style="display: none">
+    <div class="overlay-content">
+      <div class="overlay-header">
+        <h2 id="overlay-title"></h2>
+        <button class="close-button" onclick="closeOverlay()">&times;</button>
+      </div>
+      <div id="tv-controls" style="display: none">
+        <button
+          id="toggle-episodes"
+          class="blue-button"
+          onclick="toggleEpisodeDropdowns()"
+        >
+          <i class="fa-solid fa-bars"></i> Options
+        </button>
+        <div id="episode-selection" style="display: none">
+          <div class="episode-selector">
+            <label for="current-season">S</label>
+            <input
+              type="number"
+              id="current-season"
+              min="1"
+              onchange="updatePlayerAndTabOption()"
+            />
+          </div>
+          <div class="episode-selector">
+            <label for="current-episode">E</label>
+            <input
+              type="number"
+              id="current-episode"
+              min="1"
+              onchange="updatePlayerAndTabOption()"
+            />
+          </div>
+          <button class="blue-button" onclick="previousEpisode()">
+            <i class="fa-solid fa-backward-step"></i> Previous
+          </button>
+          <button class="blue-button" onclick="nextEpisode()">
+            <i class="fa-solid fa-forward-step"></i> Next
+          </button>
+        </div>
+      </div>
+      <iframe
+        id="video-player-iframe"
+        src="https://2embed.to"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+
+      <div class="source-selector">
+        <div
+          style="
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            justify-content: flex-start;
+          "
+        >
+          <select
+            id="video-source-select"
+            onchange="updatePlayerAndTabOption()"
+          >
+            <option value="selectsource">Select Source</option>
+            <option value="vidsrcco">VidSrc.co (Adless)</option>
+            <option value="vidsrcsu">VidSrc.su (Adless)</option>
+            <option value="vidsrccc">VidSrc.cc</option>
+            <option value="vidsrc">VidSrc.xyz</option>
+
+            <option value="vidsrcvip">VidSrc.vip</option>
+            <option value="vidsrcrip">VidSrc.rip</option>
+
+            <option value="2embed">2Embed</option>
+            <option value="autoembed">AutoEmbed</option>
+            <option value="superembed">SuperEmbed</option>
+            <option value="embedescape">EmbedEscape (Adless)</option>
+            <option value="embedsu">Embed.su</option>
+
+            <option value="moviekex">MovieKex</option>
+            <option value="moviesclub">MoviesClub</option>
+            <option value="111movies">111Movies (Mostly Adless)</option>
+            <option value="vidfast">VidFast</option>
+            <option value="vidlink">VidLink</option>
+            <option value="vidjoy">VidJoy</option>
+            <option value="videasy">VidEasy</option>
+            <option value="vidbinge">VidBinge (Adless)</option>
+            <option value="vidora">Vidora (Adless)</option>
+          </select>
+          <button
+            id="open-player-tab"
+            class="blue-button"
+            onclick="window.location.href='https://media.tenor.com/KUdAow8LKG4AAAAe/you-have-no-aura-aura.png';"
+          >
+            <i class="fa-solid fa-rectangle-ad"> </i> Click to get aura
+          </button>
+          <button id="tmdb-button" class="blue-button">
+            <i class="fa-solid fa-file-lines"></i> Description
+          </button>
+          <button class="blue-button" onclick="openEmbedInNewTab()">
+            <i class="fa-solid fa-up-right-from-square"></i> View in Browser
+          </button>
+
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4233973495883894"
+            crossorigin="anonymous"
+          ></script>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script src = "script.js"></script>
 </html>
