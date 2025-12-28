@@ -218,6 +218,9 @@ function updatePlayerAndTabOption() {
       case "111movies":
         embedUrl = ` https://111movies.com/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
         break;
+      case "filmex":
+        embedUrl = ` https://fmovies4u.com/embed/tmdb-tv-${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
 
       default:
         embedUrl = "";
@@ -291,6 +294,9 @@ function updatePlayerAndTabOption() {
       case "111movies":
         embedUrl = ` https://111movies.com/embed/movie/${currentTMDBId}`;
         break;
+      case "filmex":
+        embedUrl = ` https://fmovies4u.com/embed/tmdb-movie-${currentTMDBId}`;
+        break;
       default:
         embedUrl = "";
         break;
@@ -347,6 +353,9 @@ function updatePlayerAndTabOption() {
         break;
       case "vidsrcco":
         embedUrl = ` https://player.vidsrc.co/embed/tv/${currentTMDBId}/1/1?autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=16px&opacity=0.5&font=Helvetica&server=1`;
+        break;
+      case "filmex":
+        embedUrl = ` https://fmovies4u.com/embed/tmdb-movie-${currentTMDBId}`;
         break;
       default:
         embedUrl = "";
@@ -442,8 +451,8 @@ function closeOverlay() {
 }
 
 function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
-  currentTMDBId = 552524;
-  currentTitle = "Lilo and Stitch";
+  currentTMDBId = 991494;
+  currentTitle = "The Spongebob Movie: Search for SquarePants";
   currentIsMovie = true; // Ensure this is a boolean
   currentSeasons = seasons;
   document.getElementById("overlay-title").innerText = "A Minecraft Movie";
