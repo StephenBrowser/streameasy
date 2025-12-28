@@ -4,21 +4,18 @@ Adless, simple UI, and static... no need to host a proxy on Node.js or whatnot.
 
 streamEasy has dynamically media functionality, with more accessible through our search. In addition, we offer sports streaming via Fastly that connects to Streamed.Su to avoid blockages.
 
-StreamEasy has 20 sources to stream from, of which 5 are adless (for now...)
+NEW UPDATE AFTER 7 MONTHS! Not that anyone would notice...
 
 ## 🌐 Main Site
-- [streameasy.glitch.me](https://streameasy.glitch.me) 🌟
 - [streamez.pages.dev](https://streamez.pages.dev) 🌟
 ## 🚀 Instances
 - [streameasy-example.netlify.app](https://streameasy-example.netlify.app) ⭐   
 - [stephenbrowser.github.io/streameasy](https://stephenbrowser.github.io/streameasy) ⭐  
 - [streameasy-production.up.railway.app](https://streameasy-production.up.railway.app) ⭐  
 - [streameasy-roan.vercel.app](https://streameasy-roan.vercel.app) ⭐  
-- [stream.easygate.eu](https://stream.easygate.eu) ⭐
 - [streameasy.global.ssl.fastly.net](streameasy.global.ssl.fastly.net) ⭐
 - [thelindentravelblog.pages.dev](https://thelindentravelblog.pages.dev) ⭐
-- [streameasy.neetocode.com/site/stephen-browser/index](https://streameasy.neetocode.com/site/stephen-browser/index)⭐
-- [vn945s.csb.app](https://vn945s.csb.app/)⭐
+
 
 ---
 
