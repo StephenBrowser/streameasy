@@ -221,6 +221,9 @@ function updatePlayerAndTabOption() {
       case "filmex":
         embedUrl = ` https://fmovies4u.com/embed/tmdb-tv-${currentTMDBId}/${seasonString}/${episodeString}`;
         break;
+      case "vidzee":
+        embedUrl = ` https://player.vidzee.wtf/embed/tv/${currentTMDBId}/${seasonString}/${episodeString}`;
+        break;
 
       default:
         embedUrl = "";
@@ -296,6 +299,8 @@ function updatePlayerAndTabOption() {
         break;
       case "filmex":
         embedUrl = ` https://fmovies4u.com/embed/tmdb-movie-${currentTMDBId}`;
+      case "vidzee":
+        embedUrl = ` https://player.vidzee.wtf/embed/movie/${currentTMDBId}`;
         break;
       default:
         embedUrl = "";
@@ -355,7 +360,10 @@ function updatePlayerAndTabOption() {
         embedUrl = ` https://player.vidsrc.co/embed/tv/${currentTMDBId}/1/1?autoplay=true&autonext=true&nextbutton=true&poster=true&primarycolor=6C63FF&secondarycolor=9F9BFF&iconcolor=FFFFFF&fontcolor=FFFFFF&fontsize=16px&opacity=0.5&font=Helvetica&server=1`;
         break;
       case "filmex":
-        embedUrl = ` https://fmovies4u.com/embed/tmdb-movie-${currentTMDBId}`;
+        embedUrl = ` https://fmovies4u.com/embed/tmdb-tv-${currentTMDBId}`;
+        break;
+      case "vidzee":
+        embedUrl = ` https://player.vidzee.wtf/embed/tv/${currentTMDBId}`;
         break;
       default:
         embedUrl = "";
