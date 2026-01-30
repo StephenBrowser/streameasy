@@ -600,6 +600,7 @@ function showHomePage() {
   loadHomePageData();
   document.getElementById("homepage-section").style.display = "block";
   document.getElementById("all-movies-section").style.display = "none";
+  document.getElementById("search").style.display = "none";
   if (sportsContainer) {
     sportsContainer.style.display = "none";
   }
@@ -610,6 +611,7 @@ function showMoviesPage() {
   loadAllMoviesPage();
   document.getElementById("homepage-section").style.display = "none";
   document.getElementById("all-tv-shows-section").style.display = "none";
+  document.getElementById("search").style.display = "none";
   if (sportsContainer) {
     sportsContainer.style.display = "none";
   }
@@ -620,6 +622,7 @@ function showTVShowsPage() {
   loadAllTVShowsPage();
   document.getElementById("homepage-section").style.display = "none";
   document.getElementById("all-movies-section").style.display = "none";
+  document.getElementById("search").style.display = "none";
   if (sportsContainer) {
     sportsContainer.style.display = "none";
   }
@@ -644,7 +647,20 @@ function showSportsPage() {
   document.getElementById("homepage-section").style.display = "none";
   document.getElementById("all-movies-section").style.display = "none";
   document.getElementById("all-tv-shows-section").style.display = "none";
+  document.getElementById("search").style.display = "none";
 }
+
+function showSearchPage() {
+  loadAllTVShowsPage();
+  document.getElementById("homepage-section").style.display = "none";
+  document.getElementById("all-movies-section").style.display = "none";
+  document.getElementById("search").style.display = "block";
+  if (sportsContainer) {
+    sportsContainer.style.display = "none";
+  }
+  document.getElementById("all-tv-shows-section").style.display = "none";
+}
+
 
 async function handleTMDBIdSearch(tmdbId) {
   searchingTMDBId = true;
