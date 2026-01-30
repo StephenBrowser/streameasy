@@ -386,16 +386,6 @@ footer {
     font-weight: bold;
     color: #f5a623;
 }
-.main-card {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 24px;
-    width: 100%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-}
 
 #search-container {
     display: flex;
