@@ -76,7 +76,7 @@
 
         <button
           class="nav-button"
-          onclick="window.location.href='search.html';"
+          onclick="showSearchPage()"
         >
           <i class="fa-solid fa-magnifying-glass"></i> Search
         </button>
@@ -132,6 +132,44 @@
       <div class="movie-section" id="trending-tv-shows"></div>
       <h2><i class="fa-solid fa-star"></i> Top-Rated</h2>
       <div class="movie-section" id="top-rated-tv-shows-2"></div>
+    </div>
+    <div class="content" id="search" style="display: none">
+      <div class="main-card">
+      <div id="search-container">
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Search movies or TV shows..."
+        />
+        <select id="media-type-select" title="Select category to search">
+          <option value="multi">All Results</option>
+          <option value="movie">Movies Only</option>
+          <option value="tv">TV Shows Only</option>
+        </select>
+        <button id="search-button">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+        <button id="back-button" onclick="window.location.href='index.html'">
+          <i class="fa-solid fa-circle-arrow-left"></i> Back
+        </button>
+      </div>
+
+      <div id="start-message">
+        <p>Start searching to get started</p>
+      </div>
+
+      <div id="results-container" style="display: none;">
+        <div id="movie-results" style="display: none;">
+          <h2><i class="fa-solid fa-film"></i> Movies</h2>
+          <div class="results-grid" id="movie-grid"></div>
+        </div>
+        <div id="tv-results" style="display: none;">
+          <h2><i class="fa-solid fa-tv"></i> TV Shows</h2>
+          <div class="results-grid" id="tv-grid"></div>
+        </div>
+      </div>
+    </div>
+
     </div>
 
     <div id="video-overlay" class="overlay" style="display: none">
