@@ -28,7 +28,147 @@ async function fetchTMDBData(endpoint) {
     return [];
   }
 }
+    const TMDB_API_KEY = "cad8d8114ffeedb538fcff20c4be6d21";
+      const TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w300";
 
+      const searchInput = document.getElementById("search-input");
+      const mediaTypeSelect = document.getElementById("media-type-select");
+      const searchButton = document.getElementById("search-button");
+      const resultsContainer = document.getElementById("results-container");
+      const startMessage = document.getElementById("start-message");
+      const movieGrid = document.getElementById("movie-grid");
+      const tvGrid = document.getElementById("tv-grid");
+      const movieResults = document.getElementById("movie-results");
+      const tvResults = document.getElementById("tv-results");
+
+      function showStartMessage(show) {
+        startMessage.style.display = show ? "flex" : "none";
+        resultsContainer.style.display = show ? "none" : "block";
+      }
+
+      async function searchTMDb(query, type) {
+        if (!query.trim()) {
+          showStartMessage(true);
+          movieGrid.innerHTML = "";
+          tvGrid.innerHTML = "";
+          return;
+        }
+
+        showStartMessage(false);
+        movieGrid.innerHTML = "";
+        tvGrid.innerHTML = "";
+        movieResults.style.display = "none";
+        tvResults.style.display = "none";
+
+        let results = [];
+
+        try {
+          if (type === "multi") {
+            const [moviesRes, tvRes] = await Promise.all([
+              fetch(
+                `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+                  query
+                )}`
+              ).then((r) => r.json()),
+              fetch(
+                `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+                  query
+                )}`
+              ).then((r) => r.json()),
+            ]);
+            results = [
+              ...moviesRes.results.map((item) => ({
+                ...item,
+                media_type: "movie",
+              })),
+              ...tvRes.results.map((item) => ({
+                ...item,
+                media_type: "tv",
+              })),
+            ];
+          } else {
+            const res = await fetch(
+              `https://api.themoviedb.org/3/search/${type}?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(
+                query
+              )}`
+            );
+            const data = await res.json();
+            results = data.results.map((item) => ({
+              ...item,
+              media_type: type,
+            }));
+          }
+
+          if (!results.length) {
+            resultsContainer.innerHTML =
+              "<p style='padding:20px;'>No results found.</p>";
+            return;
+          }
+
+          results.forEach((item) => {
+            const card = document.createElement("div");
+            card.className = "result-card";
+
+            const img = document.createElement("img");
+            img.className = "result-poster";
+            img.alt = (item.title || item.name) + " poster";
+            const fallbackPoster =
+              "https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-22%20085327.png?v=1745326888308";
+
+            img.src = item.poster_path
+              ? TMDB_IMAGE_BASE + item.poster_path
+              : fallbackPoster;
+            img.onerror = () => {
+              img.onerror = null;
+              img.src = fallbackPoster;
+            };
+
+            const titleEl = document.createElement("div");
+            titleEl.className = "result-title";
+            titleEl.textContent = item.title || item.name;
+
+            card.appendChild(img);
+            card.appendChild(titleEl);
+
+            card.onclick = async () => {
+              if (item.media_type === "tv") {
+                const tvDetailsRes = await fetch(
+                  `https://api.themoviedb.org/3/tv/${item.id}?api_key=${TMDB_API_KEY}`
+                );
+                const tvDetails = await tvDetailsRes.json();
+                const seasons = tvDetails.number_of_seasons || 1;
+                openVideoOverlay(item.id, titleEl.textContent, false, seasons);
+              } else {
+                openVideoOverlay(item.id, titleEl.textContent, true, 0);
+              }
+            };
+
+            if (item.media_type === "movie") {
+              movieGrid.appendChild(card);
+              movieResults.style.display = "block";
+            } else if (item.media_type === "tv") {
+              tvGrid.appendChild(card);
+              tvResults.style.display = "block";
+            }
+          });
+        } catch (err) {
+          console.error(err);
+          resultsContainer.innerHTML =
+            "<p style='padding:20px;'>Error loading results.</p>";
+        }
+      }
+
+      searchButton.addEventListener("click", () => {
+        searchTMDb(searchInput.value, mediaTypeSelect.value);
+      });
+
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          searchTMDb(searchInput.value, mediaTypeSelect.value);
+        }
+      });
+
+      showStartMessage(true);
 async function getNewReleasesFromTMDB() {
   // Example: Fetch popular movies as "new releases"
   
