@@ -5,6 +5,7 @@ Adless, simple UI, and static... no need to host a proxy on Node.js or whatnot.
 streamEasy has dynamically media functionality, with more accessible through our search. In addition, we offer sports streaming via Fastly that connects to Streamed.Su to avoid blockages.
 
 NEW UPDATE AFTER 7 MONTHS! Not that anyone would notice...
+ANOTHER MASSIVE UPDATE A MONTH LATER! Not that anyone else would notice...
 
 ## 🌐 Main Site
 - [streamez.pages.dev](https://streamez.pages.dev) 🌟
