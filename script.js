@@ -113,7 +113,7 @@ async function fetchTMDBData(endpoint) {
             img.className = "result-poster";
             img.alt = (item.title || item.name) + " poster";
             const fallbackPoster =
-              "https://cdn.glitch.global/2a7fd730-62bc-453f-96c2-91756be0c721/Screenshot%202025-04-22%20085327.png?v=1745326888308";
+              "https://streamez.pages.dev/Image%20Unavailable.png";
 
             img.src = item.poster_path
               ? TMDB_IMAGE_BASE + item.poster_path
