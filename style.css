@@ -477,3 +477,32 @@ footer {
         overflow: hidden;
         text-overflow: ellipsis;
       }
+.details-section {
+    width: 100%;
+    padding: 15px 0;
+    background: #0b0b0b; /* Slightly darker than overlay background */
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.desc-box {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+#overlay-description {
+    margin: 0;
+    color: #cecece;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Optional: subtle fade-in animation when text changes */
+    transition: opacity 0.3s ease;
+}
+
+/* Scrollbar styling if the description is very long */
+.details-section {
+    max-height: 200px;
+    overflow-y: auto;
+}
