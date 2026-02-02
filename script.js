@@ -548,9 +548,10 @@ async function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
       const type = isMovie ? 'movie' : 'tv';
       const response = await fetch(`${baseUrl}/${type}/${tmdbId}?api_key=${apiKey}`);
       const data = await response.json();
-      descriptionEl.innerText = data.overview || "No description available.";
+      
+      document.getElementById("overlay-description").innerText = data.overview || "No description available.";
     } catch (err) {
-      descriptionEl.innerText = "Description unavailable.";
+      document.getElementById("overlay-description").innerText = "Description unavailable.";
     }
   }
 
@@ -590,34 +591,39 @@ async function openVideoOverlay(tmdbId, title, isMovie, seasons = 0) {
 }
 
 function closeOverlay() {
+  // 1. Hide the overlay and stop the video
   document.getElementById("video-overlay").style.display = "none";
   document.getElementById("video-player-iframe").src = "";
   currentVideoUrl = "";
 
+  // 2. Reset TV-specific UI elements
   const tvControls = document.getElementById("tv-controls");
-  const tvControls2 = document.getElementById("tv-controls");
-  tvControls.style.display = "none";
   const toggleButton = document.getElementById("toggle-episodes");
-  toggleButton.style.display = "none";
-  
   const episodeSelection = document.getElementById("episode-selection");
-  episodeSelection.style.display = "none";
-  episodeSelection.classList.remove("row");
   const overlayContent = document.querySelector(".overlay-content");
-  overlayContent.classList.remove("tv-active");
+
+  if (tvControls) tvControls.style.display = "none";
+  if (toggleButton) toggleButton.style.display = "none";
+  if (episodeSelection) {
+    episodeSelection.style.display = "none";
+    episodeSelection.classList.remove("row");
+  }
+  if (overlayContent) overlayContent.classList.remove("tv-active");
+
+  // 3. Clear descriptions and reset global variables
+  const descEl = document.getElementById("overlay-description");
+  if (descEl) descEl.innerText = ""; 
+
   currentSeason = null;
   currentEpisode = null;
-  const descEl = document.getElementById("overlay-description");
-  if (descEl) descEl.innerText = ""; // Clears the text
-  
-  
   searchingTMDBId = false;
-  
+
+  // 4. Remove any temporary search UI
   const mediaTypeSelection = document.getElementById("media-type-selection");
   if (mediaTypeSelection) {
     mediaTypeSelection.remove();
   }
-
+}
 
 function openBannerMovie(tmdbId, title, isMovie, seasons = 0) {
   currentTMDBId = 991494;
@@ -949,10 +955,8 @@ async function fetchEpisodeDescription(tmdbId, season, episode) {
     } else {
       descEl.innerText = `S${season} E${episode}: No specific episode description available.`;
     }
-  } catch (error) {
-    console.error("Error fetching episode details:", error);
-    descEl.innerText = "Error loading episode description.";
-  }
+
+    
 }
 async function loadHomePageData() {
   const newReleasesData = await getNewReleasesFromTMDB();
